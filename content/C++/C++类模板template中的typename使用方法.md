@@ -1,10 +1,11 @@
 ---
-title: 
-draft: 
-aliases: 
-tags: 
+title:
+draft:
+aliases:
+  - c++-template-typename
+tags: []
 created: Monday, September 15th 2025, 6:52:14 pm
-updated: Tuesday, September 16th 2025, 3:24:40 pm
+updated: Wednesday, September 17th 2025, 1:34:27 pm
 ---
 
 # 转载

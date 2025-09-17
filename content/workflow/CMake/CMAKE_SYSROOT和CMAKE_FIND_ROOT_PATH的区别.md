@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
-aliases: 
-tags: 
+title:
+draft:
+aliases: [cmake_sysroot-cmake_find_root_path]
+tags: []
 created: Monday, September 15th 2025, 6:42:20 pm
-updated: Tuesday, September 16th 2025, 3:24:41 pm
+updated: Wednesday, September 17th 2025, 11:15:50 pm
 ---
 
 1. CMAKE_FIND_ROOT_PATH用来<font color =red>控制</font>find_\*命令搜索路径的前缀。
