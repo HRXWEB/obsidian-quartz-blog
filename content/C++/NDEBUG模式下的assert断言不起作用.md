@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
+aliases: []
+tags: []
 created: Monday, September 15th 2025, 6:50:50 pm
-updated: Tuesday, September 16th 2025, 3:24:42 pm
+updated: Wednesday, September 17th 2025, 1:34:33 pm
 ---
 
 # assert 定义

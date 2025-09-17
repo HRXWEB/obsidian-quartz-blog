@@ -1,13 +1,15 @@
 ---
-title: 
-draft: 
-aliases: 
-tags: 
+title:
+draft:
+aliases:
+  - c++-general-hash-func
+tags: []
 created: Monday, September 15th 2025, 6:38:12 pm
-updated: Tuesday, September 16th 2025, 3:24:37 pm
+updated: Wednesday, September 17th 2025, 2:43:45 pm
 ---
 
 对于自定义的结构体，如果需要作为要求元素是可哈希的容器的元素，那么就需要自定义hash函数。STL中这样的容器有：`std::unordered_map`、`std::unordered_set`、`std::unordered_multimap`、`std::unordered_multiset`。
+
 <!--more-->
 
 # 万能的 hash function

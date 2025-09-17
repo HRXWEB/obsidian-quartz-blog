@@ -1,10 +1,11 @@
 ---
-title: 
-draft: 
-aliases: 
-tags: 
+title:
+draft:
+aliases:
+  - nvm-install
+tags: []
 created: Tuesday, September 16th 2025, 11:52:55 am
-updated: Tuesday, September 16th 2025, 3:24:43 pm
+updated: Wednesday, September 17th 2025, 4:36:10 pm
 ---
 
 nvm(node version manager) 是 node 的 node.js 的多版本管理工具
