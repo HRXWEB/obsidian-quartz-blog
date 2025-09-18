@@ -23,9 +23,10 @@ export const sharedPageComponents: SharedLayout = {
   ],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/HRXWEB/obsidian-quartz-blog",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
-      "Contact": "mailto:1242714972@qq.com"
+      "👨🏻‍💻GitHub": "https://github.com/HRXWEB/obsidian-quartz-blog",
+      "💬Discord Community": "https://discord.gg/cRFFHYye7t",
+      "📧Contact": "mailto:1242714972@qq.com",
+      "🔗RSS": "https://blog.rickyyel.org/index.xml"
     },
   }),
 }
