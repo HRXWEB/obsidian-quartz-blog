@@ -31,7 +31,7 @@ Stack backtrace:
 
 ----
 
-上面说了那么多，直接用图<sup>1</sup>来解释（有一处错误：帧指针ebp下面的地址应该是ebp-4）：
+上面说了那么多，直接用图1来解释（有一处错误：帧指针ebp下面的地址应该是ebp-4）：
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171402535.png)
 
@@ -41,7 +41,7 @@ Stack backtrace:
 
 ebp+8/12/16.... 保存着参数，<mark>注意</mark>这些参数都是被调用者的输入参数
 
-因此结合博主的代码<sup>2</sup>，完善代码（博主有部分代码笔者觉得有误，欢迎讨论）：
+因此结合博主的代码2，完善代码（博主有部分代码笔者觉得有误，欢迎讨论）：
 
 ## monitor.c
 

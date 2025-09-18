@@ -18,7 +18,7 @@ updated: Thursday, September 18th 2025, 5:01:29 pm
 
 ## 本节目的
 
-1. 介绍 x86 汇编语言，[参考书](https://pdos.csail.mit.edu/6.828/2018/readings/pcasm-book.pdf)[<sup>1</sup>](#1)
+1. 介绍 x86 汇编语言，[参考书](https://pdos.csail.mit.edu/6.828/2018/readings/pcasm-book.pdf)[1](#1)
 2. 了解 PC Bootstrap 的过程
 3. 使用 QEMU 和 GDB
 
