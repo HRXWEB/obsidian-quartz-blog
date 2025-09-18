@@ -1,0 +1,391 @@
+---
+draft: false
+aliases: []
+title: MIT6.828-Lab1-Part3-Exercise8-printf相关文档
+subtitle:
+lang: zh
+author: Ricky Yel
+show_edit_on_github: true
+tags: []
+show_tags: true
+created: Thursday, September 18th 2025, 4:46:49 pm
+updated: Thursday, September 18th 2025, 5:11:57 pm
+---
+
+<!--more-->
+
+# 通读理解printf相关文档
+
+根据主文档的描述，先看 `console.c` 文档和 `printfmt.c` 文档，然后二者会被 `printf.c` 调用。
+
+调用关系使用 -> 来表示，a -> b 表示 b调用a。<- 即为反过来。
+
+## console.c
+
+根据阅读习惯，对函数进行理解时，我们从外向里分析。
+
+```c
+// 'High'-level console I/O. Used by readline and cprintf
+
+void cputchar(int c) // 简单封装了函数，改个名字
+{
+  cons_putc(c);
+}
+
+static void cons_putc(int c) // 调用三个函数，接下来一一分析这三个函数功能
+{
+  serial_putc(c);
+  lpt_putc(c);
+  cga_putc(c);
+}
+```
+
+### serial_putc(int c)
+
+```c
+#define COM1 						0x3F8
+#define COM_TX					0  // Out: Transmit buffer (DLAB=0)
+#define COM_LSR					5  // In: Line Status Register
+#define COM_LSR_TXRDY		0x20  // Transmit buffer avail
+
+static void serial_putc(int c);
+{
+  int i;
+  
+  for (i = 0; 
+       !(inb(COM1 + COM_LSR) & COM_LSR_TXRDY) && i < 12800;
+       i++) {
+    dalay();
+  }
+  outb(COM1 + COM_TX, c);
+}
+```
+
+通过 inb 和 outb 指令，分别控制了 `COM1+COM_LSR=0x3fd` 和 `COM1+COM_TX=0x3f8` 端口，查阅[端口参考资料](http://bochs.sourceforge.net/techspec/PORTS.LST)得：
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171146226.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171157366.png)
+
+1. `COM1 + COM_LSR) & COM_LSR_TXRDY` 用来检测 03fd 的 bit5=1?，若等于说明发送缓冲区空闲，控制器可以接收新的字符。否则停留在for循环delay()，等待空闲。空闲后就转到outb
+2. `outb(COM1 + COM_TX, c)` 将字符写到了 0x3f8，它被用作发送数据的缓冲区。
+3. 所以 `serial_putc` 的功能就是把一个字符输出给串口。
+
+### lpt_putc(int c)
+
+```c
+/***** Parallel port output code *****/
+
+static void lpt_putc(int c)
+{
+  // 看上面的注释：它的功能是把这个字符输出到并口设备，代码也看不懂
+  // 具体代码就不写了，写了我也不知道为啥是这么干
+}
+```
+
+### cga_putc(int c)
+
+```c
+/***** Text-mode CGA/VGA display output *****/
+// 懒得看了，注释的意思应该就是把字符输出到CGA/VGA设备了，就是显示器上。
+```
+
+## printfmt.c
+
+```c
+// Stripped-down primitive printf-style formatting routines,
+// used in common by printf, sprintf, fprintf, etc.
+// This code is also used by both the kernel and user programs.
+
+vprintfmt(void (*putch)(int, void*), void *putdat, const char *fmt, va_list ap)
+{
+  // 这里稍微提前解释一下在 prinf.c 中定义的函数putch，根据后续的代码，可知 putdat 是其第二个参数
+  // 而它本身的功能是将第一个参数存放到第二个参数(指针）所指涉的值(内存地址）。
+	register const char *p;
+	register int ch, err;
+	unsigned long long num;
+	int base, lflag, width, precision, altflag;
+	char padc;
+
+	while (1) {
+		while ((ch = *(unsigned char *) fmt++) != '%') {
+      // 这个while循环实现在没碰到%字符之前，所有的字符简单通过putch输出即可
+			if (ch == '\0')
+				return;
+			putch(ch, putdat);
+		}
+
+		// Process a %-escape sequence
+		padc = ' ';  // padding的字符，默认为 ' '
+		width = -1;
+		precision = -1;
+		lflag = 0;
+		altflag = 0;
+	reswitch:  // goto标记点，通过它来避免嵌套switch。比如%0d，先识别到了0表示填充0，后续还得继续判断ch
+		switch (ch = *(unsigned char *) fmt++) {
+
+		// flag to pad on the right
+		case '-':
+			padc = '-';
+			goto reswitch;
+
+		// flag to pad with 0's instead of spaces
+		case '0':
+			padc = '0';
+			goto reswitch;
+
+		// width field
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+			for (precision = 0; ; ++fmt) {
+				precision = precision * 10 + ch - '0';  // 计算精度，即要保留多少位数字
+				ch = *fmt;
+				if (ch < '0' || ch > '9')
+					break;
+			}
+			goto process_precision;
+
+		case '*':
+			precision = va_arg(ap, int);
+			goto process_precision;
+
+		case '.':
+			if (width < 0)
+				width = 0;
+			goto reswitch;
+
+		case '#':
+			altflag = 1;
+			goto reswitch;
+
+		process_precision:
+			if (width < 0)
+				width = precision, precision = -1;  // 
+			goto reswitch;
+
+		// long flag (doubled for long long)
+		case 'l':
+			lflag++;
+			goto reswitch;
+
+		// character
+		case 'c':
+			putch(va_arg(ap, int), putdat);
+			break;
+
+		// error message
+		case 'e':
+			err = va_arg(ap, int);
+			if (err < 0)
+				err = -err;
+			if (err >= MAXERROR || (p = error_string[err]) == NULL)
+				printfmt(putch, putdat, "error %d", err);
+			else
+				printfmt(putch, putdat, "%s", p);
+			break;
+
+		// string
+		case 's':
+			if ((p = va_arg(ap, char *)) == NULL)
+				p = "(null)";
+			if (width > 0 && padc != '-')
+				for (width -= strnlen(p, precision); width > 0; width--)
+					putch(padc, putdat);
+			for (; (ch = *p++) != '\0' && (precision < 0 || --precision >= 0); width--)
+				if (altflag && (ch < ' ' || ch > '~'))
+					putch('?', putdat);
+				else
+					putch(ch, putdat);
+			for (; width > 0; width--)
+				putch(' ', putdat);
+			break;
+
+		// (signed) decimal
+		case 'd':
+			num = getint(&ap, lflag);
+			if ((long long) num < 0) {
+				putch('-', putdat);
+				num = -(long long) num;
+			}
+			base = 10;
+			goto number;
+
+		// unsigned decimal
+		case 'u':
+			num = getuint(&ap, lflag);
+			base = 10;
+			goto number;
+
+		// (unsigned) octal
+		case 'o':
+			// Replace this with your code.
+      // 参考 unsigned decimal 写
+      num = getuint(&ap, lflag);
+      base = 8;
+      goto number;
+			// putch('X', putdat);  // 包括这行在内的连续三行注释掉
+			// putch('X', putdat);
+			// putch('X', putdat);
+			break;
+
+		// pointer
+		case 'p':
+			putch('0', putdat);
+			putch('x', putdat);
+			num = (unsigned long long)
+				(uintptr_t) va_arg(ap, void *);
+			base = 16;
+			goto number;
+
+		// (unsigned) hexadecimal
+		case 'x':
+			num = getuint(&ap, lflag);
+			base = 16;
+		number:
+			printnum(putch, putdat, num, base, width, padc);
+			break;
+
+		// escaped '%' character
+		case '%':
+			putch(ch, putdat);
+			break;
+
+		// unrecognized escape sequence - just print it literally
+		default:
+			putch('%', putdat);
+			for (fmt--; fmt[-1] != '%'; fmt--)
+				/* do nothing */;
+			break;
+		}
+	}
+}
+
+void
+printfmt(void (*putch)(int, void*), void *putdat, const char *fmt, ...)
+{
+	va_list ap;
+
+	va_start(ap, fmt);
+	vprintfmt(putch, putdat, fmt, ap);
+	va_end(ap);
+}
+```
+
+涉及到可变参数的函数有三个 `va_arg(), va_start(), va_end()`，它们需要借助数据类型 `va_list` 来进行处理。
+
+## printf.c(从里向外分析，调用关系：putch -> vcprintf -> cprintf)
+
+```c
+// Simple implementation of cprintf console output for the kernel,
+// based on printfmt() and the kernel console's cputchar().  // 这里也说明了三个文件之间的关系
+
+#include <inc/types.h>
+#include <inc/stdio.h>
+#include <inc/stdarg.h>  // 这里面定义了宏函数 #define va_arg(ap, type) __builtin_va_arg(ap, type)
+
+static void
+putch(int ch, int *cnt)  // 输出单个字符到 address = *cnt 的位置，它被vprintfmt调用
+{
+	cputchar(ch);
+	*cnt++;
+}
+
+int
+vcprintf(const char *fmt, va_list ap)
+{
+	int cnt = 0;
+
+	vprintfmt((void*)putch, &cnt, fmt, ap);  // 输出函数putch，位置cnt，格式fmt，可变参数ap都交待了
+	return cnt;
+}
+
+// 举个具体的例子
+// printf("Lab%d has %d exercises", m, n)
+// 那么
+// fmt = "Lab%d has %d exercises"
+// m,n 会被封装成ap
+
+int
+cprintf(const char *fmt, ...)
+{
+	va_list ap;
+	int cnt;
+
+	va_start(ap, fmt);  // 生成 va_list ap 交给下一行的vcprintf函数使用
+	cnt = vcprintf(fmt, ap);
+	va_end(ap);
+
+	return cnt;
+}
+```
+
+# 回答问题
+
+Q：解释一下`printf.c`和`console.c`两个之间的关系。`console.c`定义了哪些子函数？这些子函数是怎么被`printf.c`所利用的？
+
+A：`console.c` 的 `cputchar` 被 `printf.c` 内的 `putch` 调用，用来输出单个字符。`console.c` 内除去static修饰的函数都可以被外部文件使用。
+
+Q：解释 `console.c` 这段代码的作用
+
+```c
+if (crt_pos >= CRT_SIZE) {
+  int i;
+  memmove(crt_buf, crt_buf + CRT_COLS, (CRT_SIZE - CRT_COLS) * sizeof(uint16_t));
+  for (i = CRT_SIZE - CRT_COLS; i < CRT_SIZE; i++) {
+    crt_buf[i] = 0x0700 | ' ';
+  }
+  crt_pos -= CRT_COLS;
+}
+```
+
+A：直接复制参考资料<sup>1</sup>的解释，累了💤
+
+> 当crt_pos >= CRT_SIZE，其中CRT_SIZE = 80\*25，由于我们知道crt_pos取值范围是0-(80*25-1)，那么这个条件如果成立则说明现在在屏幕上输出的内容已经超过了一页。所以此时要把页面向上滚动一行，即把原来的1-79号行放到现在的0-78行上，然后把79号行换成一行空格（当然并非完全都是空格，0号字符上要显示你输入的字符int c）。所以memcpy操作就是把crt_buf字符数组中1-79号行的内容复制到0-78号行的位置上。而紧接着的for循环则是把最后一行，79号行都变成空格。最后还要修改一下crt_pos的值，让他指涉最后一行的首位。
+
+Q：观察下面的代码
+
+```c
+int x = 1, y = 3, z = 4;
+cprintf("x %d, y %x, z %d\n", x, y, z);
+```
+
+​		回答下列问题：
+
+1. <mark>问：</mark>当调用`cprintf`时，fmt指向的是什么内容，ap指向的是什么内容？<mark>答：</mark> fmt=`"x %d, y %x, z %d\n"`；ap=`x,y,z`
+2. <mark>问：</mark>按照执行的顺序列出所有对`cons_putc`, `va_arg`，和`vcprintf`的调用。对于`cons_putc`，列出它所有的输入参数。对于`va_arg`列出ap在执行完这个函数后的和执行之前的变化。对于`vcprintf`列出它的两个输入参数的值。<mark>答：</mark>解析来按照代码执行顺序，分析调用关系和每个函数的参数
+   3. `cprintf(fmt, ...) <- vcprintf(fmt, ap)`，并且将fmt和ap传入`vcpringf`。这两个参数的值在问题1已经回答了。
+   4. `vcprintf(fmt, ap) <- vprintfmt((void*)putch, &cnt, fmt, ap)`。`vprintfmt` 会对fmt和ap进行分析。具体看其代码：当碰到`%`后，开始进入`switch`进行分析，最终会匹配到 `case 'd':` ，此时会调用`printfmt.c`中的`getint(va_list, int)` ，分析可知`getint`中走的判断分支为`return va_arg(*ap, int);` 调用前：ap指向x,y,z的1,3,4；调用后：ap指向y,z的3,4。
+   5. `vprintfmt <- number:printnum(putch, putdat, num, base, width, padc)`。以`putch`为媒介，结合各参数提供的各种信息，将 `1` 显示在屏幕上。
+   6. `putch <- cputch <- cons_putc(int c)`。c就是1  
+
+Q：运行下面的代码
+
+```c
+unsigned int i = 0x00646c72;
+cprintf("H%x Wo%s", 57616, &i);
+```
+
+​		回答：
+
+1. <mark>问：</mark>输出是什么？这里可以看到[ASCII码表](http://web.cs.mun.ca/~michael/c/ascii-table.html)，也可以通过在终端输入 `man ascii` 查看。<mark>答：</mark>57616的16进制是`e110`；`%s`代表将这一地址及后续的地址存放的数据译码为字符，直到遇到`'\0'`结束符。由于是小端存储（低位数据存放在低地址），所以`&i`处以及后续的内存处存放的数据（以字节为单位）依次为`72|6c|64|00`，对应的字符依次为`r|l|d|\0`。所以最终显示的结果为：`He110 World`
+2. <mark>问：</mark>如果是大端模式，i应该怎么修改？57616需要变吗？<mark>答：</mark>57616不需要变，i的定义应该为`unsigned int i = 0x726c6400`
+
+Q：这段代码 `cprintf("x=%d y=%d", 3);`的输出，`y=`后面会输出什么？
+
+A：随机的，无规律。
+
+Q：如果将GCC的调用约定改为参数从左到右压栈，为支持参数数目可变需要怎样修改cprintf函数？
+
+A：一种是从右到左，即跟现在传递参数的方式反过来。一种是在原接口后面加一个int参数指示所有参数总长度，这样就可以通过偏移寻找所有的参数。
+
+# 参考资料
+
+1. [cnblog-fatsheep9146](https://www.cnblogs.com/fatsheep9146/p/5066690.html)
+2. [cnblog-whl1729](https://www.cnblogs.com/wuhualong/p/lab01_exercise08_formatted_printing_to_the_console.html)

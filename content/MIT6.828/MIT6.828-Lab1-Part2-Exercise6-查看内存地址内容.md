@@ -1,0 +1,68 @@
+---
+draft: false
+aliases: []
+title: MIT6.828-Lab1-Part2-Exercise6-查看内存地址内容
+subtitle:
+lang: zh
+author: Ricky Yel
+show_edit_on_github: true
+tags: []
+show_tags: true
+created: Thursday, September 18th 2025, 4:45:49 pm
+updated: Thursday, September 18th 2025, 5:10:40 pm
+---
+
+通过gdb查看内存地址内容
+
+<!--more-->
+
+# 查看内存地址内容
+
+>  在BIOS进入boot loader的时刻和boot loader进入kernel的那一刻查看 `0x00100000`在内的连续8个word的内容，思考它们为什么不同？第二次这个内存处存放的是什么东西？
+
+首先在 `obj/boot/boot.asm` 文件确定上述的两个时刻分别运行的内存地址，加断点。BIOS -> boot loader -> kernel 这两个关键节点分别在 `0x7c45` 和 `0x7d6b`：
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170928255.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170939996.png)
+
+最终调试过程如下：
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170952310.png)
+
+对比两次 `x/8x 0x00100000` 的结果发现是不一样的。
+
+## 解释
+
+为什么会产生这种变化？
+
+回顾[[MIT6.828-Lab1-Part2-Exercise5-修改link_address查看结果|Exercise5]]的部分，`objdump -h obj/kern/kernel` 显示 `.text` 段会加载到 `LMA = 0x00100000`，而程序的入口由命令 `objdump -f obj/kern/kernel` 可知 `start address = 0x0010000c`
+
+查看 `kernel/entry.S` 可以发现：
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171035976.png)
+
+```nasm
+# 定义了宏函数，应该是不会放在代码段的部分，猜测是这样的
+#define RELOC(x) ((x) - KERNBASE)
+
+# 定义三个全局常量，每个占用4字节，一共占用12字节。即占据了 0x00100000~0x0010000B 的空间
+#define MULTIBOOT_HEADER_MAGIC (0x1BADB002)
+#define MULTIBOOT_HEADER_FLAGS (0)
+#define CHECKSUM (-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS))
+
+#####
+# entry point
+#### 后面的代码应该就是接着 0x0010000B后面，即从 0x0010000C 开始了
+```
+
+上面查看的 `0x00100000` 后面的8个内存单元的内容中的前三个和上面的 define做比较：
+
+1. MULTIBOOT_HEADER_MAGIC = 0x1badb002
+2. MULTIBOOT_HEADER_FLAGS = 0
+3. CHECKSUM = -(0x1badb002 + 0) = (0x1badb002 + 0)的反码 + 1 = 0xe4524ffd + 1 = 0xe4524ffe
+
+# 参考资料
+
+1. [cnblog-fatsheep9146](https://www.cnblogs.com/fatsheep9146/p/5216681.html)
+2. [jiyou-github.io](https://jiyou.github.io/blog/2018/04/15/mit.6.828/jos-lab1/)

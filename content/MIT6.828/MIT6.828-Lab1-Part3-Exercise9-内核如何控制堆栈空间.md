@@ -1,0 +1,176 @@
+---
+draft: false
+aliases: []
+title: MIT6.828-Lab1-Part3-Exercise9-内核如何控制堆栈空间
+subtitle:
+lang: zh
+author: Ricky Yel
+show_edit_on_github: true
+tags: []
+show_tags: true
+created: Thursday, September 18th 2025, 4:47:20 pm
+updated: Thursday, September 18th 2025, 5:12:59 pm
+---
+
+通过初始化%ebp和%esp寄存器，内核可以控制堆栈的空间。
+
+<!--more-->
+
+# 内核如何控制堆栈
+
+1. 判断一下操作系统内核是从哪条指令开始初始化它的堆栈空间的，以及这个堆栈坐落在内存的哪个地方？
+2. 内核是如何给它的堆栈保留一块内存空间的？
+3. 堆栈指针又是指向这块被保留的区域的哪一端的呢？
+
+## 补充
+
+和堆栈有关的寄存器有两个，分别是`%esp,%ebp`，有关它们的知识：
+
+1. %esp和%ebp是x86架构（也称为IA-32）中的两个寄存器，常用于存储栈指针和基址指针。
+2. %esp（堆栈指针寄存器）存储了当前堆栈的栈顶位置，它指向最后一个压入堆栈的数据元素。在函数调用时，参数和局部变量通常被压入堆栈，%esp寄存器被用于跟踪栈的状态。
+3. %ebp（基址指针寄存器）通常被用于建立堆栈帧，它指向当前堆栈帧的基址。在函数调用时，%ebp通常被用于建立一个帧指针，用于访问函数参数和局部变量。
+
+在函数执行过程中，%esp和%ebp寄存器通常会被频繁地修改，以便正确地管理栈帧和跟踪堆栈的状态。
+
+----
+
+当bootloader通过 `main.c` 调用 `ELFHDR->e_entry()`，即进入到了 `/lab/kern/entry.S`，接下来对它进行分析
+
+## entry.S
+
+```nasm
+entry:
+		****
+		*****
+		mov $relocated %eax
+		jmp *%eax
+relocated:
+		
+		# Clear the frame pointer register (EBP)
+		# so that once we get into debugging C code,
+		# stack backtraces will be termianted properly.
+		movl	$0x0, %ebp		# 和堆栈设置相关
+
+		# Set the stack pointer
+		movl $(bootstacktop), %esp		# 和堆栈设置相关
+		
+		# now to C code
+		call i386_init
+```
+
+和堆栈设置相关的指令就是上面两条，为了深入了解做了什么，需要查看具体的汇编代码。
+
+打开两个终端，都cd到lab目录下，一个运行`make qemu-nox-gdb`，一个运行`make gdb`，开始跟踪指令
+
+首先在`/lab/obj/boot/boot.asm`中看到进入内核的指令为
+
+```nasm
+				((void (*) (void)) (ELFHDR->e_entry))();
+		7d6b:				ff	15	18	00	01	00			call		*0x10018
+```
+
+因此在gdb窗口，在`0x7d6b`处加一个断点：`b *0x7d6b`，然后一步步跟踪。
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171255099.png)
+
+第一条指令`movw		$0x1234, 0x472`运行的地址为`0x10000c`，这可以在 `/lab/boot/main.c` 看到：
+
+```c
+#define ELFHDR			((struct ELF *) 0x10000) // scratch space
+// 应该是在这把内核文件加载到附近的地址了。
+```
+
+分析指令：
+
+```nasm
+# 以下所有的指令都是运行在低地址，而且都是在开启分页机制之前的物理地址，范围在0x100000~0x400000之间
+
+# entry_pgdir 定义在 /obj/kern/entrypgdir.c，它是一个手写的c语言的页表。具体分析在 ### entrypgdir.c小节
+# 这里简单介绍其功能：
+# 实现将VA=[0x0, 0x400000)和VA=[KERNBASE, KERNBASE+4M) !都! 映射到PA=[0x0, 0x400000)
+# 其中KERNBASE = 0xf0000000。这一页表的首地址存储到了%eax寄存器
+		movl    $(RELOC(entry_pgdir)), %eax		# RELOC 计算页表的真实物理地址（因为还没有开始分页，肯定需要操作物理地址）
+# 页表首地址传输给cr3。cr2和cr3都是和分页机制有关的寄存器，其中cr3用来存储页表的物理起始地址
+		movl    %eax, %cr3
+# 下面三句功能为将CRO的 CR0_PE|CR0_PG|CR0_WP 位 置1
+# PE 表示进入保护模式
+# PG 表示开启分页机制，这样才能顺利的进行内存映射
+# WP 表示写保护，禁止超级用户向用户级只读页面执行写操作
+		movl    %cr0, %eax
+		orl    	$(CR0_PE|CR0_PG|CR0_WP), %eax
+		movl    %eax, %cr0
+		
+# 执行完上述最后一条命令之后，开启了分页机制，指令地址现在都是!!!!!虚拟地址!!!!!
+```
+
+```nasm
+# 目前指令地址都是虚拟地址!!!!
+# 目前还没有跳转到高地址，由于entry_pgdir低地址也映射过了，所以此时的VA=0x1000XX成功转译为PA=0x1000XX
+
+# 跳转到 relocated 指示的地址。并且是一个高地址。
+=> 0x100028:		mov		$0xf010|002f,%eax
+=> 0x10002d:		jmp		*%eax
+```
+
+接下来执行的指令地址位于 `0xf010|002f`，这同样是虚拟地址，因为内核代码实际上都存放在物理地址 `0x0010|0000`及其之后的位置。由于之前开启分页机制，内存顺利映射，可以在高位虚拟地址运行指令后，于是可以跳转到 `0xf010|002f` 位置且顺利执行。接下来：
+
+```nasm
+# 设置 %ebp 寄存器
+		movl		%0x0,%ebp
+		movl		$(bootstacktop),%esp
+# 设置 %esp 寄存器，通过反汇编可知 $bootstacktop = $0xf011|0000
+# 即栈底地址为 $0xf011|0000
+		call		i386_init
+		
+# 栈顶的位置需要查看 entry.S 最后定义的几个值：
+bootstack:
+		.space		KSTkSIZE
+		.global		bootstacktop
+# 在/lab/inc/memlayout.h中：KSTKSIZE = 8 * PAGESIZE = 8 * 4KB = 32KB
+# 32KB = 2^5 * 2^10 = 8 * 2^12 = 0x8000
+# 所以栈顶为 0xf011|0000 - 0x0000|8000 = 0xf010|8000
+```
+
+### entrypgdir.c
+
+ps: 下面的概念`页表，页目录项` 都是在lab2才开始进一步了解的，可能一开始看看不懂，尽力理解吧。或者现在可以结合[[MIT6.828-Lab2-Part1-Exercise1-实现pmap.c中的物理内存页管理函数|lab2-exe1]]努力理解。
+
+```c
+// 在别的文件中，定义了常量
+#define KERNBASE 0xF0000000
+#define PDXSHIFT 22
+
+pde_t entry_pgdir[NPDENTRIES] = {
+	// Map VA's [0, 4MB) to PA's [0, 4MB)
+	[0]
+		= ((uintptr_t)entry_pgtable - KERNBASE) + PTE_P,
+	// Map VA's [KERNBASE, KERNBASE+4MB) to PA's [0, 4MB)
+	[KERNBASE>>PDXSHIFT]
+		= ((uintptr_t)entry_pgtable - KERNBASE) + PTE_P + PTE_W
+};
+
+// 这个数组定义了页目录表
+// [0]号目录项记录的是0号页表。因为(uintptr_t)entry_pgtable - KERNBASE = 0。进一步地，0号页表对应0-4M的物理空间
+// 同理[KERNBASE>>PDXSHIFT]号页目录项也记录的是0号页表。向右偏移22位是因为一个页目录项纪录了4M=2^22字节的空间。所以KERNBASE这个地址对应的是[KERNBASE>>PDXSHIFT]号页目录项。
+
+// 加上那些标志位是因为标志位会影响每个物理页面起始的位置。比如第一个页面：0x000000 | PTE_P | PTE_W
+// 本身应该是从0x0开始，但是 or 操作后，就会从 0x0+PTE_P+PTE_W这个位置开始
+```
+
+# Q&A
+
+Q：判断一下操作系统内核是从哪条指令开始初始化它的堆栈空间的，以及这个堆栈坐落在内存的哪个地方？
+
+A：通过修改%ebp和%esp的值来初始化对栈空间，并且对栈空间位于[0xf010|8000~0xf011|0000]
+
+Q：内核是如何给它的堆栈保留一块内存空间的？
+
+A：在 `entry.S` 申明了一块32KB大小的空间作为堆栈使用
+
+Q：堆栈指针又是指向这块被保留的区域的哪一端的呢？
+
+A：堆栈由于是向下生长的，所以堆栈指针自然要指向最高地址了。最高地址就是我们之前看到的bootstacktop的值。所以将会把这个值(0xf011|0000)赋给堆栈指针寄存器。
+
+# 参考资料
+
+1. [cnblog-fatsheep9146](https://www.cnblogs.com/fatsheep9146/p/5079177.html)
