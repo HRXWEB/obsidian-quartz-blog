@@ -1,18 +1,17 @@
 ---
 title:
 draft:
-aliases:
-  - c++-class-memory-model
+aliases: [c++-class-memory-model]
 tags: []
 created: Monday, September 15th 2025, 6:31:30 pm
-updated: Wednesday, September 17th 2025, 9:09:31 pm
+updated: Thursday, September 18th 2025, 5:36:18 pm
 ---
 
 在C++中，涉及类的继承等较为复杂的概念，本文简单阐述一下涉及虚函数，虚继承的类的内存布局。
 
 <!--more-->
 
-# 内存对其原则<sup>1</sup>
+# 内存对其原则1
 
 1. **内置类型数据成员**：结构（struct/class）的内置类型数据成员，第一个数据成员放在offset为0的地方，以后每个数据成员的起始位置要从自身大小的整数倍开始存储
 2. **结构体作为成员**: 如果一个结构里有某些结构体成员，则结构体成员要从其内部“最宽基本类型成员”的整数倍地址开始存储（如struct a里存有struct b，b里有char, int, double等元素，那b应该从8的整数倍位置开始存储)。
@@ -64,7 +63,7 @@ class BBB
 sizeof(BBB): 8
 ```
 
-# 多态单继承内存模型<sup>2</sup>
+# 多态单继承内存模型2
 
 ```cpp
 struct A
@@ -133,7 +132,7 @@ object                                                | RTTI for C |
 sizeof(C): 24    align: 8                             +------------+
 ```
 
-# 多态多继承内存模型<sup>2</sup>
+# 多态多继承内存模型2
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250915183611340.png)
 
@@ -176,7 +175,7 @@ sizeof(C): 32    align: 8              |        +--------------------+
 
 ----
 
-# 虚继承内存模型<sup>2.3.4.5.6.7</sup>
+# 虚继承内存模型2.3.4.5.6.7
 
 ```cpp
 struct A

@@ -280,7 +280,7 @@ printfmt(void (*putch)(int, void*), void *putdat, const char *fmt, ...)
 
 涉及到可变参数的函数有三个 `va_arg(), va_start(), va_end()`，它们需要借助数据类型 `va_list` 来进行处理。
 
-## printf.c(从里向外分析，调用关系：putch -> vcprintf -> cprintf)
+## printf.c(从里向外分析，调用关系：putch--vcprintf--cprintf)
 
 ```c
 // Simple implementation of cprintf console output for the kernel,
@@ -345,7 +345,7 @@ if (crt_pos >= CRT_SIZE) {
 }
 ```
 
-A：直接复制参考资料<sup>1</sup>的解释，累了💤
+A：直接复制参考资料1的解释，累了💤
 
 > 当crt_pos >= CRT_SIZE，其中CRT_SIZE = 80\*25，由于我们知道crt_pos取值范围是0-(80*25-1)，那么这个条件如果成立则说明现在在屏幕上输出的内容已经超过了一页。所以此时要把页面向上滚动一行，即把原来的1-79号行放到现在的0-78行上，然后把79号行换成一行空格（当然并非完全都是空格，0号字符上要显示你输入的字符int c）。所以memcpy操作就是把crt_buf字符数组中1-79号行的内容复制到0-78号行的位置上。而紧接着的for循环则是把最后一行，79号行都变成空格。最后还要修改一下crt_pos的值，让他指涉最后一行的首位。
 
