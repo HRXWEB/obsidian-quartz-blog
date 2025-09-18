@@ -1,0 +1,40 @@
+---
+draft: false
+aliases:
+title: MIT6.828-Lab1-Part1-Appendix2-实模式保护模式
+subtitle:
+lang: zh
+author: Ricky Yel
+show_edit_on_github: true
+tags: []
+show_tags: true
+created: Thursday, September 18th 2025, 4:32:10 pm
+updated: Thursday, September 18th 2025, 4:32:42 pm
+---
+
+随着计算机的发展，为了向后兼容，保护模式和实模式共存。对实模式和保护模式进行对比。
+
+<!--more-->
+
+# 实模式
+
+实模式出现在8088CPU时期。20位的地址线和16位的寄存器应该如何进行匹配？通过两个16位寄存器来计算20位的寄存器，段基址左移4位后加上偏移地址即为需要访问的内存地址，即 $base \times 16 + offset$。
+
+# 保护模式
+
+>  虽然CPU的发展，地址线由20位增加到了32位，可以访问4GB的内存空间。寄存器的位数也变成了32位，此时实模式的内存地址方式已经不再适用。
+
+此时的段基址不再代表 `base`，此时它被称为段选择子，从GDT/LDT(全局段描述符表/本地段描述符表)的Base字段拿到段基址，同样是通过 $base \times 16 + offset$ 计算访问地址。limits 字段代表段的大小、flags字段代表程序对这段内存的访问权限。
+
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918165458489.png)
+
+
+# 对比
+
+1. 实模式下段基地址必须是16的整数倍(因为左移4位)，保护模式下段基地址可以是4GB空间内的任意一个地址。
+2. 实模式下段的长度是65536B(2<sup>16</sup>)，但是保护模式下段的长度也是可以达到4GB的。
+3. 保护模式下可以对内存的访问多加一层保护，但是实模式没有。
+
+# 参考文献
+
+1. [MIT 6.828 JOS学习笔记6. Appendix 1: 实模式(real mode)与保护模式(protected mode) - fatsheep9146 - 博客园](https://www.cnblogs.com/fatsheep9146/p/5116426.html)
