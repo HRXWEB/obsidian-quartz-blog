@@ -5,7 +5,7 @@ draft:
 aliases: [obsidian-quartz-blog-build]
 tags: []
 created: Wednesday, September 17th 2025, 9:51:17 pm
-updated: Friday, September 19th 2025, 6:33:43 pm
+updated: Friday, September 19th 2025, 8:49:09 pm
 ---
 
 # 需要解决的问题
@@ -45,7 +45,7 @@ npx quartz build --serve
 
 如果之前就已经创建好了 obsidian vault，肯定会装很多的插件，把 `.obsidian/` 目录放到项目根目录下就可以复原了。
 
-默认配置下 `.obsidian/` 目录是写在 `.gitignore` 的，即不进行跟踪。但是我肯定是希望它能被跟踪且是私密的，这样后续换了设备也能快速复原工作环境。具体做法见[[#^484f5f|下文]]，当前不急着做。
+默认配置下 `.obsidian/` 目录是写在 `.gitignore` 的，即不进行跟踪。但是我肯定是希望它能被跟踪且是私密的，这样后续换了设备也能快速复原工作环境。具体做法见[[管理.obsidian目录]]，当前不急着做。
 
 ## 创建必要的目录
 
@@ -166,51 +166,7 @@ ln -s attachment.nosync attachment
 
 # [[dotfile管理哲学|管理.obsidian目录]]
 
-^484f5f
-
-## 将原有的 `.obsidian/` 目录上传到远程仓库
-
-> [!Warning] 安全性
-> 为了防止可能的信息泄漏，将远程仓库设置为私密的。
-> 
-> 经过验证，submodule 不会影响 cloudflare 拉取仓库，说明 clone 的策略不是 recursive。
-
-```bash
-cd quartz
-mv .obsidian ../
-cd ../.obsidian
-git init
-cat << EOF >> .gitignore
-.vscode/
-.idea/
-.cursor/
-.DS_Store
-
-workspace.json
-workspace-mobile.json
-workspaces.json
-EOF
-git add .
-git commit -m "init repo"
-git remote add origin <仓库地址>
-git push -u origin main
-```
-
-将 `workspace*.json` 加入 `.gitignore` 是因为工作区随时会变化，不需要跟踪，每个平台都会自动更新。
-
-现在可以放心删除本地的 `.obsidian/`
-
-```bash
-cd ..
-rm -rf .obsidian
-```
-
-## 添加 .obsidian submodule
-
-```bash
-cd quartz
-git submodule add -f <仓库地址> .obsidian
-```
+[[管理.obsidian目录]]
 
 # 打开obsidian vault
 
