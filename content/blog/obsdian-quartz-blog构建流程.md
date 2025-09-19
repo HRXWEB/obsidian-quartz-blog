@@ -1,11 +1,11 @@
 ---
+permalink: 
 title:
 draft:
-aliases:
-  - obsidian-quartz-blog-build
+aliases: [obsidian-quartz-blog-build]
 tags: []
 created: Wednesday, September 17th 2025, 9:51:17 pm
-updated: Wednesday, September 17th 2025, 11:11:21 pm
+updated: Friday, September 19th 2025, 3:09:55 pm
 ---
 
 # 需要解决的问题
@@ -211,7 +211,7 @@ git submodule add -f <仓库地址> .obsidian
 
 选择 `quartz/` 目录
 
-# 插件资源
+## 插件资源
 
 - Image auto upload：[[Obsidian图床最佳实践：3分钟配置PicList + GitHub + jsDelivr！|实现自动上传图片到图床]]
 - Auto link title：实现自动获取文章标题
@@ -219,6 +219,10 @@ git submodule add -f <仓库地址> .obsidian
 - floating toc：悬浮目录
 - File Tree Alternative：实现聚焦某个目录，排除 quartz 项目仓库其他目录的干扰
 	 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250917230814926.png)
+
+## [[quartz-个人配置]]
+
+记录了一些个人的配置
 
 # 参考资料
 
