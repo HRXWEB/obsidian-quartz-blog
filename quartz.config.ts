@@ -17,8 +17,8 @@ const config: QuartzConfig = {
     },
     locale: "zh-CN",
     baseUrl: "blog.rickyyel.org",
-    ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    ignorePatterns: ["private", "templates", "TBD", ".obsidian"],
+    defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
