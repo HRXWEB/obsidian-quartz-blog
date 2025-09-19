@@ -5,7 +5,7 @@ draft:
 aliases: [obsidian-quartz-blog-build]
 tags: []
 created: Wednesday, September 17th 2025, 9:51:17 pm
-updated: Friday, September 19th 2025, 3:09:55 pm
+updated: Friday, September 19th 2025, 6:33:43 pm
 ---
 
 # 需要解决的问题
@@ -55,6 +55,11 @@ mkdir -p content/attachment
 # 模板目录
 mkdir -p content/template
 ```
+
+> [!WARNING] attachment 目录管理
+> 2025/09/19 更新
+> 
+> 下文有关附件的描述全部忽略即可，不影响整体流程，具体的附件管理见[[obsidian附件管理]]
 
 创建后在 obsidian 设置：
 
@@ -213,7 +218,7 @@ git submodule add -f <仓库地址> .obsidian
 
 ## 插件资源
 
-- Image auto upload：[[Obsidian图床最佳实践：3分钟配置PicList + GitHub + jsDelivr！|实现自动上传图片到图床]]
+- Image auto upload：[[Obsidian图床最佳实践：3分钟配置PicList+GitHub+jsDelivr！|实现自动上传图片到图床]]
 - Auto link title：实现自动获取文章标题
 - Linter：格式化 markdown
 - floating toc：悬浮目录
