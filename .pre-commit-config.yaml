@@ -1,0 +1,16 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: update-assets-submodule
+        name: "Update and push assets submodule"
+        entry: ./scripts/push_attachments_submodule.sh
+        language: system
+        stages: [pre-commit]
+        always_run: true # 确保每次 commit 都检查 submodule
+
+    -   id: convert-obsidian-links
+        name: "Convert Obsidian links to CDN links"
+        entry: python scripts/convert_links.py
+        language: python
+        types: [markdown]
+        stages: [pre-commit]

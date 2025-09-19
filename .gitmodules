@@ -1,3 +1,6 @@
 [submodule ".obsidian"]
 	path = .obsidian
 	url = git@github.com:HRXWEB/.obsidian.git
+[submodule "content/attachments.nosync"]
+	path = content/attachments.nosync
+	url = git@github.com:HRXWEB/obsidian-assets.git

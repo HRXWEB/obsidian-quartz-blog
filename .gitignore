@@ -1,5 +1,4 @@
 *.nosync
-!attachment.nosync
 .DS_Store
 .gitignore
 node_modules
