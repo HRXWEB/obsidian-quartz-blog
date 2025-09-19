@@ -5,7 +5,7 @@ draft: false
 aliases: []
 tags: []
 created: Friday, September 19th 2025, 3:39:42 pm
-updated: Friday, September 19th 2025, 6:37:20 pm
+updated: Friday, September 19th 2025, 8:45:32 pm
 ---
 
 # 需求
@@ -71,6 +71,6 @@ updated: Friday, September 19th 2025, 6:37:20 pm
 
 执行的脚本[在此](https://github.com/HRXWEB/obsidian-quartz-blog/blob/v4/scripts/convert_links.py)，就是通过正则表达式替换文本内容，这就是纯文本的力量（power~）
 
-# 写在最后
+# [[写在最后]]
 
 在认知内实现了类似图床的方案来解决这个问题，触类旁通。
