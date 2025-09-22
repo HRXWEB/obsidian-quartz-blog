@@ -25,7 +25,7 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       "👨🏻‍💻GitHub": "https://github.com/HRXWEB/obsidian-quartz-blog",
       "💬Discord Community": "https://discord.gg/cRFFHYye7t",
-      "📧Contact": "mailto:1242714972@qq.com",
+      "📧Contact": "mailto:rxhuang1014@gmail.com",
       "🔗RSS": "https://blog.rickyyel.org/index.xml"
     },
   }),
