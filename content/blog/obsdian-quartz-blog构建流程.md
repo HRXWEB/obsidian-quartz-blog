@@ -5,7 +5,7 @@ draft:
 aliases: [obsidian-quartz-blog-build]
 tags: []
 created: Wednesday, September 17th 2025, 9:51:17 pm
-updated: Friday, September 19th 2025, 8:49:09 pm
+updated: Monday, September 22nd 2025, 10:17:22 am
 ---
 
 # 需要解决的问题
@@ -180,6 +180,7 @@ ln -s attachment.nosync attachment
 - floating toc：悬浮目录
 - File Tree Alternative：实现聚焦某个目录，排除 quartz 项目仓库其他目录的干扰
 	 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250917230814926.png)
+- Git: 对比文章的 `diff`、填写 `commit message` 并 `push`、`stage` 文件等。
 
 ## [[quartz-个人配置]]
 
