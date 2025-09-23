@@ -1,6 +1,7 @@
 *.nosync
 .DS_Store
 .gitignore
+.trash/
 node_modules
 public
 prof
@@ -10,3 +11,5 @@ tsconfig.tsbuildinfo
 private/
 .replit
 replit.nix
+
+journal/
