@@ -11,7 +11,7 @@ ASSETS_BRANCH = "main"
 # --- 配置区结束 ---
 
 # 构建 CDN 链接的前缀
-CDN_BASE_URL = f"https://cdn.jsdelivr.net/gh/{GITHUB_USER}/{ASSETS_REPO}@{ASSETS_BRANCH}/"
+CDN_BASE_URL = f"https://cdn.jsdelivr.net/gh/{GITHUB_USER}/{ASSETS_REPO}@{ASSETS_BRANCH}/assets/"
 
 # 正则表达式，匹配 Obsidian 附件链接： `![[filename.ext]]`
 FILELINK_RE = re.compile(r"!\[\[([^\]]+?)\]\]")
