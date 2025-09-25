@@ -1,0 +1,34 @@
+---
+title: 
+draft: 
+aliases: []
+tags: []
+created: Wednesday, September 24th 2025, 4:54:28 pm
+updated: Thursday, September 25th 2025, 6:55:40 pm
+---
+
+# 行操作
+
+1. shift + enter 在当前行之后添加一行
+2. opt + cmd + enter 在当前行之前添加一行
+3. cmd + D 复制当前行
+4. opt + shift + ↑/↓ 将当前行上/下移动一行
+
+# 选择代码
+
+1. opt + ↑/↓ 扩展/缩小选择的代码范围，例如扩展：字母→单词→句子→段落
+
+## 代码片段
+
+## 拖移
+
+选中鼠标移动到想要的位置即可
+
+## 大小写切换
+
+1. cmd + shift + u
+
+## 展开/折叠代码
+
+1. cmd + `+/-` 展开/折叠代码片段
+2. cmd + shit + `+/-` 展开或者折叠所选片段，若没有选择，则对全文操作
