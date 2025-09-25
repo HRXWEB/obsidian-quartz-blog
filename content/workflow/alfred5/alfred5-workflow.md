@@ -77,7 +77,7 @@ print_r($info); exit;
 
 然后在 [https://stackoverflow.com/questions/10227879/php-curl-http-code-return-0](https://stackoverflow.com/questions/10227879/php-curl-http-code-return-0) 的第一个回答找到了可能的原因和测试代码，把里面请求的网址改成了这个workflow要请求的地址
 
-[test.php](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/test.php)
+[test.php](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/test.php)
 
 运行 `php test.php` 后输出
 

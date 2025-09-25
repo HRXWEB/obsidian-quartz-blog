@@ -9,7 +9,7 @@ show_edit_on_github: true
 tags: []
 show_tags: true
 created: Thursday, September 18th 2025, 4:45:28 pm
-updated: Thursday, September 18th 2025, 5:09:07 pm
+updated: Thursday, September 25th 2025, 7:56:14 pm
 ---
 
 <!--more-->
@@ -22,7 +22,7 @@ updated: Thursday, September 18th 2025, 5:09:07 pm
 4. 对比前面备份的 boot.asm 和新产生的 boot.asm
 
 <div style="text-align:center">
-  <img src="/assets/MIT6.828-Lab1-Part2-Exercise5-修改link_address查看结果.assets/Screenshot from 2023-04-24 16-16-50.png">
+  <img src="https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250925195556267.png">
   <p>修改前 v.s. 修改后</p>
 </div>
 
