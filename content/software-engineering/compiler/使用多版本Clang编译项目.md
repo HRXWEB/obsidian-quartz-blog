@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: Wednesday, September 24th 2025, 4:54:26 pm
-updated: Friday, September 26th 2025, 1:52:50 pm
+updated: Friday, September 26th 2025, 6:24:07 pm
 ---
 
 # 安装 clang 特定版本
