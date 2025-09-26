@@ -1,0 +1,15 @@
+---
+title: 
+draft: 
+aliases: 
+tags: 
+created: Wednesday, September 24th 2025, 4:54:27 pm
+updated: Friday, September 26th 2025, 4:31:17 pm
+---
+
+Python由于全局解释器锁(GIL)的存在，多线程在处理CPU密集型任务时并不能显著提高性能，因为GIL会限制多个线程同时执行Python字节码。因此，在Python中使用多线程更适合用于I/O密集型任务，例如文件读写、网络请求等，这些情况下线程等待I/O操作完成的时间可以被有效利用起来切换到其他线程继续执行。
+
+# 参考
+
+1. [https://zhuanlan.zhihu.com/p/75780308](https://zhuanlan.zhihu.com/p/75780308)
+    1. 这里面的 sort 说是只有一个字节码，但是和汇编指令还是不一样的，sort 肯定不可能只对应一条汇编指令。它只占一个字节码，从而做到原子操作是因为紧紧抓住了GIL，不让其他线程获取，因此会影响其他不相关的线程的性能。
