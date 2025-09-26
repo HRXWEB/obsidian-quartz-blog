@@ -9,7 +9,7 @@ updated: Friday, September 26th 2025, 5:53:35 pm
 
 > [!important] 通关手册
 > 
-> [CUDA_Python通关引导.pdf](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/CUDA_Python%E9%80%9A%E5%85%B3%E5%BC%95%E5%AF%BC.pdf)
+> [CUDA Python通关引导.pdf](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/CUDA%20Python%E9%80%9A%E5%85%B3%E5%BC%95%E5%AF%BC.pdf)
 
 ---
 
