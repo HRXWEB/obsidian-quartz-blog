@@ -1,12 +1,10 @@
 ---
 title:
 draft:
-aliases:
-  - blog-giscus
-tags:
-  - blog
-created: Wednesday, September 17th 2025, 11:36:07 am
-updated: Wednesday, September 17th 2025, 2:43:32 pm
+aliases: [blog-giscus]
+tags: [blog]
+created: 2025-09-17T11:36:07.077+08:00
+updated: 2025-10-10T18:01:27.2727+08:00
 ---
 
 # 工作原理

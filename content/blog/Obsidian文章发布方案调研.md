@@ -3,8 +3,8 @@ title:
 draft: "false"
 aliases: [obsidian-blog-publish, obsidian-blog-quartz]
 tags: []
-created: Tuesday, September 16th 2025, 10:56:03 am
-updated: Wednesday, September 17th 2025, 9:45:18 pm
+created: 2025-09-16T18:15:49.4949+08:00
+updated: 2025-10-10T18:01:24.2424+08:00
 ---
 
 # 需求
@@ -60,7 +60,7 @@ updated: Wednesday, September 17th 2025, 9:45:18 pm
 
 基于对 obsidian 双向链接的强需求，选定：
 
-- [[obsdian-quartz-blog构建流程|quartz 作为 SSG]] （最重要/唯一的选择）
+- [[obsidian-quartz-blog构建流程|quartz 作为 SSG]] （最重要/唯一的选择）
 - cloudflare pages 作为托管平台
 
 # [[写在最后]]

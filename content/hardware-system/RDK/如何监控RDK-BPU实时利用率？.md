@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
+aliases: []
+tags: []
 created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Thursday, September 25th 2025, 5:02:03 pm
+updated: Sunday, September 28th 2025, 4:53:02 pm
 ---
 
 ```Bash
