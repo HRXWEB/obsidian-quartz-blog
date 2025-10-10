@@ -1,15 +1,15 @@
 ---
 draft: false
-aliases:
+aliases: []
 title: MIT6.828-Lab1-Part1-Exercise2-理解BIOS指令
 subtitle:
 lang: zh
 author: Ricky Yel
 show_edit_on_github: true
-tags:
+tags: []
 show_tags: true
-created: Thursday, September 18th 2025, 4:40:10 pm
-updated: Thursday, September 18th 2025, 4:40:43 pm
+created: 2025-09-18T16:40:10.1010+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 <!--more-->
@@ -49,7 +49,6 @@ updated: Thursday, September 18th 2025, 4:40:43 pm
 每个IO端口代表的设备[见此](http://bochs.sourceforge.net/techspec/PORTS.LST)，可以看到它是控制CMOS设备，其8-bit数据功能如下图所示：
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918165534350.png)
-
 
 在计算机中，CMOS设备(存储的信息是非易失性的，断电不丢失)的主要功能有以下几个方面：
 

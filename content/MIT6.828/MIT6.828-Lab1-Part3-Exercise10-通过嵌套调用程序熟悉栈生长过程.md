@@ -8,8 +8,8 @@ author: Ricky Yel
 show_edit_on_github: true
 tags: []
 show_tags: true
-created: Thursday, September 18th 2025, 4:49:18 pm
-updated: Thursday, September 18th 2025, 4:49:28 pm
+created: 2025-09-18T16:49:18.1818+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 通过test_backtrace的嵌套调用，熟悉栈生长过程。

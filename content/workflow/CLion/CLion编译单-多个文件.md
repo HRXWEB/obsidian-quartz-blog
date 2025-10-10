@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:28 pm
-updated: Thursday, September 25th 2025, 7:06:05 pm
+created: 2025-09-24T16:54:28.2828+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 有时候在修改完，编译整个项目的时候，错误多到直接把第一个错误的地方或者关键的地方直接在console冲掉了，此时可以选择特定的文件进行编译，看报错会更清晰

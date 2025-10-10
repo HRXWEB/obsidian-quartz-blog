@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 4:39:55 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 A `Task` in `Taskflow` is a _**callable**_ object for which the operation [std::invoke](https://en.cppreference.com/w/cpp/utility/functional/invoke) is applicable. It can be either a functor, a lambda expression, a bind expression, or a class object with `operator()` overloaded. All tasks are created from **[tf::Taskflow](https://taskflow.github.io/taskflow/classtf_1_1Taskflow.html)**, the class that manages a task dependency graph.

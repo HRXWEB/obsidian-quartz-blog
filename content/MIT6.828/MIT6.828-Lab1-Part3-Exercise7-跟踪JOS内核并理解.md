@@ -8,8 +8,8 @@ author: Ricky Yel
 show_edit_on_github: true
 tags: []
 show_tags: true
-created: Thursday, September 18th 2025, 4:46:35 pm
-updated: Thursday, September 18th 2025, 5:12:03 pm
+created: 2025-09-18T16:46:35.3535+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 涉及内存映射的过程

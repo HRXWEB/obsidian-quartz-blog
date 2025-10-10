@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:23 pm
-updated: Friday, September 26th 2025, 2:19:58 pm
+created: 2025-09-24T16:54:23.2323+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 > 链条，故名思义就是一系列同样的东西首尾相接，组成一个“链”。类比链表结构，像封面图也体现了这个思想。

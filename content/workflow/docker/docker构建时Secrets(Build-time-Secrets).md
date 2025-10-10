@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:26 pm
-updated: Friday, September 26th 2025, 11:35:36 am
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 > [!important] **用途核心：** 在 `docker build` 过程中，安全地向构建步骤（通常是 `RUN` 指令）提供敏感信息（如密码、API 密钥、私有证书等），而这些信息**不会**被缓存到任何镜像层中，也不会出现在最终的镜像里。

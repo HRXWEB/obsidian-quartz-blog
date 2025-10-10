@@ -1,6 +1,6 @@
 ---
 draft: false
-aliases:
+aliases: []
 title: MIT6.828-Lab1-Part1-Appendix2-实模式保护模式
 subtitle:
 lang: zh
@@ -8,8 +8,8 @@ author: Ricky Yel
 show_edit_on_github: true
 tags: []
 show_tags: true
-created: Thursday, September 18th 2025, 4:32:10 pm
-updated: Thursday, September 18th 2025, 4:32:42 pm
+created: 2025-09-18T16:32:10.1010+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 随着计算机的发展，为了向后兼容，保护模式和实模式共存。对实模式和保护模式进行对比。
@@ -27,7 +27,6 @@ updated: Thursday, September 18th 2025, 4:32:42 pm
 此时的段基址不再代表 `base`，此时它被称为段选择子，从GDT/LDT(全局段描述符表/本地段描述符表)的Base字段拿到段基址，同样是通过 $base \times 16 + offset$ 计算访问地址。limits 字段代表段的大小、flags字段代表程序对这段内存的访问权限。
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918165458489.png)
-
 
 # 对比
 

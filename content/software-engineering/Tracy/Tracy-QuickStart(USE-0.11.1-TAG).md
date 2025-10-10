@@ -3,10 +3,12 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:26 pm
-updated: Friday, September 26th 2025, 3:42:22 pm
+created: 2025-09-26T18:41:51.5151+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
+
 []()
+
 Tracy Profiler是一款开源的游戏开发工具，主要用于性能分析和调试。Tracy Profiler在Linux上的运行相关的问题：
 
 1. **XDG Portal支持**：为了在文件选择器中获得更好的用户体验，建议安装`dbus`库。对于不喜欢现代特性的用户，可以选择安装`gtk3`库并通过构建选项强制使用GTK文件选择器。
@@ -25,7 +27,6 @@ Server 有两种：
 ### Interactive graphical profiling interface
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926154406278.png)
-
 
 ==**使用gtk3和X11作为显示的配置**==
 

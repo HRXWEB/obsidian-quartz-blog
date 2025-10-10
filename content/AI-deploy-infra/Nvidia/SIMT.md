@@ -1,3 +1,12 @@
+---
+title: 
+draft: 
+aliases: []
+tags: []
+created: 2025-09-24T16:54:23.2323+08:00
+updated: 2025-10-10T18:10:52.5252+08:00
+---
+
 SIMT = SIMD + multi-thread
 
 - SIMD 是==单个线程==同时对多个数据执行相同的操作，并行度取决于 ALU 宽度

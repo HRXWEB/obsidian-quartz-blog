@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 5:38:21 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 # Quick Start
@@ -44,7 +44,6 @@ This model supports multiple tasks: {'generate', 'score', 'classify', 'embed', '
 ## [量化](https://docs.vllm.ai/en/latest/features/quantization/index.html)
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926175840714.png)
-
 
 量化方法：
 
@@ -213,7 +212,6 @@ why do this：
 技术路径：
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926175856199.png)
-
 
 # Inference and Serving
 

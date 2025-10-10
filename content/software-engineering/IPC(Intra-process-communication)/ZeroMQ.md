@@ -1,3 +1,12 @@
+---
+title: 
+draft: 
+aliases: []
+tags: []
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:51.5151+08:00
+---
+
 > [!important] 在多线程的情况下使用 zeromq 需要注意什么
 
 [https://stackoverflow.com/questions/36956024/right-way-to-use-zmq-in-multi-threaded-environment](https://stackoverflow.com/questions/36956024/right-way-to-use-zmq-in-multi-threaded-environment)

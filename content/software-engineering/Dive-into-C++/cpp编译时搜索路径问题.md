@@ -1,3 +1,12 @@
+---
+title: 
+draft: 
+aliases: []
+tags: []
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:51.5151+08:00
+---
+
 > [!important] 本文所描述的编译工具链为GNU GCC
 
 在使用cmake或者其他的构建系统编译 C++ 代码时，总是会碰见找不到头文件或者库文件的情况。本文就详细描述了寻找头/库文件的过程。
@@ -23,7 +32,6 @@ ps：这其实是因为一系列构建系统太完善了，导致大家对gcc或
     \#define __EXCEPTIONS 1
     \#define __private_extern__ extern
     ```
-    
 
 ## 头文件搜索路径
 

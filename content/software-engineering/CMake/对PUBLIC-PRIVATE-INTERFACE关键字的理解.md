@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:26 pm
-updated: Friday, September 26th 2025, 3:31:16 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 CMake 自从3.0以后，就把使用的范式从 `director-oriented` 转换到了 `target-oriented`。

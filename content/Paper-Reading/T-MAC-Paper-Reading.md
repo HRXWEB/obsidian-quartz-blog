@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:23 pm
-updated: Friday, September 26th 2025, 6:18:23 pm
+created: 2025-09-24T16:54:23.2323+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 ## Link
@@ -46,16 +46,13 @@ T-MAC：LUT-based 推理范式
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926181953864.png)
 
-
 通过线性变换，将以数据类型为中心的计算变成了比特计算。无论是什么类型和精度的Weight 和 Activation 相乘都转变成了统一的 activation matrix 和 one-bit matrix 的乘法运算。
 
 ### T-MAC algorithm
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182004717.png)
 
-
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182016549.png)
-
 
 1. Weight 矩阵维度是 M * K，位宽是 b bits，按位分成 b 个 M * K 矩阵，记为 $W_1',...,W_b'$
 2. 以 $W_i'$ 每一行的 g bits 为一组，作为 LUT 的索引。需要注意的是，比如上图 `1110`，左边 1 是 高位，0 是低位，因此索引值是 14。此时得到 $W_1,...W_b$，其维度为 $M * \frac{K}{g}$
@@ -63,7 +60,6 @@ T-MAC：LUT-based 推理范式
 4. 查找 b 个权重值对应的表项的值，将其加权求和即可得到一个值 a，$\frac{K}{g}$个 a 相加则得到
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182027421.png)
-
 
 ### LUT-Centric Data Layout
 
@@ -89,7 +85,6 @@ T-MAC：LUT-based 推理范式
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182042127.png)
 
-
 4. 布局优化
     1. weight permutation for sequential memory access：tile 带来的非连续内存访问
     2. weight interleaving for fast unpacking  
@@ -98,20 +93,16 @@ T-MAC：LUT-based 推理范式
 
         ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182058512.png)
 
-
         ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182110426.png)
-
 
 ### Reduce LUT Storage
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182119073.png)
 
-
 1. Mirror Consolidation：利用表值对称的特性，如 1000 和 0000 索引对应的表项的值是相反数，只保留一半表项即可，另一半可反算得到。
 2. Table Quantization：对表项的值本身做量化，比如论文中的举例，最终查表得到的值是 INT8
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182231218.png)
-
 
 ## Implementation
 

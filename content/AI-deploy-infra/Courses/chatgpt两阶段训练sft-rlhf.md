@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:24 pm
-updated: Friday, September 26th 2025, 5:42:08 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:24.2424+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 SFT为了解决模型压根没在回答问题，RLHF为了解决回答质量不高。

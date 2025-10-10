@@ -1,3 +1,12 @@
+---
+title: 
+draft: 
+aliases: []
+tags: []
+created: 2025-09-24T16:54:24.2424+08:00
+updated: 2025-10-10T18:10:51.5151+08:00
+---
+
 本文为个人使用 `cmake` 编译 `protobuf` 生成源码的经验总结，下面将介绍两种生成 `protobuf` 源码的 `cmake` 编写方式
 
 # 法一：protobuf_generate_cpp 生成源码
@@ -88,8 +97,6 @@ add_custom_target(generate_message ALL
 如果只有少量 `proto` 文件且在同一文件夹下，可使用方法一的 `protobuf_generate_cpp` 生成源码，若 `proto` 文件较多且层次复杂，建议使用方法二。
 
 具体使用可以参考该项目 [https://github.com/mingjitianming/transmit_asio](https://github.com/mingjitianming/transmit_asio) 中CMakeLists的使用方式
-
-  
 
 # 参考（不如说是备份）
 

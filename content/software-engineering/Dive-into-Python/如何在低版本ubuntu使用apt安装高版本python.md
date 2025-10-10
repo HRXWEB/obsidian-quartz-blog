@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 4:30:42 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 Ubuntu的APT仓库包含了大量软件包，包括多个版本的Python。然而，默认情况下，Ubuntu 20.04 LTS（长期支持版）会附带一个特定版本的Python作为系统默认版本。对于Ubuntu 20.04，这个默认版本是Python 3.8。

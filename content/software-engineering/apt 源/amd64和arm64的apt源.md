@@ -3,8 +3,8 @@ title:
 draft:
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:25 pm
-updated: Friday, September 26th 2025, 6:23:41 pm
+created: 2025-09-24T16:54:25.2525+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 > [!important] amd64 的 arm64 的源不在同一个父目录下，举例 ubuntu20.04， 下图中红框可以看到二者的链接不一样

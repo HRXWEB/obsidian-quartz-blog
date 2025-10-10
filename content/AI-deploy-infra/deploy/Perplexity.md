@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 5:24:04 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 Perplexity 是一个统计学概念，常用于自然语言处理领域，特别是评估语言模型的表现。简单来说，perplexity 衡量了模型对新数据的预测能力。它的值越低（困惑度越低），说明模型对新数据的预测效果越好。

@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:28 pm
-updated: Friday, September 26th 2025, 11:18:00 am
+created: 2025-09-24T16:54:28.2828+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 > [!important] 原因就是 dns 解析服务有问题，导致解析的 github.com 对应的 ip 地址不对

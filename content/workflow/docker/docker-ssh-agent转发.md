@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:26 pm
-updated: Friday, September 26th 2025, 11:37:17 am
+aliases: []
+tags: []
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 > [!important] **用途核心：** 在 `docker build` 过程中，允许构建步骤（通常是 `RUN` 指令）安全地使用你本地宿主机的 SSH agent 中加载的 SSH 私钥，而**不需要将私钥本身复制到镜像中**。

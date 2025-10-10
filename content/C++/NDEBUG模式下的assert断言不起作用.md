@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Monday, September 15th 2025, 6:50:50 pm
-updated: Wednesday, September 17th 2025, 1:34:33 pm
+created: 2025-09-16T15:24:43.4343+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 # assert 定义

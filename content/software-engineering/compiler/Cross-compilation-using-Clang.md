@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:26 pm
-updated: Friday, September 26th 2025, 1:51:52 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 > [!info] Cross-compilation using Clang — Clang 20.0.0git documentation  
@@ -55,7 +55,6 @@ CMake Error at /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake
 rootfs下不存在 libomp.so.5
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926135223590.png)
-
 
 1. 宿主机安装了 `apt install libomp-dev` 仍然报错
 2. roofts安装了 `libomp-dev` 应该是解决了，CLion 要 `reset cache and reload project` 才行
