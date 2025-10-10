@@ -4,8 +4,8 @@ permalink:
 draft: false
 aliases: []
 tags: []
-created: Friday, September 19th 2025, 3:39:42 pm
-updated: Friday, September 19th 2025, 8:45:32 pm
+created: 2025-09-19T18:39:03.033+08:00
+updated: 2025-10-10T18:01:22.2222+08:00
 ---
 
 # 需求
@@ -17,7 +17,7 @@ updated: Friday, September 19th 2025, 8:45:32 pm
 可以借鉴图片的做法：
 
 - 使用 Github 作为托管平台
-	- 经过 [[obsdian-quartz-blog构建流程]] 的流程后，我可以在 attachment 目录中统一管理我的静态资源
+	- 经过 [[obsidian-quartz-blog构建流程]] 的流程后，我可以在 attachment 目录中统一管理我的静态资源
 - 借助 jsDelivr 获取静态资源
 	- [[jsDelivr是什么|jsDelivr是免费公共CDN]]
 
@@ -28,7 +28,7 @@ updated: Friday, September 19th 2025, 8:45:32 pm
 - 上传附件到 github
 - 替换附件的语法
 
-开始前，请阅读我的[[obsdian-quartz-blog构建流程|博客构建流程]]以了解上下文
+开始前，请阅读我的[[obsidian-quartz-blog构建流程|博客构建流程]]以了解上下文
 
 # 通过 pre-commit 自动上传 assets 目录
 

@@ -1,11 +1,10 @@
 ---
 title:
 draft:
-aliases:
-  - buy-domain-and-configure-dns
+aliases: [buy-domain-and-configure-dns]
 tags: []
-created: Wednesday, September 17th 2025, 11:34:42 am
-updated: Wednesday, September 17th 2025, 2:43:25 pm
+created: 2025-09-17T11:34:42.4242+08:00
+updated: 2025-10-10T18:01:17.1717+08:00
 ---
 
 # 为什么要改 DNS 服务器

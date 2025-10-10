@@ -1,13 +1,12 @@
 ---
 title:
 draft:
-aliases:
-  - obsidian-piclist-github-jsdelivr
+aliases: [obsidian-piclist-github-jsdelivr]
 tags: []
 date: 2025-09-15
 url: https://zhuanlan.zhihu.com/p/1896857009174868154
-created: Monday, September 15th 2025, 5:21:26 pm
-updated: Wednesday, September 17th 2025, 1:34:03 pm
+created: 2025-09-16T15:24:45.4545+08:00
+updated: 2025-10-10T18:01:23.2323+08:00
 ---
 
 本文是上面所贴链接文章的备份，如侵权请[联系我](rxhuang1014@gmail.com)删除。
