@@ -8,8 +8,8 @@ author: Ricky Yel
 show_edit_on_github: true
 tags: []
 show_tags: true
-created: Thursday, September 18th 2025, 4:43:30 pm
-updated: Thursday, September 18th 2025, 4:48:41 pm
+created: 2025-09-18T16:43:30.3030+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 <!--more-->
@@ -68,7 +68,6 @@ $ objdump -h obj/kern/kernel
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170423322.png)
 
-
 - VMA(virtual memory address)：程序在运行时使用的虚拟内存地址，由linker生成，可以在链接过程中调整
 - LMA(load memory address)：程序在内存中的实际物理地址
 
@@ -81,7 +80,6 @@ $ objdump -x obj/kern/kernel
 ```
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170441188.png)
-
 
 在Program Header中标为 LOAD 区域将被load到内存。联系 `boot.c` 的源码 `readseg(ph->pa, ph->pmemsz, ph->p_offset)` 进行理解
 
@@ -110,7 +108,6 @@ $ objdump -f obj/kern/kernel
 ```
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170601760.png)
-
 
 所以现在可以理解 `boot/main.c`，即boot loader程序的运行过程：从硬盘读取kernel的每个段(section)到内存中 后 跳转到kernel的入口处(entry point)。
 

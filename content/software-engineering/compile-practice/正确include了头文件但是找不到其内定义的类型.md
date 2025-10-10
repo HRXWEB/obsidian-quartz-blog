@@ -1,3 +1,12 @@
+---
+title: 
+draft: 
+aliases: []
+tags: []
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:51.5151+08:00
+---
+
 # 问题描述
 
 当我将这个库 [https://github.com/stereolabs/zed-open-capture](https://github.com/stereolabs/zed-open-capture) 作为第三方库引用时，我想定义一个类来调用相机，截取部分代码如下：

@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 4:30:20 pm
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 `pydub` 和 `simpleaudio` 是两个在Python中用于处理音频的库，但它们的设计目标和提供的功能是有区别的。

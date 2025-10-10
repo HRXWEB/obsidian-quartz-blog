@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:26 pm
-updated: Thursday, September 25th 2025, 7:06:49 pm
+created: 2025-09-24T16:54:26.2626+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 - [[#Quick start]]
@@ -44,26 +44,21 @@ Windows端 MSVC 工具链还有一个 LLDB-based 调试工具
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250925190708069.png)
 
-
 选择相应的修改建议就会自动修改了，上图选择第一个就会自动在成员函数的声明处加上 `static`
 
 可以通过 `cmd + N` 列出所有可行的代码生成选项，
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250925190724973.png)
 
-
 `cmd + j` 用于插入实时代码模板，具体有哪些 live template 可以在设置中找到
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250925190743633.png)
-
 
 比如可以在键入 `fori` 之后 按下 `cmd + j` 就可以自动补全
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250925190758972.png)
 
-
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250925190809691.png)
-
 
 按下tab键就可以选择替换 `i` `MAX` 为想要的变量值
 
@@ -80,7 +75,6 @@ To help you catch run-time problems, CLion integrates [Valgrind Memcheck](https
 CLion Nova is an improved version of CLion, which uses the ReSharper C++ / Rider C++ language engine instead of the CLion legacy engine. This version is focused on responsiveness, accuracy, and performance of the IDE:
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250925190828671.png)
-
 
 # 配置项目
 

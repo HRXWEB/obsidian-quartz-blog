@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:23 pm
-updated: Friday, September 26th 2025, 2:26:40 pm
+aliases: []
+tags: []
+created: 2025-09-26T18:41:51.5151+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 1. nvcc 是用于编译 cuda 代码的工具链，它和 gcc 等工具链一起工作，用于编译 CUDA C/C++ 代码。

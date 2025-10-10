@@ -3,8 +3,8 @@ title:
 draft: true
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 4:29:03 pm
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 在 ROS 2 的零拷贝实现中，应用层、DDS 和 Linux 系统调用各自扮演着不同的角色，它们协同工作，共同完成高效的数据传输。

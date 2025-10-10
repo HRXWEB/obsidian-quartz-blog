@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:24 pm
-updated: Friday, September 26th 2025, 5:40:34 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:24.2424+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 # 背景
@@ -99,11 +99,9 @@ dinov2 作为 vision encoder，需要结合下游任务才能发挥作用
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926175052073.png)
 
-
 - 稀疏匹配 Sparse Matching——Compare DINOv2 patch features across two images to match their most similar parts.
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926175105374.png)
-
 
 # 参考
 

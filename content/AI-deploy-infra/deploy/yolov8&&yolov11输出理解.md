@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 6:08:26 pm
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 > [!important] yolov8 和 yolov11 在输出上是一模一样的，所以如下对 v8 的描述均可以替换为 v11

@@ -1,9 +1,16 @@
 ---
+title: 
+draft: 
+aliases: []
+tags: []
 URL: https://github.com/apache/tvm
 URL-2: https://github.com/mlc-ai/mlc-llm
 URL-3: https://mlc.ai/index.html
 URL-4: https://llm.mlc.ai/docs/index.html
+created: 2025-09-24T16:54:24.2424+08:00
+updated: 2025-10-10T18:10:52.5252+08:00
 ---
+
 # ☄️对比LLVM和TVM
 
 > [!info] AI与传统编译器 - 吴建明wujianming - 博客园  

@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 5:23:45 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 ## 有可能的实现
@@ -29,7 +29,6 @@ updated: Friday, September 26th 2025, 5:23:45 pm
 4. cgraph 维护 node， backendcontext 负责推理 node，生产 tensor，以 CANN 为例
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926180656252.png)
-
 
 5. 量化技术
 6. Qwen 也可以用 llama.cpp 部署

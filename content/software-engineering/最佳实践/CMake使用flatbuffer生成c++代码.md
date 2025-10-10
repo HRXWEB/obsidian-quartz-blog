@@ -1,3 +1,12 @@
+---
+title: 
+draft: 
+aliases: []
+tags: []
+created: 2025-09-24T16:54:24.2424+08:00
+updated: 2025-10-10T18:10:51.5151+08:00
+---
+
 # utils cmake module
 
 [BuildFlatBuffers.cmake](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/BuildFlatBuffers.cmake)

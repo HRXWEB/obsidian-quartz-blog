@@ -3,8 +3,8 @@ title:
 draft: true
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:23 pm
-updated: Friday, September 26th 2025, 4:49:20 pm
+created: 2025-09-24T16:54:23.2323+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 > [!important] 目前对于自定义算子并且映射了解还十分少，目前只是映射成onnx算子之后，使用onnxruntime创建run session 后，推理能够得到正确的结果。
@@ -41,7 +41,6 @@ https://github.com/onnx/onnx/issues/3739
 这两个算子其实就是 `nn.PixelShuffle` 和 `onnx::DepthToSpace` 的逆过程，所以拿来理解是没有问题的。贴上作者的图解过程：
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926183330712.png)
-
 
 图像左到右是 `PixelUnShuffle` ，那反过来右到左就是 `PixelShuffle` ，onnx同理。
 

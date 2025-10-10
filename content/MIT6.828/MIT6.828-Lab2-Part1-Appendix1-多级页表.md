@@ -8,8 +8,8 @@ author: Ricky Yel
 show_edit_on_github: true
 tags: []
 show_tags: true
-created: Thursday, September 18th 2025, 4:51:35 pm
-updated: Thursday, September 18th 2025, 4:51:43 pm
+created: 2025-09-18T16:51:35.3535+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 <!--more-->
@@ -31,7 +31,6 @@ updated: Thursday, September 18th 2025, 4:51:43 pm
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171850570.png)
 
-
 <center>2级页表内存管理@https://github.com/0voice/kernel_memory_management</center>
 
 一个32位的虚拟地址，就可以索引：10+10+12 --> 2^10 \* 2^ 10 \* 2^12Byte --> 1024 \* 1024 \* 4KB = 4GB 的内存
@@ -43,7 +42,6 @@ updated: Thursday, September 18th 2025, 4:51:43 pm
 类推得，64-bit需要分成四级
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171901763.png)
-
 
 <center>4级页表内存管理@https://github.com/0voice/kernel_memory_management</center>
 

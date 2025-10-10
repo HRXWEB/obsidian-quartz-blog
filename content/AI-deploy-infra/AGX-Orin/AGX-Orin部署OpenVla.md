@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:25 pm
-updated: Friday, September 26th 2025, 3:01:34 pm
+created: 2025-09-24T16:54:25.2525+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 根据资料 1 操作
@@ -37,7 +37,6 @@ updated: Friday, September 26th 2025, 3:01:34 pm
 > 环境细节：
 > 
 > ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926150258930.png)
-
 
 # 操作流程
 
@@ -234,16 +233,13 @@ copy_symlinks() {
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926150325734.png)
 
-
 - **问题1 missing keys in state_dict**
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926150348132.png)
 
-
     https://github.com/dusty-nv/jetson-containers/issues/634
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926150409641.png)
-
 
 - **问题2 copy file error**
     

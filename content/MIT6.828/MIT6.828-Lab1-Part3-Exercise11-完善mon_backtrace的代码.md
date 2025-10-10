@@ -8,8 +8,8 @@ author: Ricky Yel
 show_edit_on_github: true
 tags: []
 show_tags: true
-created: Thursday, September 18th 2025, 4:49:36 pm
-updated: Thursday, September 18th 2025, 5:14:34 pm
+created: 2025-09-18T16:49:36.3636+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 打印栈内的信息，需要使用在 `/lab/inc/x86.h` 中的 `read_ebp()` 来读取 ebp 的值。

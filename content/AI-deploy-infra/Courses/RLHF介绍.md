@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:24 pm
-updated: Friday, September 26th 2025, 5:46:53 pm
+created: 2025-09-24T16:54:24.2424+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 # Step1. **预训练语言模型**

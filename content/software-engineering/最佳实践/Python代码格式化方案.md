@@ -1,10 +1,10 @@
 ---
 title: 
 draft: 
-aliases: 
-tags: 
-created: Wednesday, September 24th 2025, 4:54:24 pm
-updated: Friday, September 26th 2025, 4:14:36 pm
+aliases: []
+tags: []
+created: 2025-09-24T16:54:24.2424+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 开发工具链（包括格式化工具）容器化，是解决“环境一致性”问题的终极方案之一。

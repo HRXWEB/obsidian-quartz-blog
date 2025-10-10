@@ -1,9 +1,14 @@
 ---
+title: 
+draft: 
+aliases: []
 Created: 2025-05-06T10:45
-tags:
-  - Agent
+tags: [Agent]
 URL: https://github.com/qodo-ai/pr-agent
+created: 2025-05-06T10:45:00.000+08:00
+updated: 2025-10-10T18:10:52.5252+08:00
 ---
+
 # Quick Start
 
 - `/describe`
@@ -84,7 +89,6 @@ URL: https://github.com/qodo-ai/pr-agent
     ```Bash
     docker run -d --restart always --network host --name my_pr_agent gitlab_pr_agent:latest
     ```
-    
 
 ## 配置 gitlab repo webhook
 
@@ -93,9 +97,9 @@ URL: https://github.com/qodo-ai/pr-agent
 填写：
 
 - URL： (默认为 3000 端口，可以自行修改 `gitlab_webhook.py` 源码)
-    
+
     http[s]://<PR_AGENT_HOSTNAME>:3000/webhook
-    
+
 - Secret token: 刚才生成的密钥
 
 ## ==**使用**==

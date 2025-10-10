@@ -4,8 +4,8 @@ draft:
 aliases: []
 tags: []
 Created: 2025-02-06T15:05
-created: Thursday, February 6th 2025, 3:05:00 pm
-updated: Friday, September 26th 2025, 4:31:12 pm
+created: 2025-02-06T15:05:00.000+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 # Install

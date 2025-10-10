@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:27 pm
-updated: Friday, September 26th 2025, 6:07:36 pm
+created: 2025-09-24T16:54:27.2727+08:00
+updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
 # 配置
@@ -12,7 +12,9 @@ updated: Friday, September 26th 2025, 6:07:36 pm
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926180726268.png)
 
 # 安装
+
 []()
+
 ## 只开发 python 代码的安装方式
 
 ```Shell

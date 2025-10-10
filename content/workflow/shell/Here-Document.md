@@ -3,8 +3,8 @@ title:
 draft: 
 aliases: []
 tags: []
-created: Wednesday, September 24th 2025, 4:54:25 pm
-updated: Wednesday, September 24th 2025, 5:27:30 pm
+created: 2025-09-24T16:54:25.2525+08:00
+updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
 "Here document" 是一种在 shell 脚本中嵌入多行字符串的方法。它允许你将多行文本作为标准输入传递给命令，而无需将文本存储在单独的文件中。基本语法如下：

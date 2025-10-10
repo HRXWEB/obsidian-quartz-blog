@@ -3,8 +3,8 @@ title:
 draft:
 aliases: [c++-class-memory-model]
 tags: []
-created: Monday, September 15th 2025, 6:31:30 pm
-updated: Thursday, September 18th 2025, 5:36:18 pm
+created: 2025-09-16T15:24:40.4040+08:00
+updated: 2025-10-10T18:10:20.2020+08:00
 ---
 
 在C++中，涉及类的继承等较为复杂的概念，本文简单阐述一下涉及虚函数，虚继承的类的内存布局。
