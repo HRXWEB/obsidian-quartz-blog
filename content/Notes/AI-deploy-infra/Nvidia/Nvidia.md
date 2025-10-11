@@ -29,7 +29,7 @@ updated: 2025-10-10T18:10:52.5252+08:00
 
 ## Deep Learning Insititute
 
-[[Nvidia——使用CUDA加速python应用]]
+[[NVIDIA-CUDA-Accelerated-Python-Development-Guide]]
 
 ---
 

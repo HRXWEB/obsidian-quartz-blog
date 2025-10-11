@@ -1,6 +1,6 @@
 ---
-title: 
-draft: 
+title: Transformer模型详解
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
