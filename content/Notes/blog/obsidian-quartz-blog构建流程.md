@@ -2,7 +2,7 @@
 permalink: 
 title:
 draft:
-aliases: [obsidian-quartz-blog-build]
+aliases: []
 tags: []
 created: 2025-09-19T20:52:08.088+08:00
 updated: 2025-10-10T18:01:14.1414+08:00

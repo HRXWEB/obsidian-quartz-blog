@@ -1,7 +1,7 @@
 ---
 title:
 draft:
-aliases: [obsidian-piclist-github-jsdelivr]
+aliases: []
 tags: []
 date: 2025-09-15
 url: https://zhuanlan.zhihu.com/p/1896857009174868154
