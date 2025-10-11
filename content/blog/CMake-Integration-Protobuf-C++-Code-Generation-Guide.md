@@ -1,10 +1,10 @@
 ---
-title: 
+title: CMake集成Protobuf生成C++代码指南
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:24.2424+08:00
-updated: 2025-10-10T18:10:51.5151+08:00
+updated: 2025-10-11T17:28:51.5151+08:00
 ---
 
 本文为个人使用 `cmake` 编译 `protobuf` 生成源码的经验总结，下面将介绍两种生成 `protobuf` 源码的 `cmake` 编写方式

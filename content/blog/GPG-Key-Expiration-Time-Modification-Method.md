@@ -1,10 +1,10 @@
 ---
-title: 
+title: GPG密钥过期时间修改方法
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:19.1919+08:00
+updated: 2025-10-11T17:30:11.1111+08:00
 ---
 
 # 生成 gpg 密钥
@@ -61,7 +61,7 @@ gpg>
 # 可以看到子密钥 sub 才会过期，因此先通过 `key 1` 选中它
 gpg> key 1
 gpg> expire
-# 根据提示选择 `0` 表示用不过期
+# 根据提示选择 `0` 表示永不过期
 gpg> save
 ```
 
@@ -69,7 +69,7 @@ gpg> save
 
 ## 更新已经分发过的位置
 
-比如，[[reprepro自建apt软件包仓库实践]]中：
+比如[[reprepro-Self-hosted-APT-Package-Repository-Practice-Guide]]中：
 
 - 服务端重新导出 `gpg --output /var/www/html/apt-repository/public.key --armor --export 14A8D54DAE457C5233A63C8483558764B2FCCCA` 选择 y 进行 overwrite
 - 客户端重新添加添加密钥 `wget -qO -` `[http://192.168.7.102/public.key](http://192.168.7.102/public.key)` `| sudo apt-key add -`

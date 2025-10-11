@@ -1,10 +1,10 @@
 ---
-title: 
+title: CMake集成FlatBuffers生成C++代码指南
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:24.2424+08:00
-updated: 2025-10-10T18:10:51.5151+08:00
+updated: 2025-10-11T17:28:44.4444+08:00
 ---
 
 # utils cmake module
@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:51.5151+08:00
 
 此文件来源于 [https://github.com/google/flatbuffers/blob/bd1b2d0bafb8be6059a29487db9e5ace5c32914d/CMake/BuildFlatBuffers.cmake#L50](https://github.com/google/flatbuffers/blob/bd1b2d0bafb8be6059a29487db9e5ace5c32914d/CMake/BuildFlatBuffers.cmake#L50)
 
-> [!important] 在 ubuntu 系统中，使用 `sudo apt install libflatbuffers-dev flatbuffers-compiler` 安装好相应的依赖之后，会发现在系统目录下：
+> [!WARNING] 在 ubuntu 系统中，使用 `sudo apt install libflatbuffers-dev flatbuffers-compiler` 安装好相应的依赖之后，会发现在系统目录下：
 > 
 > ```Plain
 > /usr/lib/x86_64-linux-gnu/cmake/flatbuffers/
@@ -124,4 +124,4 @@ target_link_libraries(example_server_flatbuffers flatbuffers::flatbuffers)
 - `binary_schemas_dir` : 生成的二进制 `bfbs` 文件所在的目录
 - `copy_text_schemas_dir` : 暂时没用到，不知道作用
 
-> [!important] `example_server_flatbuffers` 这个 target 单纯只是为了触发生成 `flatbuffers_generated_schemas` ，如果没有 `add_dependencies(example_server_flatbuffers flatbuffers_generated_schemas)` ，根据 CMake 的构建规则，如果用不上的话就不会构建，就没法触发 flatc 的代码自动生成。
+> [!INFO] `example_server_flatbuffers` 这个 target 单纯只是为了触发生成 `flatbuffers_generated_schemas` ，如果没有 `add_dependencies(example_server_flatbuffers flatbuffers_generated_schemas)` ，根据 CMake 的构建规则，如果用不上的话就不会构建，就没法触发 flatc 的代码自动生成。

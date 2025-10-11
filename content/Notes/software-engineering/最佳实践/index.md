@@ -1,6 +1,6 @@
 ---
 title: 
-draft: 
+draft: true
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
@@ -9,17 +9,17 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 工作
 
-[[经验-思考-收获]]
+[[Experience-Reflection-Insight]]
 
 # 工程化
 
-[[Python代码格式化方案]]
+[[Python-Code-Formatting-Containerization-Solution]]
 
 # 性能分析
 
 [[Tracy-QuickStart(USE-0.11.1-TAG)]]
 
-[[linux-perf并生成火焰图]]
+[[Linux-Performance-Analysis-perf-Tool-and-Flame-Graph-Generation]]
 
 # IPC 进程间通信
 
@@ -29,12 +29,12 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ## 序列&&反序列化
 
-[[Flatbuffer-v.s.-Protobuf]]
+[[FlatBuffers-vs-Protobuf-Serialization-Framework-Comparison-Analysis]]
 
-[[CMake使用protobuf生成c++代码]]
+[[CMake-Integration-Protobuf-C++-Code-Generation-Guide]]
 
-[[CMake使用flatbuffer生成c++代码]]
+[[CMake-Integration-FlatBuffers-C++-Code-Generation-Guide]]
 
 # 程序调试
 
-[[程序持续运行不退出不报错]]
+[[Program-Pseudo-Deadlock-High-CPU-Usage-Diagnosis-Method]]
