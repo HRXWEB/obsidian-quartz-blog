@@ -36,7 +36,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170804630.png)
 
-由[[MIT6.828-Lab1-Part2-Exercise3-理解bootloader源码|Exercise3]]的分析可知 `0x7e64` 在内的连续6个字节表示GDTR(全局段描述符表寄存器)，它记录了全局段描述符表的首地址和大小。进行保护模式后就需要段选择子来索引这里面的表项，每个表项记录了段的起始地址、大小和权限。因此查看 `0x7e64` 在内的6个字节：
+由[[MIT6.828-Lab1-Part2-Exercise3-Understanding-Bootloader-Source-Code|Exercise3]]的分析可知 `0x7e64` 在内的连续6个字节表示GDTR(全局段描述符表寄存器)，它记录了全局段描述符表的首地址和大小。进行保护模式后就需要段选择子来索引这里面的表项，每个表项记录了段的起始地址、大小和权限。因此查看 `0x7e64` 在内的6个字节：
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918170838921.png)
 

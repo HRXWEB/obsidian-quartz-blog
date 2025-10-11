@@ -36,7 +36,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 为什么会产生这种变化？
 
-回顾[[MIT6.828-Lab1-Part2-Exercise5-修改link_address查看结果|Exercise5]]的部分，`objdump -h obj/kern/kernel` 显示 `.text` 段会加载到 `LMA = 0x00100000`，而程序的入口由命令 `objdump -f obj/kern/kernel` 可知 `start address = 0x0010000c`
+回顾[[MIT6.828-Lab1-Part2-Exercise5-Modify-link-address-and-View-Results|Exercise5]]的部分，`objdump -h obj/kern/kernel` 显示 `.text` 段会加载到 `LMA = 0x00100000`，而程序的入口由命令 `objdump -f obj/kern/kernel` 可知 `start address = 0x0010000c`
 
 查看 `kernel/entry.S` 可以发现：
 

@@ -24,7 +24,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 ----
 
-在lab中出现了 page table 和 page directory 的概念，但是单看lab笔者也没有弄明白它们之间的区别。但后来发现其实就是多级页表，更详细可以看一下[[MIT6.828-Lab2-Part1-Appendix1-多级页表|补充材料--多级页表]]
+在lab中出现了 page table 和 page directory 的概念，但是单看lab笔者也没有弄明白它们之间的区别。但后来发现其实就是多级页表，更详细可以看一下[[MIT6.828-Lab2-Part1-Appendix1-Multi-Level-Page-Tables|补充材料--多级页表]]
 
 ## mem_init()
 
