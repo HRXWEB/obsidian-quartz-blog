@@ -1,10 +1,10 @@
 ---
-title: 
+title: RK3588性能测试与NPU驱动配置指南
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:30.3030+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-10-11T16:51:55.5555+08:00
 ---
 
 ## 软件升级
@@ -63,5 +63,4 @@ start_rknn.sh                                       100%   71   133.4KB/s   00:0
 1. [https://www.cnblogs.com/wsg1100/p/18106749](https://www.cnblogs.com/wsg1100/p/18106749)
 2. [http://weike-iot.com:2211/rockchip/bsp/rk3568_linuxSDK/sdkV1.4.0_linux5.10/docs/cn/Common/NPU/rknpu2/02_Rockchip_RKNPU_User_Guide_RKNN_SDK_V1.6.0_CN.pdf](http://weike-iot.com:2211/rockchip/bsp/rk3568_linuxSDK/sdkV1.4.0_linux5.10/docs/cn/Common/NPU/rknpu2/02_Rockchip_RKNPU_User_Guide_RKNN_SDK_V1.6.0_CN.pdf)
 3. API Reference
-
     [03_Rockchip_RKNPU_API_Reference_RKNN_Toolkit2_V2.3.0_CN.pdf](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/03_Rockchip_RKNPU_API_Reference_RKNN_Toolkit2_V2.3.0_CN.pdf)

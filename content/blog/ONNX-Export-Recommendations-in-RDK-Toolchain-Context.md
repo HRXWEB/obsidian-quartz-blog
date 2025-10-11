@@ -1,10 +1,10 @@
 ---
-title: 
+title: RDK工具链环境下ONNX导出建议
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:27.2727+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-10-11T16:55:23.2323+08:00
 ---
 
 # 在导出时为模型输出加上 transpose 算子

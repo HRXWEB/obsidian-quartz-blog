@@ -1,15 +1,15 @@
 ---
-title: 
+title: RK3588开发指南
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:27.2727+08:00
-updated: 2025-10-10T18:10:51.5151+08:00
+updated: 2025-10-11T16:52:41.4141+08:00
 ---
 
-[[rk3588性能测试]]
+[[RK3588-Performance-Testing-and-NPU-Driver-Configuration-Guide]]
 
-[[rockchip-DDR-带宽监控]]
+[[Rockchip-DDR-Bandwidth-Monitoring-Method-Detailed-Analysis]]
 
 # 资料
 

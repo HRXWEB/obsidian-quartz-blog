@@ -1,36 +1,36 @@
 ---
-title: 
+title: RDK平台概览与开发指南
 draft: 
 aliases: []
 tags: []
 Created: 2025-08-11T11:47
 created: 2025-08-11T11:47:00.000+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-10-11T16:53:43.4343+08:00
 ---
 
 > [!important] BPU 偏好 NHWC 数据格式
 
-[[入门问题checklist]]
+[[RDK-Development-Getting-Started-Checklist-and-Best-Practices]]
 
 # 硬件性能
 
-[[如何监控RDK-BPU实时利用率？]]
+[[RDK-BPU-Real-time-Utilization-Monitoring-Guide]]
 
-[[如何监控RDK-DDR带宽占用]]
+[[RDK-DDR-Bandwidth-Monitoring-Method-Guide]]
 
-[[RDK资源占用分析方案]]
+[[RDK-System-Resource-Usage-Analysis-Solution]]
 
 # 算法工具链
 
-[[ONNX导出建议(In-RDK-Toolchain-Context)]]
+[[ONNX-Export-Recommendations-in-RDK-Toolchain-Context]]
 
-[[RDK-X3-X5量化编译过程解析]]
+[[RDK-X3-X5-Model-Quantization-and-Compilation-Process-Detailed-Analysis]]
 
-[[TBD--BPU模型性能评估]]
+[[TBD-BPU-Model-Performance-Evaluation]]
 
-[[TBD--BPU模型精度评估]]
+[[TBD-BPU-Model-Accuracy-Evaluation]]
 
-[[RDK部署踩坑]]
+[[RDK-Deployment-Pitfalls-and-Solutions-Experience-Summary]]
 
 [[RDK数据排布与跨距对齐]]
 
