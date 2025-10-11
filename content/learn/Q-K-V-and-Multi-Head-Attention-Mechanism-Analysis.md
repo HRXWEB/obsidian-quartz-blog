@@ -1,10 +1,16 @@
 ---
-title: 
-draft: 
+title: Q、K、V与多头注意力机制详解
+draft: false
 aliases: []
 tags: []
-created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+created: 2025-10-10T18:26:05.055+08:00
+updated: 2025-10-11T15:10:31.3131+08:00
+date:
+url: https://zhuanlan.zhihu.com/p/669027091
+---
+
+本文是上面所贴链接文章的备份，如侵权请[联系我](rxhuang1014@gmail.com)删除。
+
 ---
 
 专栏：[https://zhuanlan.zhihu.com/p/669027091](https://zhuanlan.zhihu.com/p/669027091) 阅读笔记

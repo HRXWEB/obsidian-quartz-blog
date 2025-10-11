@@ -1,5 +1,5 @@
 ---
-title: 
+title: DINOv2自监督视觉模型解析
 draft: 
 aliases: []
 tags: []

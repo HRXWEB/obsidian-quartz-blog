@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: onnx 运算符 Einsum
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:30.3030+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-10-11T14:24:22.2222+08:00
 ---
 
 # One Line Description

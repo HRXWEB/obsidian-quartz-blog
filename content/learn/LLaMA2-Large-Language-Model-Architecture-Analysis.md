@@ -1,5 +1,5 @@
 ---
-title: 
+title: LLaMA2大语言模型架构详解
 draft: 
 aliases: []
 tags: []
@@ -15,7 +15,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 ## 前置基础
 
-了解 [[Transformer模型详解]]
+了解 [[Transformer-Model-Detailed-Analysis]]
 
 ## LLaMA vs Transformer
 
