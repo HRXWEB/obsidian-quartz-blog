@@ -1,10 +1,16 @@
 ---
-title: 
+title: 什么是 gguf
 draft: 
 aliases: []
 tags: []
-created: 2025-09-24T16:54:27.2727+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+created: 2025-10-10T18:26:05.055+08:00
+updated: 2025-10-11T15:40:22.2222+08:00
+date:
+url: https://www.shepbryan.com/blog/what-is-gguf
+---
+
+本文基本是上面所贴链接文章的备份，如侵权请[联系我](rxhuang1014@gmail.com)删除。
+
 ---
 
 ## 历史

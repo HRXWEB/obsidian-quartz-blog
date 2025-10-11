@@ -1,11 +1,11 @@
 ---
-permalink: 
-title:
+permalink:
+title: Obsidian+构建Quartz博客完整流程
 draft:
 aliases: []
 tags: []
 created: 2025-09-19T20:52:08.088+08:00
-updated: 2025-10-10T18:01:14.1414+08:00
+updated: 2025-10-11T16:04:13.1313+08:00
 ---
 
 # 需要解决的问题
@@ -45,7 +45,7 @@ npx quartz build --serve
 
 如果之前就已经创建好了 obsidian vault，肯定会装很多的插件，把 `.obsidian/` 目录放到项目根目录下就可以复原了。
 
-默认配置下 `.obsidian/` 目录是写在 `.gitignore` 的，即不进行跟踪。但是我肯定是希望它能被跟踪且是私密的，这样后续换了设备也能快速复原工作环境。具体做法见[[管理.obsidian目录]]，当前不急着做。
+默认配置下 `.obsidian/` 目录是写在 `.gitignore` 的，即不进行跟踪。但是我肯定是希望它能被跟踪且是私密的，这样后续换了设备也能快速复原工作环境。具体做法见[[Obsidian-Configuration-Directory-Management-Guide]]，当前不急着做。
 
 ## 创建必要的目录
 
@@ -59,7 +59,7 @@ mkdir -p content/template
 > [!WARNING] attachment 目录管理
 > 2025/09/19 更新
 > 
-> 下文有关附件的描述全部忽略即可，不影响整体流程，具体的附件管理见[[obsidian附件管理]]
+> 下文有关附件的描述全部忽略即可，不影响整体流程，具体的附件管理见[[Obsidian-Attachment-Management-Best-Practices]]
 
 创建后在 obsidian 设置：
 
@@ -150,7 +150,7 @@ ln -s attachment.nosync attachment
 
 # 配置 cloudflare pages 托管服务
 
-点击 dashboard 的 `Comptute (Workers)`，添加一个 Pages，连接你自己 fork 的 quartz 仓库，比如这是[[quartz仓库|我的]]。
+点击 dashboard 的 `Comptute (Workers)`，添加一个 Pages，连接你自己 fork 的 quartz 仓库，比如这是[[Quartz-Repository-Link|我的]]。
 
 确保你的配置如下，并关注箭头所示的配置内容
 
@@ -158,7 +158,7 @@ ln -s attachment.nosync attachment
 
 将 Preview branch 设置为 None 是防止构建别的分支，导致超出免费构建的次数。
 
-## [[如何购买并配置域名DNS|自定义域名]]
+## [[Domain-Purchase-and-DNS-Configuration-Complete-Guide|自定义域名]]
 
 点击上图中的 Custom Domains，自行设置。
 
@@ -166,7 +166,7 @@ ln -s attachment.nosync attachment
 
 # [[dotfile管理哲学|管理.obsidian目录]]
 
-[[管理.obsidian目录]]
+[[Obsidian-Configuration-Directory-Management-Guide]]
 
 # 打开obsidian vault
 
@@ -174,7 +174,7 @@ ln -s attachment.nosync attachment
 
 ## 插件资源
 
-- Image auto upload：[[Obsidian图床最佳实践：3分钟配置PicList+GitHub+jsDelivr！|实现自动上传图片到图床]]
+- Image auto upload：[[Obsidian-Image-Hosting-Best-Practices-PicList-GitHub-jsDelivr-Setup-Guide|实现自动上传图片到图床]]
 - Auto link title：实现自动获取文章标题
 - Linter：格式化 markdown
 - floating toc：悬浮目录
@@ -182,7 +182,7 @@ ln -s attachment.nosync attachment
 	 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250917230814926.png)
 - Git: 对比文章的 `diff`、填写 `commit message` 并 `push`、`stage` 文件等。
 
-## [[quartz-个人配置]]
+## [[Quartz-Configuration-Settings]]
 
 记录了一些个人的配置
 

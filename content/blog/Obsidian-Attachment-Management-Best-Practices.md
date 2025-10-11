@@ -1,5 +1,5 @@
 ---
-title: 
+title: Obsidian附件管理最佳实践 
 permalink: 
 draft: false
 aliases: []
@@ -17,9 +17,9 @@ updated: 2025-10-10T18:01:22.2222+08:00
 可以借鉴图片的做法：
 
 - 使用 Github 作为托管平台
-	- 经过 [[obsidian-quartz-blog构建流程]] 的流程后，我可以在 attachment 目录中统一管理我的静态资源
+	- 经过 [[Obsidian-Quartz-Blog-Setup-and-Configuration-Guide]] 的流程后，我可以在 attachment 目录中统一管理我的静态资源
 - 借助 jsDelivr 获取静态资源
-	- [[jsDelivr是什么|jsDelivr是免费公共CDN]]
+	- [[jsDelivr-CDN-Service-Analysis-and-Usage-Guide|jsDelivr是免费公共CDN]]
 
 最自然的想法是手动上传到 github 仓库中，拿到 cdn 地址后，将 markdown 中附件的语法 `!\[\[filename.ext\]\]` 改为 `[filename.ext](url)`
 
@@ -28,14 +28,14 @@ updated: 2025-10-10T18:01:22.2222+08:00
 - 上传附件到 github
 - 替换附件的语法
 
-开始前，请阅读我的[[obsidian-quartz-blog构建流程|博客构建流程]]以了解上下文
+开始前，请阅读我的[[Obsidian-Quartz-Blog-Setup-and-Configuration-Guide|博客构建流程]]以了解上下文
 
 # 通过 pre-commit 自动上传 assets 目录
 
 > [!WARNING] attachments 目录为什么不直接上传到 quartz 仓库？
 > 因为 cloudflare 托管平台会拉取 quartz 仓库并构建静态站点，所以我不希望这个仓库特别大
 > 
-> 之前在[[管理.obsidian目录]]中已经验证了 cloudflare 不会拉取 submodule，所以我把 attachments 作为 quartz 主仓库的 submodule
+> 之前在[[Obsidian-Configuration-Directory-Management-Guide]]中已经验证了 cloudflare 不会拉取 submodule，所以我把 attachments 作为 quartz 主仓库的 submodule
 > 
 > 此时，自然的需求就是在 push quartz 仓库之前，自动 push attachment submodule
 
