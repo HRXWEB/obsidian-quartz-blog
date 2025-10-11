@@ -1,7 +1,7 @@
 ---
 title:
 draft:
-aliases: [c++-class-memory-model]
+aliases: []
 tags: []
 created: 2025-09-16T15:24:40.4040+08:00
 updated: 2025-10-10T18:10:20.2020+08:00

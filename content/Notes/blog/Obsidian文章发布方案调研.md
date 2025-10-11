@@ -1,7 +1,7 @@
 ---
 title:
-draft: "false"
-aliases: [obsidian-blog-publish, obsidian-blog-quartz]
+draft: 
+aliases: []
 tags: []
 created: 2025-09-16T18:15:49.4949+08:00
 updated: 2025-10-10T18:01:24.2424+08:00

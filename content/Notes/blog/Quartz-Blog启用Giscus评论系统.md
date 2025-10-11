@@ -1,8 +1,8 @@
 ---
 title:
 draft:
-aliases: [blog-giscus]
-tags: [blog]
+aliases: []
+tags: []
 created: 2025-09-17T11:36:07.077+08:00
 updated: 2025-10-10T18:01:27.2727+08:00
 ---

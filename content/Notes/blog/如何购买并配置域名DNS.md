@@ -1,7 +1,7 @@
 ---
 title:
 draft:
-aliases: [buy-domain-and-configure-dns]
+aliases: []
 tags: []
 created: 2025-09-17T11:34:42.4242+08:00
 updated: 2025-10-10T18:01:17.1717+08:00
