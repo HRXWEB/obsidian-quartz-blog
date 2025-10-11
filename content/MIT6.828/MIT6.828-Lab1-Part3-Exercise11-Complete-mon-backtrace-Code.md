@@ -77,7 +77,7 @@ mon_backtrace(int argc, char **argv, strcut Trapframe *tf)
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250918171430725.png)
 
-结合[[MIT6.828-Lab1-Part3-Exercise10-通过嵌套调用程序熟悉栈生长过程|Exercise10]]的表格内的内容，可以验证：
+结合[[MIT6.828-Lab1-Part3-Exercise10-Familiarize-with-Stack-Growth-through-Nested-Calls|Exercise10]]的表格内的内容，可以验证：
 
 1. 0xf010ff18 是 mon_backtrace 的 ebp
 2. 0xf010ff38 是 test_backtrace(0) 的 ebp

@@ -133,7 +133,7 @@ bootstack:
 
 ### entrypgdir.c
 
-ps: 下面的概念`页表，页目录项` 都是在lab2才开始进一步了解的，可能一开始看看不懂，尽力理解吧。或者现在可以结合[[MIT6.828-Lab2-Part1-Exercise1-实现pmap.c中的物理内存页管理函数|lab2-exe1]]努力理解。
+ps: 下面的概念`页表，页目录项` 都是在lab2才开始进一步了解的，可能一开始看看不懂，尽力理解吧。或者现在可以结合[[MIT6.828-Lab2-Part1-Exercise1-Implement-Physical-Memory-Page-Management-Functions-in-pmap-c|lab2-exe1]]努力理解。
 
 ```c
 // 在别的文件中，定义了常量

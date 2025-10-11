@@ -1,5 +1,5 @@
 ---
-title:
+title: 深度学习系统设计——理论与实践
 draft:
 aliases: []
 tags: []

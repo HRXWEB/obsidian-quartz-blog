@@ -108,7 +108,7 @@ JOS把32-bit <mark>线性地址</mark>分成了两个部分，其中用户环境
 
 现在设置一下 `UTOP` 之上的地址空间：这也是整个虚拟地址空间中的内核地址空间部分。`inc/memlayout.h` 文件中已经展示了这部分地址空间的布局。使用之前编写的函数来设置这些地址的布局。
 
-## [[MIT6.828-Lab2-Part3-Exercise5-设置UTOP之上的内核地址空间|Exercise5]]: 
+## [[MIT6.828-Lab2-Part3-Exercise5-Set-Kernel-Address-Space-above-UTOP|Exercise5]]: 
 
 1. 完善调用 `cehck_page()` 之后的代码，使其能够通过 `check_kern_pgdir() and check_page_installed_pgdir()` 的验证
 
@@ -152,7 +152,7 @@ A：2GB的内存，共可以划分为2GB/4KB=512K个页面。总共需要 6MB + 
 
 Q：回顾entry.S文件中，当分页机制开启时，寄存器EIP的值仍旧是一个小的值。在哪个位置代码才开始运行在高于KERNBASE的虚拟地址空间中的？当程序位于开启分页之后到运行在KERNBASE之上这之间的时候，EIP的值是小的值，怎么保证可以把这个值转换为真实物理地址的？1
 
-A：在entry.S文件中有一个指令 `jmp *%eax`，这个指令要完成跳转，就会重新设置EIP的值，把它设置为寄存器eax中的值，而这个值是大于KERNBASE的，所以就完成了EIP从小的值到大于KERNBASE的值的转换。在 `kern/entrypgdir.c/[entry_pgdir]` 这个页目录中，0号页目录项把虚拟地址空间\[0, 4MB\)映射到物理地址空间\[0, 4MB\)上，所以当访问位于\[0, 4MB\)之间的虚拟地址时，可以把它们转换为物理地址。开启分页机制到跳转到高地址的过程可以看[[MIT6.828-Lab1-Part3-Exercise9-内核如何控制堆栈空间|lab1-exe9-entry.S]]
+A：在entry.S文件中有一个指令 `jmp *%eax`，这个指令要完成跳转，就会重新设置EIP的值，把它设置为寄存器eax中的值，而这个值是大于KERNBASE的，所以就完成了EIP从小的值到大于KERNBASE的值的转换。在 `kern/entrypgdir.c/[entry_pgdir]` 这个页目录中，0号页目录项把虚拟地址空间\[0, 4MB\)映射到物理地址空间\[0, 4MB\)上，所以当访问位于\[0, 4MB\)之间的虚拟地址时，可以把它们转换为物理地址。开启分页机制到跳转到高地址的过程可以看[[MIT6.828-Lab1-Part3-Exercise9-How-Kernel-Controls-Stack-Space|lab1-exe9-entry.S]]
 
 # 参考资料
 

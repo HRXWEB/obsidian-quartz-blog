@@ -1,5 +1,5 @@
 ---
-title:
+title: 卓有成效的管理者
 draft:
 aliases: []
 tags: []
