@@ -1,10 +1,10 @@
 ---
-title:
+title: AMD64和ARM64架构APT源配置指南
 draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:19.1919+08:00
+updated: 2025-10-11T17:29:31.3131+08:00
 ---
 
 > [!important] amd64 的 arm64 的源不在同一个父目录下，举例 ubuntu20.04， 下图中红框可以看到二者的链接不一样
@@ -17,7 +17,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926182331864.png)
 
-所以二者换源的命令还不太一样：
+所以二者换源的命令不太一样：
 
 - amd64 平台：
 

@@ -1,10 +1,10 @@
 ---
-title: 
+title: Linux性能分析：perf工具与火焰图生成
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:24.2424+08:00
-updated: 2025-10-10T18:10:19.1919+08:00
+updated: 2025-10-11T17:43:46.4646+08:00
 ---
 
 ## 安装
@@ -39,8 +39,6 @@ perf script | ./FlameGraph/stackcollapse-perf.pl | ./FlameGraph/flamegraph.pl > 
 ```
 
 ## 扩展资料
-
-后续想要进一步了解的话可以看看下面的资料：
 
 1. [系统级性能分析工具perf的介绍与使用](https://www.cnblogs.com/arnoldlu/p/6241297.html)
 2. [brendangregg/FlameGraph](https://github.com/brendangregg/FlameGraph)

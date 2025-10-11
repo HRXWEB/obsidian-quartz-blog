@@ -1,10 +1,10 @@
 ---
-title: 
+title: 自建APT源工具对比分析：apt-mirror vs aptly vs reprepro
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:19.1919+08:00
+updated: 2025-10-11T17:29:22.2222+08:00
 ---
 
 # **apt-mirror**
