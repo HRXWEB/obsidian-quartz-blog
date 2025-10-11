@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: 串口调试完整指南：USB驱动与minicom使用
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-10-11T16:41:46.4646+08:00
 ---
 
 # 查看USB设备信息

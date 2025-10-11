@@ -1,10 +1,10 @@
 ---
-title: 
+title: RDK X3-X5模型量化编译过程详解
 draft: 
 aliases: []
 tags: []
 created: 2025-09-24T16:54:27.2727+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-10-11T16:54:01.011+08:00
 ---
 
 > [!important]
@@ -274,8 +274,8 @@ hb_mapper makertbin --config ${config_file}  \
 
 # 性能评估
 
-[[TBD--BPU模型性能评估]]
+[[TBD-BPU-Model-Performance-Evaluation]]
 
 # 精度评估
 
-[[TBD--BPU模型精度评估]]
+[[TBD-BPU-Model-Accuracy-Evaluation]]
