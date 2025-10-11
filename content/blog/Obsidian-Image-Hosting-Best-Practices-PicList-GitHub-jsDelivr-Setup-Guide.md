@@ -1,5 +1,5 @@
 ---
-title:
+title: Obsidian图床最佳实践：PicList+GitHub+jsDelivr配置指南
 draft:
 aliases: []
 tags: []

@@ -45,7 +45,7 @@ updated: 2025-10-10T18:10:52.5252+08:00
 
 [[Triton-Inference-Server入门]]
 
-[[triton-server+vllm+orin]]
+[[triton-inference-server-vllm-orin]]
 
 [[transformers部署minicpm-3-1b-sft-v1]]
 
@@ -63,9 +63,9 @@ updated: 2025-10-10T18:10:52.5252+08:00
 
 SM发展历史：[https://fabiensanglard.net/cuda/](https://fabiensanglard.net/cuda/)
 
-[[CUDA、CUDA-Toolkit、NVCC、cuDNN的关系]]
+[[CUDA-vs-CUDA-Toolkit-vs-NVCC-vs-cuDNN]]
 
-[[CUDA-Driver-API-v.s.-CUDA-Runtime-API]]
+[[CUDA-Driver-API-vs-CUDA-Runtime-API]]
 
 ---
 

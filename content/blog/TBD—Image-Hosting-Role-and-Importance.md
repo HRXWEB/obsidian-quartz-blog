@@ -1,5 +1,5 @@
 ---
-title:
+title: 图床的作用与重要性
 draft: true
 aliases: []
 tags: []

@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+updated: 2025-10-11T15:45:54.5454+08:00
 ---
 
 **CUDA 分为 Driver API 和 Runtime API 两个层面**，**在宿主机上只安装 Driver，而在 NGC Docker 容器中使用 CUDA Runtime——是目前业界主流且被官方推荐的最佳实践**。

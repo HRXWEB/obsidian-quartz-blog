@@ -7,7 +7,7 @@ created: 2025-09-24T16:54:23.2323+08:00
 updated: 2025-10-10T18:10:21.2121+08:00
 ---
 
-[[triton-server+vllm+orin]] 方案的继任者
+[[triton-inference-server-vllm-orin]] 方案的继任者
 
 ---
 

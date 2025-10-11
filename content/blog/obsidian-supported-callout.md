@@ -1,5 +1,5 @@
 ---
-title: 
+title: Obsidian支持的Callout类型详解 
 draft: 
 aliases: []
 tags: []

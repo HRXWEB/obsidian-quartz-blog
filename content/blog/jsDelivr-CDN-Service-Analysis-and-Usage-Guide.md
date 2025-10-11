@@ -1,5 +1,5 @@
 ---
-title:
+title: jsDelivr CDN服务详解与使用指南
 permalink:
 draft: false
 aliases: []
@@ -50,7 +50,7 @@ JSDelivr 是==一款免费、开源的公共CDN（内容分发网络）服务，
 
 # 怎么和 GitHub 配合
 
-[[Obsidian图床最佳实践：3分钟配置PicList+GitHub+jsDelivr！|GitHub作为图床+jsdelivr作为CDN]]
+[[Obsidian-Image-Hosting-Best-Practices-PicList-GitHub-jsDelivr-Setup-Guide|GitHub作为图床+jsdelivr作为CDN]]
 
 jsDelivr 直接获取GitHub 仓库的文件是==因为它是为开源项目设计的一个免费公共CDN，它支持直接从GitHub 仓库抓取文件，并将其分发到其全球CDN节点上，从而加速静态资源的加载==。这种集成允许开发者直接使用GitHub 作为托管源，并利用jsDelivr 的全球分发网络来提高用户访问速度和体验。﻿
 

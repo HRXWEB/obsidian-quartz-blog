@@ -1,10 +1,10 @@
 ---
-title:
+title: Obsidian文章发布方案调研与对比分析
 draft: 
 aliases: []
 tags: []
 created: 2025-09-16T18:15:49.4949+08:00
-updated: 2025-10-10T18:01:24.2424+08:00
+updated: 2025-10-11T15:57:20.2020+08:00
 ---
 
 # 需求
@@ -60,7 +60,7 @@ updated: 2025-10-10T18:01:24.2424+08:00
 
 基于对 obsidian 双向链接的强需求，选定：
 
-- [[obsidian-quartz-blog构建流程|quartz 作为 SSG]] （最重要/唯一的选择）
+- [[Obsidian-Quartz-Blog-Setup-and-Configuration-Guide|quartz 作为 SSG]] （最重要/唯一的选择）
 - cloudflare pages 作为托管平台
 
 # [[写在最后]]

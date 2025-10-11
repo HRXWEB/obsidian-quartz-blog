@@ -1,5 +1,5 @@
 ---
-title: 
+title: Obsidian配置目录管理指南 
 permalink: 
 draft: false
 aliases: []
@@ -8,7 +8,7 @@ created: 2025-09-19T20:41:30.3030+08:00
 updated: 2025-10-10T18:01:16.1616+08:00
 ---
 
-根据 [[obsidian-quartz-blog构建流程]] 的 context 做如下的操作
+根据 [[Obsidian-Quartz-Blog-Setup-and-Configuration-Guide]] 的 context 做如下的操作
 
 # 将原有的 `.obsidian/` 目录上传到远程仓库
 
