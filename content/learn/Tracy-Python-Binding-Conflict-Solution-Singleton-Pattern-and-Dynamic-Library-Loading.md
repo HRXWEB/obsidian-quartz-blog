@@ -4,7 +4,7 @@ draft: false
 aliases: []
 tags: []
 created: 2025-09-24T16:54:28.2828+08:00
-updated: 2025-10-12T16:58:52.5252+08:00
+updated: 2025-10-12T17:47:57.5757+08:00
 ---
 
 # 正确解法
@@ -107,7 +107,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 
 打开 tracy（左） v.s. 关闭 tracy（右）：
 
-[content/attachments.nosync/assets/image 83.png|image 83.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/content/attachments.nosync/assets/image%2083.png%7Cimage%2083.png)
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174626153.png)
 
 ### `**mmap**` **调用**
 
@@ -141,7 +141,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 
 相关的代码（SpawnWorkerThreads是在 Profiler 静态变量初始化时被调用）：
 
-[content/attachments.nosync/assets/image 1 41.png|image 1 41.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/content/attachments.nosync/assets/image%201%2041.png%7Cimage%201%2041.png)
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174708982.png)
 
 对应此时的线程状态：
 
@@ -238,7 +238,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 
 关注 gettid 时对应的源码是什么：
 
-[content/attachments.nosync/assets/image 2 23.png|image 2 23.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/content/attachments.nosync/assets/image%202%2023.png%7Cimage%202%2023.png)
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174723414.png)
 
 ```Bash
 gdb --args python3 -c "import dataflow_py"
@@ -317,7 +317,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 
 `__static_initialization_and_destruction_0` 看起来就是在初始化静态变量，并且找到了源码里面的 `105`
 
-[content/attachments.nosync/assets/image 3 17.png|image 3 17.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/content/attachments.nosync/assets/image%203%2017.png%7Cimage%203%2017.png)
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174742724.png)
 
 ```Bash
 #  ifdef __GNUC__
@@ -329,7 +329,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 
 然后看一下 Profiler 类型实例化的过程：
 
-[content/attachments.nosync/assets/image 4 11.png|image 4 11.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/content/attachments.nosync/assets/image%204%2011.png%7Cimage%204%2011.png)
+![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174754376.png)
 
 可以看到 `gettid` 调用是由 `detail::GetThreadHandleImpl()` 发起的。
 
