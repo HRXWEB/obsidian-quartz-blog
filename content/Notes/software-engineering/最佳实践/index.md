@@ -17,7 +17,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 性能分析
 
-[[Tracy-QuickStart(USE-0.11.1-TAG)]]
+[[Tracy-Performance-Analysis-Tool-Quick-Start-Guide-Compilation-and-Usage]]
 
 [[Linux-Performance-Analysis-perf-Tool-and-Flame-Graph-Generation]]
 

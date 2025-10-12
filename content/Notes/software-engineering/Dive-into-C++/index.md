@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 [[How-can-I-mark-a-C++-class-method-as-deprecated]]
 
-[[cpp编译时搜索路径问题]]
+[[C++-Compile-Time-Search-Path-Detailed-Analysis-Header-and-Library-File-Search-Mechanism]]
 
 # 🤼Conference
 

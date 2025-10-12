@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-10-11T19:14:55.5555+08:00
-updated: 2025-10-11T19:26:56.5656+08:00
+updated: 2025-10-12T15:14:19.1919+08:00
 ---
 
 # 情形一：没有链接相应的库
@@ -42,6 +42,7 @@ target_link_libraries(main PRIVATE B A)
 ## 问题分析
 
 ### 目录结构
+
 ```
 /opt/ros/humble/lib/
 ├── libclass_loader.so          # 依赖库 B
@@ -50,12 +51,15 @@ target_link_libraries(main PRIVATE B A)
 ```
 
 ### 依赖关系检查
+
 使用 `readelf -d libimage_transport.so` 可以看到：
+
 ```
 0x0000000000000001 (NEEDED)             Shared library: [libclass_loader.so]
 ```
 
 ### 问题根源
+
 - `libimage_transport.so` 声明依赖 `libclass_loader.so`
 - 但 `libimage_transport.so` 没有设置 RPATH，无法找到位于父目录的 `libclass_loader.so`
 - 链接器默认只在当前目录和系统库路径中查找，不会向上级目录查找
@@ -66,9 +70,11 @@ target_link_libraries(main PRIVATE B A)
 
 ```cmake
 target_link_options(your_target PRIVATE 
-    -Wl,-rpath-link,/opt/ros/humble/lib
+    LINKER:-rpath-link,/opt/ros/humble/lib
 )
 ```
+
+理解 [[CMake-LINKER-Prefix-Cross-Platform-Linker-Options-Propagation]] 的作用
 
 ### 参数说明
 
