@@ -52,4 +52,4 @@ gdb -p /pid/of/python3/import/dataflow_py
 
 # 后续
 
-[[解决tracy和python-binding-无法共存的问题]]
+[[Tracy-Python-Binding-Conflict-Solution-Singleton-Pattern-and-Dynamic-Library-Loading]]

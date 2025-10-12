@@ -10,9 +10,9 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # Install
 
-[[如何在低版本ubuntu使用apt安装高版本python]]
+[[Ubuntu-Low-Version-System-Install-High-Version-Python-Guide-PPA]]
 
-[[如何创建venv]]
+[[Python-Virtual-Environment-Creation-Guide-venv-Module-Usage-and-Activation]]
 
 # Fashion Packages
 
@@ -22,8 +22,8 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 [[Python-GIL锁]]
 
-[[Python-Threading]]
+[[Python-Multithreading-Programming-Practice-Thread-Class-Inheritance]]
 
 # numpy
 
-[[如何调整numpy依赖的高性能库的并行数]]
+[[NumPy-High-Performance-Library-Parallel-Configuration-Guide-OpenMP-OpenBLAS-MKL-Thread-Optimization]]
