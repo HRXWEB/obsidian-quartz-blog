@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-11T15:51:21.2121+08:00
+updated: 2025-10-13T16:47:06.066+08:00
 ---
 
 一开始做了很多尝试性的工作，做了一个简单的记录：
@@ -472,47 +472,27 @@ operator torchvision::nms does not exist
 
 3. 在 server 的 [https://github.com/triton-inference-server/server/blob/d79c4f11ed08572571b2eac99e0dac268e38cf9b/docs/introduction/compatibility.md?plain=1#L55](https://github.com/triton-inference-server/server/blob/d79c4f11ed08572571b2eac99e0dac268e38cf9b/docs/introduction/compatibility.md?plain=1#L55) 文档里面详细说明了兼容性的问题。
 
-    | | | | | | | |
-
-    |---|---|---|---|---|---|---|
-
-    |Triton release version|NGC Tag|Python version|vLLM version|CUDA version|CUDA Driver version|Size|
-
-    |25.04|nvcr.io/nvidia/tritonserver:25.04-vllm-python-py3|Python 3.12.3|0.8.1+5f4af9e0.nv25.4.cu129|12.9.0.036|575.51.02|10G|
-
-    |25.03|nvcr.io/nvidia/tritonserver:25.03-vllm-python-py3|Python 3.12.3|0.7.3+04de634a.nv25.3.cu128|12.8.1.012|570.124.06|22G|
-
-    |25.02|nvcr.io/nvidia/tritonserver:25.02-vllm-python-py3|Python 3.12.3|0.7.0+5e800e3d.nv25.2.cu128|12.8.0.038|570.86.10|22G|
-
-    |25.01|nvcr.io/nvidia/tritonserver:25.01-vllm-python-py3|Python 3.12.3|0.6.3.post1|12.8.0.038|570.86.10|23G|
-
-    |24.12|nvcr.io/nvidia/tritonserver:24.12-vllm-python-py3|Python 3.12.3|0.5.5|12.6.3.004|560.35.05|20G|
-
-    |24.11|nvcr.io/nvidia/tritonserver:24.11-vllm-python-py3|Python 3.12.3|0.5.5|12.6.3.001|560.35.05|22.1G|
-
-    |24.10|nvcr.io/nvidia/tritonserver:24.10-vllm-python-py3|Python 3.10.12|0.5.5|12.6.2.004|560.35.03|21G|
-
-    |24.09|nvcr.io/nvidia/tritonserver:24.09-vllm-python-py3|Python 3.10.12|0.5.3.post1|12.6.1.006|560.35.03|19G|
-
-    |24.08|nvcr.io/nvidia/tritonserver:24.08-vllm-python-py3|Python 3.10.12|0.5.0 post1|12.6.0.022|560.35.03|19G|
-
-    |24.07|nvcr.io/nvidia/tritonserver:24.07-vllm-python-py3|Python 3.10.12|0.5.0 post1|12.5.1|555.42.06|19G|
-
-    |24.06|nvcr.io/nvidia/tritonserver:24.06-vllm-python-py3|Python 3.10.12|0.4.3|12.5.0.23|555.42.02|18G|
-
-    |24.05|nvcr.io/nvidia/tritonserver:24.05-vllm-python-py3|Python 3.10.12|0.4.0 post1|12.4.1|550.54.15|18G|
-
-    |24.04|nvcr.io/nvidia/tritonserver:24.04-vllm-python-py3|Python 3.10.12|0.4.0 post1|12.4.1|550.54.15|17G|
+| Triton release version | NGC Tag                                           | Python version | vLLM version                | CUDA version | CUDA Driver version | Size  |
+| ---------------------- | ------------------------------------------------- | -------------- | --------------------------- | ------------ | ------------------- | ----- |
+| 25.04                  | nvcr.io/nvidia/tritonserver:25.04-vllm-python-py3 | Python 3.12.3  | 0.8.1+5f4af9e0.nv25.4.cu129 | 12.9.0.036   | 575.51.02           | 10G   |
+| 25.03                  | nvcr.io/nvidia/tritonserver:25.03-vllm-python-py3 | Python 3.12.3  | 0.7.3+04de634a.nv25.3.cu128 | 12.8.1.012   | 570.124.06          | 22G   |
+| 25.02                  | nvcr.io/nvidia/tritonserver:25.02-vllm-python-py3 | Python 3.12.3  | 0.7.0+5e800e3d.nv25.2.cu128 | 12.8.0.038   | 570.86.10           | 22G   |
+| 25.01                  | nvcr.io/nvidia/tritonserver:25.01-vllm-python-py3 | Python 3.12.3  | 0.6.3.post1                 | 12.8.0.038   | 570.86.10           | 23G   |
+| 24.12                  | nvcr.io/nvidia/tritonserver:24.12-vllm-python-py3 | Python 3.12.3  | 0.5.5                       | 12.6.3.004   | 560.35.05           | 20G   |
+| 24.11                  | nvcr.io/nvidia/tritonserver:24.11-vllm-python-py3 | Python 3.12.3  | 0.5.5                       | 12.6.3.001   | 560.35.05           | 22.1G |
+| 24.10                  | nvcr.io/nvidia/tritonserver:24.10-vllm-python-py3 | Python 3.10.12 | 0.5.5                       | 12.6.2.004   | 560.35.03           | 21G   |
+| 24.09                  | nvcr.io/nvidia/tritonserver:24.09-vllm-python-py3 | Python 3.10.12 | 0.5.3.post1                 | 12.6.1.006   | 560.35.03           | 19G   |
+| 24.08                  | nvcr.io/nvidia/tritonserver:24.08-vllm-python-py3 | Python 3.10.12 | 0.5.0 post1                 | 12.6.0.022   | 560.35.03           | 19G   |
+| 24.07                  | nvcr.io/nvidia/tritonserver:24.07-vllm-python-py3 | Python 3.10.12 | 0.5.0 post1                 | 12.5.1       | 555.42.06           | 19G   |
+| 24.06                  | nvcr.io/nvidia/tritonserver:24.06-vllm-python-py3 | Python 3.10.12 | 0.4.3                       | 12.5.0.23    | 555.42.02           | 18G   |
+| 24.05                  | nvcr.io/nvidia/tritonserver:24.05-vllm-python-py3 | Python 3.10.12 | 0.4.0 post1                 | 12.4.1       | 550.54.15           | 18G   |
+| 24.04                  | nvcr.io/nvidia/tritonserver:24.04-vllm-python-py3 | Python 3.10.12 | 0.4.0 post1                 | 12.4.1       | 550.54.15           | 17G   |
 
 4. 因为官方目前只提供 cp310 版本的 torch，需要自行编译这个版本：
 
-    | | | | | | | |
-
-    |---|---|---|---|---|---|---|
-
-    |Triton release version|NGC Tag|Python version|vLLM version|CUDA version|CUDA Driver version|Size|
-
-    |24.10|nvcr.io/nvidia/tritonserver:24.10-vllm-python-py3|Python 3.10.12|0.5.5|12.6.2.004|560.35.03|21G|
+|Triton release version|NGC Tag|Python version|vLLM version|CUDA version|CUDA Driver version|Size|
+|---|---|---|---|---|---|---|
+|24.10|nvcr.io/nvidia/tritonserver:24.10-vllm-python-py3|Python 3.10.12|0.5.5|12.6.2.004|560.35.03|21G|
 
 > [!important] 在自行编译这个版本之前，得看一下 vLLM 0.5.5 这个版本的 release note，对模型的支持力度怎么样。
 
