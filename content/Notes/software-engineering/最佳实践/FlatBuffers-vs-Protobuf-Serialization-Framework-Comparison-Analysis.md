@@ -4,7 +4,7 @@ draft: true
 aliases: []
 tags: []
 created: 2025-09-24T16:54:24.2424+08:00
-updated: 2025-10-11T17:43:24.2424+08:00
+updated: 2025-10-14T11:31:51.5151+08:00
 ---
 
 ## **前言**
@@ -534,7 +534,7 @@ AddInt方法中包含了prep与PutInt：
 /**
  * Prepare to write an element of `size` after `additional_bytes`
  * have been written, e.g. if you write a string, you need to align such
- * the int length field is aligned to {@link com.google.flatbuffers.Constants\#SIZEOF_INT}, and
+ * the int length field is aligned to {@link com.google.flatbuffers.Constants#SIZEOF_INT}, and
  * the string data follows it directly.  If all you need to do is alignment, `additional_bytes`
  * will be 0.
  *
@@ -654,6 +654,6 @@ return vtable_offset < vtable_size ? bb.getShort(vtable_start + vtable_offset) :
     - 如果业务中能够控制int32或int64型数据的取值范围，尽量控制在0-127。
     - 通过以上技巧都能够提高Protobuf的数据压缩能力。
 5. Flatbuffers使用技巧：
-    - uint类型只是为了扩大int的取值范围（兼容c/c++与c\#等有unsigned int类型的语言），而如果是java等没有unsigned int等类型的语言，会在赋值与取值时扩展为long来处理，所以若非有实际需要，尽量不要使用uint。
+    - uint类型只是为了扩大int的取值范围（兼容c/c++与c等有unsigned int类型的语言），而如果是java等没有unsigned int等类型的语言，会在赋值与取值时扩展为long来处理，所以若非有实际需要，尽量不要使用uint。
     - 如果业务中能够控制bool、int8、int16、int32、int64的取值是0与非0的概率，尽量让取值为0的情况多一些，可以使Flatbuffers具备一定的压缩能力。
 6. 若项目需求对数据处理延时有严苛的要求（例如FPS、Moba、动作RPG等），可以考虑使用Flatbuffers，并配合UDP/KCP等传输层协议，能够比传统的TCP+Protobuf方案有更好的降低延时的效果。

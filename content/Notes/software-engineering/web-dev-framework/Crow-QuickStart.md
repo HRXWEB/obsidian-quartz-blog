@@ -11,8 +11,8 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ```C++
 // 文件 demo.cpp
-\#include "crow.h"
-\#include <iostream>
+#include "crow.h"
+#include <iostream>
 
 int main() {
     crow::SimpleApp app;

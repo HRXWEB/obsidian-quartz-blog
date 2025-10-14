@@ -532,7 +532,7 @@ operator torchvision::nms does not exist
 
 r24.10
 
-https://github.com/triton-inference-server/server/blob/e0f0734d61c789535ac58c22b79d67eabc5d7477/build.py\#L1417
+https://github.com/triton-inference-server/server/blob/e0f0734d61c789535ac58c22b79d67eabc5d7477/build.py#L1417
 
 ```Python
     if "vllm" in backends:
@@ -546,7 +546,7 @@ RUN pip3 install vllm=={}
 
 r25.04
 
-https://github.com/triton-inference-server/server/blob/d79c4f11ed08572571b2eac99e0dac268e38cf9b/build.py\#L1482
+https://github.com/triton-inference-server/server/blob/d79c4f11ed08572571b2eac99e0dac268e38cf9b/build.py#L1482
 
 ```Python
     if "vllm" in backends:

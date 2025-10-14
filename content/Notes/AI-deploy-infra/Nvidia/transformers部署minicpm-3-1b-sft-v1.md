@@ -65,7 +65,7 @@ sudo apt-get -y install libcusparselt0 libcusparselt-dev
 # install torch
 pip install https://developer.download.nvidia.cn/compute/redist/jp/v61/pytorch/torch-2.5.0a0+872d972e41.nv24.08.17622132-cp310-cp310-linux_aarch64.whl
 # install torchvision
-pip install https://pypi.jetson-ai-lab.dev/jp6/cu126/+f/a83/27a4945ff0bdd/torchvision-0.19.0a0+48b1edf-cp310-cp310-linux_aarch64.whl\#sha256=a8327a4945ff0bddd1c511764a647c9e34a929e2da95b71c0beebb44873afad7
+pip install https://pypi.jetson-ai-lab.dev/jp6/cu126/+f/a83/27a4945ff0bdd/torchvision-0.19.0a0+48b1edf-cp310-cp310-linux_aarch64.whl#sha256=a8327a4945ff0bddd1c511764a647c9e34a929e2da95b71c0beebb44873afad7
 ```
 
 ## 安装其他依赖

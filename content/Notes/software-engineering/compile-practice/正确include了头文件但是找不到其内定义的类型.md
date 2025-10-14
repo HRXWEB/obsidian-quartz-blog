@@ -12,12 +12,12 @@ updated: 2025-10-10T18:10:51.5151+08:00
 当我将这个库 [https://github.com/stereolabs/zed-open-capture](https://github.com/stereolabs/zed-open-capture) 作为第三方库引用时，我想定义一个类来调用相机，截取部分代码如下：
 
 ```C++
-\#pragma once
+#pragma once
 
-\#include "dataflow/utils/camera_interface.h"
-\#include "videocapture.hpp"
-\#include <memory>
-\#include <opencv2/opencv.hpp>
+#include "dataflow/utils/camera_interface.h"
+#include "videocapture.hpp"
+#include <memory>
+#include <opencv2/opencv.hpp>
 
 namespace dataflow {
 
@@ -60,30 +60,30 @@ public:
 
 ```C++
 
-\#ifndef VIDEOCAPTURE_HPP
-\#define VIDEOCAPTURE_HPP
+#ifndef VIDEOCAPTURE_HPP
+#define VIDEOCAPTURE_HPP
 
-\#include "defines.hpp"
-\#include <thread>
-\#include <mutex>
-\#include <fstream>      // std::ofstream
-\#include <iomanip>
+#include "defines.hpp"
+#include <thread>
+#include <mutex>
+#include <fstream>      // std::ofstream
+#include <iomanip>
 
-\#define LOG_SEP ","
+#define LOG_SEP ","
 
-\#ifdef VIDEO_MOD_AVAILABLE
+#ifdef VIDEO_MOD_AVAILABLE
 
-\#include "videocapture_def.hpp"
+#include "videocapture_def.hpp"
 
 namespace sl_oc {
 
 
 
-\#ifdef SENSORS_MOD_AVAILABLE
+#ifdef SENSORS_MOD_AVAILABLE
 namespace sensors {
 class SensorCapture;
 }
-\#endif
+#endif
 
 namespace video {
 
@@ -146,12 +146,12 @@ add_definitions(-DVIDEO_MOD_AVAILABLE)
 ## 方案二：top 的文件处理这个宏定义
 
 ```C++
-\#include "dataflow/utils/zed_camera.h"
-\#include <stdexcept>
+#include "dataflow/utils/zed_camera.h"
+#include <stdexcept>
 
 namespace dataflow {
 
-\#ifdef VIDEO_MOD_AVAILABLE
+#ifdef VIDEO_MOD_AVAILABLE
 
 ZedCamera::ZedCamera(const std::string& serial_number,
                      int resolution,
@@ -220,7 +220,7 @@ std::vector<cv::Mat> ZedCamera::GetResizedImages() const {
     return images;
 }
 
-\#else // VIDEO_MOD_AVAILABLE
+#else // VIDEO_MOD_AVAILABLE
 
 ZedCamera::ZedCamera(const std::string& serial_number,
                      int resolution,
@@ -246,7 +246,7 @@ std::vector<cv::Mat> ZedCamera::GetResizedImages() const {
     throw std::runtime_error("ZED 相机模块未启用");
 }
 
-\#endif // VIDEO_MOD_AVAILABLE
+#endif // VIDEO_MOD_AVAILABLE
 
 } // namespace dataflow 
 ```
