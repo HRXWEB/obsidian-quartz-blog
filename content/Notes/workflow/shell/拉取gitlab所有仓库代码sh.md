@@ -24,8 +24,8 @@ import subprocess, shlex
 import time
 import os
  
-gitlabAddr  = '201.1.2.115:8099'         \#git的地址
-gitlabToken = 'Nzyg92-123456aa4ay__y'    \#gitlab的token，在gitlab的设置里有生产临时token
+gitlabAddr  = '201.1.2.115:8099'         #git的地址
+gitlabToken = 'Nzyg92-123456aa4ay__y'    #gitlab的token，在gitlab的设置里有生产临时token
  
 for index in range(10):
     url     = "http://%s/api/v4/projects?private_token=%s&per_page=100&page=%d&order_by=name" % (gitlabAddr, gitlabToken, index)

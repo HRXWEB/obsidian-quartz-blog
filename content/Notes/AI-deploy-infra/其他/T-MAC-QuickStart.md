@@ -15,7 +15,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 ```Bash
 brew install cmake zstd libomp
-# Why export the two env varibales below, please refer to https://github.com/microsoft/T-MAC/issues/26\#issuecomment-2564980266
+# Why export the two env varibales below, please refer to https://github.com/microsoft/T-MAC/issues/26#issuecomment-2564980266
 export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"
 git clone --recursive https://github.com/microsoft/T-MAC.git

@@ -56,8 +56,8 @@ $ `gcc --print-prog-name=cpp` -v
 ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
 ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/9/include-fixed"
 ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/include"
-\#include "..." search starts here:
-\#include <...> search starts here:
+#include "..." search starts here:
+#include <...> search starts here:
  /usr/lib/gcc/x86_64-linux-gnu/9/include
  /usr/local/include
  /usr/include/x86_64-linux-gnu
@@ -71,7 +71,7 @@ End of search list.
 
 4.9.4版本的官网^3有述：
 
-> GCC looks for headers requested with \#include "file" first in the directory containing the current file, then in the directories as specified by -iquote options, then in the same places it would have looked for a header requested with angle brackets. For example, if /usr/include/sys/stat.h contains #include "types.h", GCC looks for types.h first in /usr/include/sys, then in its usual search path.
+> GCC looks for headers requested with #include "file" first in the directory containing the current file, then in the directories as specified by -iquote options, then in the same places it would have looked for a header requested with angle brackets. For example, if /usr/include/sys/stat.h contains #include "types.h", GCC looks for types.h first in /usr/include/sys, then in its usual search path.
 
 意思为：
 

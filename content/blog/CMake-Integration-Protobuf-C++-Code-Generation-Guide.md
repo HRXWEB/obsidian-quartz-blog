@@ -38,7 +38,7 @@ target_link_libraries(bar ${Protobuf_LIBRARIES})
 ```Makefile
 find_package(Protobuf 3 REQUIRED)
 
-\#设置输出路径
+#设置输出路径
 SET(MESSAGE_DIR ${CMAKE_BINARY_DIR}/message)
 if(EXISTS "${CMAKE_BINARY_DIR}/message" AND IS_DIRECTORY "${CMAKE_BINARY_DIR}/message")
         SET(PROTO_META_BASE_DIR ${MESSAGE_DIR})
@@ -47,9 +47,9 @@ else()
         SET(PROTO_META_BASE_DIR ${MESSAGE_DIR})
 endif()
 
-\#设置protoc的搜索路径
+#设置protoc的搜索路径
 LIST(APPEND PROTO_FLAGS -I${CMAKE_SOURCE_DIR}/msg/message)
-\#获取需要编译的proto文件
+#获取需要编译的proto文件
 file(GLOB_RECURSE MSG_PROTOS ${CMAKE_SOURCE_DIR}/msg/message/*.proto)
 set(MESSAGE_SRC "")
 set(MESSAGE_HDRS "")

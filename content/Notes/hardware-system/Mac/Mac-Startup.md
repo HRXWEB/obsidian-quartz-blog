@@ -42,8 +42,8 @@ updated: 2025-10-10T18:10:20.2020+08:00
     # 配置好的情况下就不用 --edit 了
     colima start --edit
     # 修改如下内容，参考：
-    # 1. https://github.com/abiosoft/colima/blob/main/docs/FAQ.md\#how-to-customize-docker-config-eg-add-insecure-registries
-    # 2. https://github.com/abiosoft/colima/issues/225\#issuecomment-1204906341
+    # 1. https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#how-to-customize-docker-config-eg-add-insecure-registries
+    # 2. https://github.com/abiosoft/colima/issues/225#issuecomment-1204906341
     #### 原始 ####
     docker: {}
     #### 原始 ####

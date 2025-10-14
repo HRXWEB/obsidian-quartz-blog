@@ -55,7 +55,7 @@ updated: 2025-10-10T18:10:52.5252+08:00
         api_base = "https://aigptx.top"
         
         # 第二种选择
-        # 用 gemini: https://qodo-merge-docs.qodo.ai/usage-guide/changing_a_model/\#google-ai-studio
+        # 用 gemini: https://qodo-merge-docs.qodo.ai/usage-guide/changing_a_model/#google-ai-studio
         # 有免费额度：https://ai.google.dev/gemini-api/docs/pricing?hl=zh-cn
         [google_ai_studio]
         gemini_api_key = "" # the google AI Studio API key

@@ -44,22 +44,22 @@ clang-16
 clang-16 左 v.s. clang-10 右
 
 ```Plain
-\#include "..." search starts here:
-\#include <...> search starts here:
+#include "..." search starts here:
+#include <...> search starts here:
  /usr/lib/llvm-16/lib/clang/16/include
  /rootfs/usr/local/include
  /rootfs/usr/include/aarch64-linux-gnu
  /rootfs/usr/include
 End of search list.
 /workspace/nova_dataflow/cmake-build-release-nsd-remote-clang16/CMakeFiles/FindOpenMP/OpenMPTryFlag.c:2:10: fatal error: 'omp.h' file not found
-\#include <omp.h>
+#include <omp.h>
          ^~~~~~~
 1 error generated.
 ```
 
 ```Plain
-\#include "..." search starts here:
-\#include <...> search starts here:
+#include "..." search starts here:
+#include <...> search starts here:
  /rootfs/usr/local/include
  /usr/lib/llvm-10/lib/clang/10.0.0/include
  /rootfs/usr/include/aarch64-linux-gnu

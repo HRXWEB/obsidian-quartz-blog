@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 [cuda_switcher.sh](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/cuda_switcher.sh)
 
-> [!important] 现在默认是安装了 12.6 和 12.9 版本的 cuda 之间的切换，如何修改请参考章节 “\#如何更新版本”
+> [!important] 现在默认是安装了 12.6 和 12.9 版本的 cuda 之间的切换，如何修改请参考章节 “[[#如何更新版本]]”
 
 # 如何使用
 
