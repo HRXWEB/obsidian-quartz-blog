@@ -1,12 +1,12 @@
 ---
 title: 构建自动审阅 gitlab MR 的 Agent
-draft: 
+draft:
 aliases: []
 Created: 2025-05-06T10:45
-tags: [Agent]
+tags: []
 URL: https://github.com/qodo-ai/pr-agent
 created: 2025-05-06T10:45:00.000+08:00
-updated: 2025-10-10T18:10:52.5252+08:00
+updated: 2025-10-27T17:13:25.2525+08:00
 ---
 
 # Quick Start
