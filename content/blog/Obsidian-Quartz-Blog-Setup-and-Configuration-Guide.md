@@ -5,7 +5,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-19T20:52:08.088+08:00
-updated: 2025-10-11T16:04:13.1313+08:00
+updated: 2025-10-27T18:08:04.044+08:00
 ---
 
 # 需要解决的问题
@@ -196,3 +196,5 @@ ln -s attachment.nosync attachment
 - [How I use Obsidian, Quartz, Git and Apache to publish these notes](https://www.rcook.net/How-I-use-Obsidian,-Quartz,-Git-and-Apache-to-publish-these-notes)
 
 # [[写在最后]]
+
+在开始书写你的 blog 之前，欢迎看看我写的[[Obsidian-Quartz-Blog-Writing-Guidelines-and-Best-Practices|撰写注意事项]]
