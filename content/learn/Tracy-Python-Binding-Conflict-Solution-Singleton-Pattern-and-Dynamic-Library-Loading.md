@@ -26,15 +26,15 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > Tracy 使用全局静态变量来确保单例行为： TracyProfiler.cpp:1437-1438:
 > 
 > ```C++
->     assert( !s_instance );
->     s_instance = this;
+> assert( !s_instance );
+> s_instance = this;
 > ```
 > 
 > 在 `**Profiler**` 构造函数中，Tracy 通过断言确保只有一个实例存在，并将该实例赋值给全局静态指针 `**s_instance**`。 TracyProfiler.cpp:1658-1660:
 > 
 > ```C++
 > assert( s_instance );
->     s_instance = nullptr;
+> s_instance = nullptr;
 > }
 > ```
 > 

@@ -1,7 +1,7 @@
 ---
-title: 
-permalink: 
-draft: false
+title:
+permalink:
+draft: true
 aliases: []
 tags: []
 created: 2025-09-19T15:40:57.5757+08:00
