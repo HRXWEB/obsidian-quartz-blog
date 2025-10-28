@@ -79,7 +79,7 @@ Transform transform
 
 ## 🔨详细解释
 
-### 1. 相机外参 (World -> Camera)
+### 1. 相机外参 (World to Camera)
 
 相机外参矩阵（通常表示为 `[R|t]`）的作用是，将一个在**世界坐标系**下的三维点 `P_world`，转换到**相机坐标系**下，得到 `P_camera`。
 
@@ -92,7 +92,7 @@ Transform transform
 
 这个变换是计算机视觉（尤其是相机标定）中的标准约定。
 
-### 2. ROS `geometry_msgs/TransformStamped` (Parent -> Child)
+### 2. ROS `geometry_msgs/TransformStamped` (Parent to Child)
 
 正如我们之前讨论的，`TransformStamped` 描述的是**从父坐标系 (**`**header.frame_id**`**) 到子坐标系 (**`**child_frame_id**`**) 的变换**。
 
