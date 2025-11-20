@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:19.1919+08:00
+updated: 2025-11-17T16:42:01.011+08:00
 ---
 
 # 配置例子
@@ -71,14 +71,12 @@ updated: 2025-10-10T18:10:19.1919+08:00
     },
     "profiles": {
         "nova-pc": {
-            "name": "nova-pc",
             "host": "nova-pc",
             "port": 22,
             "username": "username",
             "remotePath": "/workspace/rdkx5/cc_ws/tros_ws/src/sixents/rdk_x5_6fen/"
         },
         "sixents": {
-            "name": "sixents",
             "host": "sixents",
             "port": 22,
             "username": "sixents",
