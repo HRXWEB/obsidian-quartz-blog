@@ -1,16 +1,60 @@
-          ██████████                _________________
-        ██░░░░░░░░░░██             | You got lost... |
-      ██░░░░░░░░░░░░░░██         🗩 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-    ██░░██░░░░░░██░░░░░░██     🗩
-    ██░░██░░░░░░██░░▒▒░░██
-    ██░░░░░░░░░░░░░░▒▒░░██
-      ██▒▒▒▒▒▒▒▒▒▒▒▒░░██
-        ██████████████
-    ████░░░░██░░░░▒▒████
-  ██░░░░░░██░░░░░░▒▒██▒▒██
-██░░░░██▒▒▒▒▒▒▒▒▒▒██░░▒▒▒▒██
-██▒▒░░░░██████████░░░░▒▒██▒▒██
-██▒▒░░░░░░░░░░░░░░░░░░▒▒██▒▒██
-  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▒▒██
-    ██████████████████    ██
+############################# ROBOTS.TXT ###############################
+# Updates and information can be found at:                             #
+# https://www.ditig.com/publications/robots-txt-template               #
+# This document is licensed with a CC BY-NC-SA 4.0 license.            #
+# Last update: 2025-11-20                                              #
+########################################################################
 
+# 允许所有合法搜索引擎爬取公开内容
+User-agent: *
+Allow: /
+
+# 禁止爬取私密和草稿内容
+Disallow: /private/
+Disallow: /TBD/
+Disallow: /journal/
+Disallow: /templates/
+Disallow: /.obsidian/
+
+# 站点地图 - 帮助搜索引擎更好地索引网站
+Sitemap: https://blog.rickyyel.org/sitemap.xml
+
+########################################################################
+# 阻止常见的 AI 爬虫和内容抓取工具（虽然它们通常不遵守 robots.txt）
+########################################################################
+
+# OpenAI GPTBot
+User-agent: GPTBot
+Disallow: /
+
+# Common Crawl
+User-agent: CCBot
+Disallow: /
+
+# Google Extended (Bard/Gemini training)
+User-agent: Google-Extended
+Disallow: /
+
+# Anthropic AI
+User-agent: anthropic-ai
+Disallow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Disallow: /
+
+# Claude Web
+User-agent: Claude-Web
+Disallow: /
+
+# Omgili bot
+User-agent: omgili
+Disallow: /
+
+# Facebook/Meta AI
+User-agent: FacebookBot
+Disallow: /
+
+# Bytedance/TikTok
+User-agent: Bytespider
+Disallow: /

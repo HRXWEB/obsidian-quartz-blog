@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+updated: 2025-10-31T10:26:16.1616+08:00
 ---
 
 [llama_struct.drawio](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/llama_struct.drawio)
@@ -82,7 +82,7 @@ Tips:
 3. V 中利用缓存，只需要 append token4，其维度变为 `4 * embedding_size`
 4. 只需计算出 Attention4
 
-## Grouped Multi-Query Attention
+## Grouped Multi-Query Attention (GQA)
 
 > [!important] 借由 KV cache，实现了计算量的大幅度减少，这时就需要考虑一个问题，特别是对 Nvidia 的 GPU 来说，算的太快，数据传输反而成为了瓶颈，也就是 LPDDR5 都不够用，如何解决这个问题？使用 Grouped Query Attention 来解决！
 
