@@ -4,7 +4,7 @@ draft: false
 aliases: []
 tags: []
 created: 2025-11-05T16:39:41.4141+08:00
-updated: 2025-11-23T17:23:41.4141+08:00
+updated: 2025-11-24T18:42:13.1313+08:00
 ---
 
 # 课程链接
@@ -390,6 +390,248 @@ GGUF 是为了 LLM 的高效推理设计的，而 LLM 的架构通常是**相对
 └─────────────────────────────────────────────────────────────┘
 ```
 
+```mermaid
+graph TB
+    subgraph "GGML 整体架构"
+        subgraph "用户层 User Layer"
+            USER[用户代码]
+        end
+
+        subgraph "核心层 Core Layer"
+            subgraph "计算图 Computation Graph"
+                CGRAPH[ggml_cgraph<br/>计算图结构]
+                TENSOR[ggml_tensor<br/>张量 = 数据 + 节点]
+                CPLAN[ggml_cplan<br/>执行计划]
+            end
+
+            subgraph "内存管理 Memory Management"
+                CTX[ggml_context<br/>CPU内存池]
+                ALLOC[ggml_gallocr<br/>图分配器]
+            end
+
+            subgraph "文件格式 File Format"
+                GGUF[gguf_context<br/>模型文件]
+            end
+        end
+
+        subgraph "后端抽象层 Backend Abstraction"
+            BACKEND[ggml_backend<br/>后端实例]
+            BUFFER[ggml_backend_buffer<br/>内存缓冲区]
+            DEVICE[ggml_backend_device<br/>设备抽象]
+        end
+
+        subgraph "后端实现层 Backend Implementation"
+            CPU[CPU Backend<br/>ggml-backend.c]
+            CUDA[CUDA Backend<br/>ggml-cuda.cu]
+            METAL[Metal Backend<br/>ggml-metal.m]
+            VULKAN[Vulkan Backend<br/>ggml-vulkan.cpp]
+            OTHER[Other Backends<br/>SYCL/CANN/RPC...]
+        end
+
+        subgraph "硬件层 Hardware Layer"
+            HW_CPU[CPU 处理器]
+            HW_GPU[NVIDIA GPU]
+            HW_APPLE[Apple GPU]
+            HW_OTHER[其他硬件]
+        end
+    end
+
+    %% 用户层连接
+    USER -->|1.构建模型| TENSOR
+    USER -->|2.创建计算图| CGRAPH
+    USER -->|3.分配内存| BACKEND
+    USER -->|4.执行计算| BACKEND
+
+    %% 核心层连接
+    TENSOR -->|组成| CGRAPH
+    CGRAPH -->|生成| CPLAN
+    CTX -->|管理| TENSOR
+    GGUF -->|加载到| TENSOR
+    ALLOC -->|分配| BUFFER
+
+    %% 后端连接
+    CGRAPH -->|提交到| BACKEND
+    BACKEND -->|使用| BUFFER
+    BACKEND -->|关联| DEVICE
+    CPLAN -->|在后端执行| BACKEND
+
+    %% 实现层连接
+    BACKEND -.实现.-> CPU
+    BACKEND -.实现.-> CUDA
+    BACKEND -.实现.-> METAL
+    BACKEND -.实现.-> VULKAN
+    BACKEND -.实现.-> OTHER
+
+    %% 硬件层连接
+    CPU -->|运行在| HW_CPU
+    CUDA -->|运行在| HW_GPU
+    METAL -->|运行在| HW_APPLE
+    VULKAN -->|运行在| HW_OTHER
+
+    style USER fill:#e1f5ff
+    style CGRAPH fill:#fff4e1
+    style BACKEND fill:#e8f5e9
+    style CPU fill:#f3e5f5
+    style CUDA fill:#f3e5f5
+    style METAL fill:#f3e5f5
+```
+
+## ggml 模块时序图
+
+```mermaid
+sequenceDiagram
+    participant User as 用户代码
+    participant GGUF as gguf_context
+    participant CTX as ggml_context
+    participant Tensor as ggml_tensor
+    participant Graph as ggml_cgraph
+    participant Alloc as ggml_gallocr
+    participant Backend as ggml_backend
+    participant Buffer as ggml_backend_buffer
+    participant Device as 硬件设备
+
+    Note over User,Device: 阶段1: 模型加载
+
+    User->>GGUF: gguf_init_from_file("model.gguf")
+    activate GGUF
+    GGUF-->>User: gguf_context
+    
+    User->>CTX: ggml_init(params)
+    activate CTX
+    CTX-->>User: ggml_context (权重内存池)
+
+    User->>GGUF: gguf_get_tensor_data()
+    GGUF->>CTX: 加载权重到 ggml_tensor
+    CTX->>Tensor: 创建权重张量
+    activate Tensor
+    GGUF-->>User: 权重已加载
+
+    Note over User,Device: 阶段2: 构建计算图
+
+    User->>CTX: ggml_init(params)
+    CTX-->>User: ggml_context (计算内存池)
+
+    User->>Tensor: ggml_new_tensor_*() 创建输入
+    User->>Tensor: ggml_mul_mat(w1, x) 创建计算节点
+    User->>Tensor: ggml_add(...) 继续构建
+    User->>Tensor: ggml_relu(...) 添加激活
+    Tensor->>Tensor: 自动构建依赖关系 (src[])
+
+    User->>Graph: ggml_new_graph(ctx)
+    activate Graph
+    User->>Graph: ggml_build_forward_expand(graph, output)
+    Graph->>Tensor: 收集所有节点 (拓扑排序)
+    Graph-->>User: 计算图已构建
+
+    Note over User,Device: 阶段3: 后端初始化
+
+    User->>Backend: ggml_backend_init_by_type(GPU)
+    activate Backend
+    Backend->>Device: 初始化设备
+    activate Device
+    Backend-->>User: backend 句柄
+
+    User->>Backend: ggml_backend_get_default_buffer_type()
+    Backend-->>User: buffer_type
+
+    Note over User,Device: 阶段4: 内存分配
+
+    User->>Alloc: ggml_gallocr_new(buffer_type)
+    activate Alloc
+    Alloc->>Alloc: 分析图的内存需求
+
+    User->>Alloc: ggml_gallocr_alloc_graph(graph)
+    Alloc->>Backend: ggml_backend_alloc_buffer(size)
+    Backend->>Buffer: 分配设备内存
+    activate Buffer
+    Buffer->>Device: cudaMalloc() / Metal allocate
+    Device-->>Buffer: 内存已分配
+    Buffer-->>Alloc: buffer 句柄
+    
+    Alloc->>Buffer: ggml_backend_buffer_init_tensor()
+    loop 为每个张量
+        Alloc->>Tensor: 设置 tensor->data 指针
+        Tensor->>Buffer: 指向 buffer 中的位置
+    end
+    Alloc-->>User: 内存分配完成
+
+    Note over User,Device: 阶段5: 数据传输
+
+    User->>Backend: ggml_backend_tensor_set(input, data)
+    Backend->>Buffer: 拷贝数据到设备
+    Buffer->>Device: cudaMemcpy / Metal copy
+    Device-->>User: 数据已上传
+
+    Note over User,Device: 阶段6: 执行计算
+
+    User->>Backend: ggml_backend_graph_compute(graph)
+    Backend->>Graph: 遍历所有节点
+    
+    loop 对每个节点
+        Backend->>Tensor: 获取 tensor->op
+        Backend->>Device: 执行算子 (kernel)
+        Device->>Device: GPU 计算
+        Device-->>Backend: 计算完成
+    end
+
+    Backend->>Backend: ggml_backend_synchronize()
+    Backend-->>User: 计算完成
+
+    Note over User,Device: 阶段7: 结果获取
+
+    User->>Backend: ggml_backend_tensor_get(output)
+    Backend->>Buffer: 从设备拷贝结果
+    Buffer->>Device: cudaMemcpy / Metal copy
+    Device-->>User: 结果数据
+
+    Note over User,Device: 阶段8: 清理资源
+
+    User->>Alloc: ggml_gallocr_free()
+    deactivate Alloc
+    User->>Buffer: ggml_backend_buffer_free()
+    Buffer->>Device: cudaFree() / Metal free
+    deactivate Buffer
+    User->>Backend: ggml_backend_free()
+    deactivate Backend
+    deactivate Device
+    User->>Graph: ggml_free(graph)
+    deactivate Graph
+    User->>CTX: ggml_free(ctx)
+    deactivate CTX
+    User->>GGUF: gguf_free()
+    deactivate GGUF
+    deactivate Tensor
+```
+
+> [!hint] 注意
+>  `ggml_gallocr` 是一个图级别的智能内存分配器，后续 `mnist` 的例子采用直接管理内存的方式，没用到它，这里简单了解一下：
+> 
+> 
+> ```C
+> struct ggml_gallocr {
+>     ggml_backend_buffer_type_t * bufts; // [n_buffers]
+>     ggml_backend_buffer_t * buffers; // [n_buffers]
+>     struct ggml_dyn_tallocr ** buf_tallocs; // [n_buffers]
+>     int n_buffers;
+> 
+>     struct ggml_hash_set hash_set;
+>     struct hash_node * hash_values; // [hash_set.size]
+> 
+>     struct node_alloc * node_allocs; // [n_nodes]
+>     int n_nodes;
+> 
+>     struct leaf_alloc * leaf_allocs; // [n_leafs]
+>     int n_leafs;
+> };
+> ```
+> 
+> 优势：
+> 
+> - **自动内存复用**: 分析计算图的生命周期,让不同时刻的张量复用同一块内存
+> - **跨后端支持**: 可以管理多个 `backend` 的 `buffer(n_buffers)`
+> - **动态优化**: 使用 `ggml_dyn_tallocr` 进行动态内存分配和回收
+> - **最优内存使用**: 只分配必要的内存,不需要用户估算 `buf_size`
+
 ## 核心结构体详解
 
 ### `ggml_tensor` 多维张量
@@ -668,6 +910,14 @@ struct ggml_cplan {
 
 		ggml_compute_forward(&params, node);
 		```
+
+
+
+
+
+
+
+
 
 
 
@@ -1795,6 +2045,252 @@ enum ggml_status ggml_backend_graph_compute_async(ggml_backend_t backend, struct
 └──────────────────────────────────────────────────────────────────┘
 ```
 
+```mermaid
+graph TB
+    subgraph "Registry Layer 注册层"
+        Registry[ggml_backend_registry<br/>全局后端注册表<br/>- backend_regs<br/>- device_regs]
+        Reg[ggml_backend_reg<br/>后端类型注册<br/>- name<br/>- iface]
+    end
+
+    subgraph "Device Layer 设备层"
+        Device[ggml_backend_device<br/>计算设备抽象<br/>- iface<br/>- context]
+        DeviceContext[Device Context<br/>设备特定上下文<br/>- device_id<br/>- device properties]
+    end
+
+    subgraph "Backend Instance Layer 后端实例层"
+        Backend[ggml_backend<br/>后端实例<br/>- iface<br/>- context]
+        BackendContext[Backend Context<br/>后端特定上下文<br/>- device<br/>- streams/handles]
+    end
+
+    subgraph "Buffer Type Layer 缓冲区类型层"
+        BufferType[ggml_backend_buffer_type<br/>内存类型抽象<br/>- iface<br/>- context]
+        BufferTypeContext[Buffer Type Context<br/>内存类型上下文<br/>- device<br/>- memory properties]
+    end
+
+    subgraph "Buffer Instance Layer 缓冲区实例层"
+        Buffer[ggml_backend_buffer<br/>内存缓冲区<br/>- iface<br/>- buft<br/>- context<br/>- size]
+        BufferContext[Buffer Context<br/>缓冲区上下文<br/>- device pointer<br/>- allocation info]
+    end
+
+    subgraph "Interface Tables 接口表"
+        RegIface[ggml_backend_reg_i<br/>注册接口]
+        DeviceIface[ggml_backend_device_i<br/>设备接口]
+        BackendIface[ggml_backend_i<br/>后端接口]
+        BufferTypeIface[ggml_backend_buffer_type_i<br/>类型接口]
+        BufferIface[ggml_backend_buffer_i<br/>缓冲区接口]
+    end
+
+    Registry -->|管理| Reg
+    Reg -->|创建| Device
+    Reg -.->|实现| RegIface
+    
+    Device -->|创建| Backend
+    Device -->|提供| BufferType
+    Device -.->|实现| DeviceIface
+    DeviceContext -.->|属于| Device
+    
+    Backend -.->|实现| BackendIface
+    BackendContext -.->|属于| Backend
+    Backend -->|使用| Device
+    
+    BufferType -->|分配| Buffer
+    BufferType -.->|实现| BufferTypeIface
+    BufferTypeContext -.->|属于| BufferType
+    BufferType -->|关联| Device
+    
+    Buffer -.->|实现| BufferIface
+    BufferContext -.->|属于| Buffer
+    Buffer -->|引用| BufferType
+
+    style Registry fill:#e1f5ff
+    style Reg fill:#e1f5ff
+    style Device fill:#fff4e1
+    style DeviceContext fill:#fff4e1
+    style Backend fill:#e8f5e9
+    style BackendContext fill:#e8f5e9
+    style BufferType fill:#f3e5f5
+    style BufferTypeContext fill:#f3e5f5
+    style Buffer fill:#fce4ec
+    style BufferContext fill:#fce4ec
+    style RegIface fill:#f5f5f5
+    style DeviceIface fill:#f5f5f5
+    style BackendIface fill:#f5f5f5
+    style BufferTypeIface fill:#f5f5f5
+    style BufferIface fill:#f5f5f5
+```
+
+## backend 模块时序图
+
+```mermaid
+sequenceDiagram
+    participant App as 应用程序
+    participant Registry as ggml_backend_registry
+    participant Reg as ggml_backend_reg
+    participant RegCtx as cuda_reg_context
+    participant Device as ggml_backend_device
+    participant DevCtx as cuda_device_context
+    participant Backend as ggml_backend
+    participant BackendCtx as cuda_context
+    participant BufType as ggml_backend_buffer_type
+    participant BufTypeCtx as cuda_buffer_type_context
+    participant Buffer as ggml_backend_buffer
+    participant BufCtx as cuda_buffer_context
+    participant Hardware as GPU 硬件
+
+    Note over App,Hardware: 阶段1: 系统初始化 (程序启动时自动)
+
+    App->>Registry: 程序启动,全局单例创建
+    activate Registry
+    
+    Registry->>Reg: ggml_backend_cuda_reg()
+    activate Reg
+    Reg->>RegCtx: new cuda_reg_context
+    activate RegCtx
+    
+    loop 枚举所有 GPU
+        Reg->>Hardware: cudaGetDeviceCount()
+        Hardware-->>Reg: device_count
+        
+        Reg->>DevCtx: new cuda_device_context(device_id)
+        activate DevCtx
+        Reg->>Hardware: cudaGetDeviceProperties()
+        Hardware-->>DevCtx: 设备信息 (name, memory, etc)
+        
+        Reg->>Device: new ggml_backend_device
+        activate Device
+        Device->>Device: 设置 iface = cuda_device_interface
+        Device->>Device: 设置 context = dev_ctx
+        Device-->>Reg: device
+        
+        Reg->>RegCtx: devices.push_back(device)
+    end
+    
+    Reg-->>Registry: reg (包含所有设备)
+    Registry->>Registry: backends.push_back(reg)
+    Registry->>Registry: devices.push_back(所有设备)
+    
+    Note over App,Hardware: 阶段2: 设备枚举
+
+    App->>Registry: ggml_backend_dev_count()
+    Registry-->>App: 设备总数
+
+    App->>Registry: ggml_backend_dev_by_type(GPU)
+    Registry->>Registry: 遍历 devices 查找
+    Registry-->>App: device (CUDA0)
+
+    Note over App,Hardware: 阶段3: 创建后端实例
+
+    App->>Device: ggml_backend_dev_init(device, params)
+    Device->>Device: iface.init_backend()
+    
+    Device->>BackendCtx: new cuda_context(device_id)
+    activate BackendCtx
+    BackendCtx->>Hardware: cudaSetDevice(device_id)
+    Hardware-->>BackendCtx: 设备已激活
+    
+    Device->>Backend: new ggml_backend
+    activate Backend
+    Backend->>Backend: 设置 guid = cuda_guid
+    Backend->>Backend: 设置 iface = cuda_backend_interface
+    Backend->>Backend: 设置 device = device*
+    Backend->>Backend: 设置 context = backend_ctx
+    Backend-->>App: backend 句柄
+
+    Note over App,Hardware: 阶段4: 获取缓冲区类型
+
+    App->>Backend: ggml_backend_get_default_buffer_type()
+    Backend->>Device: iface.get_buffer_type()
+    Device->>BufTypeCtx: new cuda_buffer_type_context
+    activate BufTypeCtx
+    BufTypeCtx->>BufTypeCtx: 设置 device_id, name
+    
+    Device->>BufType: new ggml_backend_buffer_type
+    activate BufType
+    BufType->>BufType: 设置 iface = cuda_buffer_type_interface
+    BufType->>BufType: 设置 device = device*
+    BufType->>BufType: 设置 context = buft_ctx
+    BufType-->>App: buffer_type
+
+    Note over App,Hardware: 阶段5: 分配缓冲区
+
+    App->>BufType: ggml_backend_buft_alloc_buffer(size)
+    BufType->>BufType: iface.alloc_buffer()
+    
+    BufType->>BufCtx: new cuda_buffer_context
+    activate BufCtx
+    BufCtx->>Hardware: cudaMalloc(&dev_ptr, size)
+    Hardware-->>BufCtx: GPU 内存已分配
+    BufCtx->>BufCtx: 保存 dev_ptr, device_id
+    
+    BufType->>Buffer: new ggml_backend_buffer
+    activate Buffer
+    Buffer->>Buffer: 设置 iface = cuda_buffer_interface
+    Buffer->>Buffer: 设置 buft = buffer_type*
+    Buffer->>Buffer: 设置 context = buf_ctx
+    Buffer->>Buffer: 设置 size, usage
+    Buffer-->>App: buffer 句柄
+
+    Note over App,Hardware: 阶段6: 数据传输
+
+    App->>Buffer: ggml_backend_tensor_set(tensor, data)
+    Buffer->>Buffer: iface.set_tensor()
+    Buffer->>BufCtx: 获取 dev_ptr + offset
+    Buffer->>Hardware: cudaMemcpy(dev_ptr, data, size, H2D)
+    Hardware-->>App: 数据已传输
+
+    Note over App,Hardware: 阶段7: 执行计算
+
+    App->>Backend: ggml_backend_graph_compute(graph)
+    Backend->>Backend: iface.graph_compute()
+    Backend->>BackendCtx: 获取 stream, cublas_handle
+    
+    loop 遍历计算图节点
+        Backend->>Backend: 根据 tensor->op 选择 kernel
+        Backend->>Hardware: launch_kernel<<<grid, block, stream>>>()
+        Hardware->>Hardware: GPU 执行计算
+        Hardware-->>Backend: kernel 完成
+    end
+    
+    Backend->>Hardware: cudaStreamSynchronize(stream)
+    Hardware-->>Backend: 所有计算完成
+    Backend-->>App: 计算完成
+
+    Note over App,Hardware: 阶段8: 结果获取
+
+    App->>Buffer: ggml_backend_tensor_get(tensor, data)
+    Buffer->>Buffer: iface.get_tensor()
+    Buffer->>BufCtx: 获取 dev_ptr + offset
+    Buffer->>Hardware: cudaMemcpy(data, dev_ptr, size, D2H)
+    Hardware-->>App: 结果已传输
+
+    Note over App,Hardware: 阶段9: 资源清理
+
+    App->>Buffer: ggml_backend_buffer_free()
+    Buffer->>BufCtx: iface.free_buffer()
+    BufCtx->>Hardware: cudaFree(dev_ptr)
+    Hardware-->>BufCtx: 内存已释放
+    deactivate BufCtx
+    deactivate Buffer
+
+    App->>Backend: ggml_backend_free()
+    Backend->>BackendCtx: iface.free()
+    loop 清理资源
+        BackendCtx->>Hardware: cudaStreamDestroy(streams[i][j])
+        BackendCtx->>Hardware: cublasDestroy(handles[i])
+    end
+    deactivate BackendCtx
+    deactivate Backend
+
+    Note over Registry: 注册信息在程序结束时清理
+    deactivate BufTypeCtx
+    deactivate BufType
+    deactivate DevCtx
+    deactivate Device
+    deactivate RegCtx
+    deactivate Reg
+    deactivate Registry
+```
+
 ## backend 相关结构体设计详解
 
 接下来会分成 backend, buffer of backend 两个部分来讲解结构体的设计
@@ -1908,7 +2404,7 @@ struct ggml_backend_reg_i {
 - **设备枚举**: 提供该类后端的所有设备
 - **扩展接口**: 支持后端特定的功能 (get_proc_address)
 
-### ggml_backen_cuda_reg_context - CUDA 注册上下文
+### ggml_backend_cuda_reg_context - CUDA 注册上下文
 
 ```C
 struct ggml_backend_cuda_reg_context {
