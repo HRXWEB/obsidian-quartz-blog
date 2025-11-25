@@ -4,7 +4,7 @@ draft: false
 aliases: []
 tags: []
 created: 2025-11-05T16:39:41.4141+08:00
-updated: 2025-11-24T18:42:13.1313+08:00
+updated: 2025-11-25T23:35:30.3030+08:00
 ---
 
 # 课程链接
@@ -909,188 +909,7 @@ struct ggml_cplan {
 		struct ggml_tensor * node = cgraph->nodes[node_n];
 
 		ggml_compute_forward(&params, node);
-		```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	```
 
 ### `ggml_backend` 硬件抽象层
 
@@ -2155,12 +1974,14 @@ sequenceDiagram
         activate DevCtx
         Reg->>Hardware: cudaGetDeviceProperties()
         Hardware-->>DevCtx: 设备信息 (name, memory, etc)
+        deactivate DevCtx
         
         Reg->>Device: new ggml_backend_device
         activate Device
         Device->>Device: 设置 iface = cuda_device_interface
         Device->>Device: 设置 context = dev_ctx
         Device-->>Reg: device
+        deactivate Device
         
         Reg->>RegCtx: devices.push_back(device)
     end
@@ -2203,6 +2024,7 @@ sequenceDiagram
     Device->>BufTypeCtx: new cuda_buffer_type_context
     activate BufTypeCtx
     BufTypeCtx->>BufTypeCtx: 设置 device_id, name
+    deactivate BufTypeCtx
     
     Device->>BufType: new ggml_backend_buffer_type
     activate BufType
@@ -2210,6 +2032,7 @@ sequenceDiagram
     BufType->>BufType: 设置 device = device*
     BufType->>BufType: 设置 context = buft_ctx
     BufType-->>App: buffer_type
+    deactivate BufType
 
     Note over App,Hardware: 阶段5: 分配缓冲区
 
@@ -2218,7 +2041,7 @@ sequenceDiagram
     
     BufType->>BufCtx: new cuda_buffer_context
     activate BufCtx
-    BufCtx->>Hardware: cudaMalloc(&dev_ptr, size)
+    BufCtx->>Hardware: cudaMalloc(&#38;dev_ptr, size)
     Hardware-->>BufCtx: GPU 内存已分配
     BufCtx->>BufCtx: 保存 dev_ptr, device_id
     
@@ -2246,7 +2069,7 @@ sequenceDiagram
     
     loop 遍历计算图节点
         Backend->>Backend: 根据 tensor->op 选择 kernel
-        Backend->>Hardware: launch_kernel<<<grid, block, stream>>>()
+        Backend->>Hardware: launch_kernel&#60;&#60;&#60;grid, block, stream&#62;&#62;&#62;()
         Hardware->>Hardware: GPU 执行计算
         Hardware-->>Backend: kernel 完成
     end
@@ -2282,10 +2105,6 @@ sequenceDiagram
     deactivate Backend
 
     Note over Registry: 注册信息在程序结束时清理
-    deactivate BufTypeCtx
-    deactivate BufType
-    deactivate DevCtx
-    deactivate Device
     deactivate RegCtx
     deactivate Reg
     deactivate Registry
