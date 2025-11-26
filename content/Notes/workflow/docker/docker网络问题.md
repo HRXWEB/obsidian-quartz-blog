@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ~~还有一种现象很特殊的网络问题：~~
 
-```Bash
+```bash
 docker buildx build --no-cache -t my-arm64-rootfs .
 >>>
 ERROR: failed to solve: ubuntu:20.04: failed to resolve source metadata for docker.io/library/ubuntu:20.04: failed to do request: Head "https://registry-1.docker.io/v2/library/ubuntu/manifests/20.04": dial tcp 154.83.14.134:443: i/o timeout

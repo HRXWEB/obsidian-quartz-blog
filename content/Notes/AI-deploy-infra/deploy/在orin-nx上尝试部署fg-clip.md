@@ -60,7 +60,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 解决代码见：**[!7](http://192.168.3.224:8081/embodied-ai/fg-clip-trt/-/merge_requests/7)**
 
-```Bash
+```bash
 /usr/src/tensorrt/bin/trtexec --onnx=/home/username/workspace/fg-clip-trt/models/retrieval_model.plugin.onnx --fp16 --saveEngine=/home/username/workspace/fg-clip-trt/models/retrieval_model.plugin_fp16.engine --minShapes=input_ids:1x77,attention_mask:1x77 --optShapes=input_ids:4x77,attention_mask:4x77 --maxShapes=input_ids:4x77,attention_mask:4x77 --plugins=libcustom_layernorm.so --workspace=2048
 ```
 
@@ -78,7 +78,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 ## 1. 导出模型
 
-```Bash
+```bash
 cd /root/of/repo
 # 得到 图像编码器模型、文本编码器模型、跨模态检索模型
 bash scripts/fgclip_huggingface2onnx.sh export
@@ -94,21 +94,21 @@ bash scripts/fgclip_huggingface2onnx.sh generate_input
 - 将 LayerNorm 节点的 type 转为 CustomLayernorm
 - 修改 ArgMax 节点的前继 cast 节点，从 .to(int32) 改为 .to(float32)。
 
-```Bash
+```bash
 cd /root/of/repo
 python scripts/onnx_model_modifier.py
 ```
 
 ## 3. 生成 engine 文件
 
-```Bash
+```bash
 cd /root/of/repo
 python scripts/build_engine.sh
 ```
 
 ## 4. 编译推理
 
-```Bash
+```bash
 cd /root/of/repo
 bash build_jetson.sh
 ./build/trt_inference_one_retrieval -m ./models/retrieval_model_fp16.engine

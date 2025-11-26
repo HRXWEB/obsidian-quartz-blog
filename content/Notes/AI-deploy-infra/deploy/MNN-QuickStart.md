@@ -15,7 +15,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 ## 编译安装
 
-```Shell
+```shellscript
 mkdir build
 cd build
 cmake -DMNN_METAL=ON -DCMAKE_INSTALL_PREFIX=./install ..
@@ -30,7 +30,7 @@ make -j4
 
 下载命令：
 
-```Shell
+```shellscript
 conda activate mnn
 pip install modelscope
 modelscope download --model 'MNN/Qwen1.5-1.8B-Chat-MNN'
@@ -40,14 +40,14 @@ modelscope download --model 'MNN/Qwen1.5-1.8B-Chat-MNN'
 
 ## 运行 web demo
 
-```Shell
+```shellscript
 cd build
 ./web_demo ~/.cache/modelscope/hub/MNN/Qwen2-1___5B-Instruct-MNN/config.json ../web
 ```
 
 ## 运行 cli demo
 
-```Shell
+```shellscript
 cd build
 ./cli_demo ~/.cache/modelscope/hub/MNN/Qwen1.5-1.8B-Chat-MNN/config.json
 ```
@@ -61,7 +61,7 @@ cd build
     ```
 
 - 使用模型 `Qwen2-1.5B-Instuct-MNN` 会出现错误：
-    ```Shell
+    ```shellscript
     ERROR: Unary Op can not execute
     ERROR: Unary Op can not execute
     Create execution error : 101

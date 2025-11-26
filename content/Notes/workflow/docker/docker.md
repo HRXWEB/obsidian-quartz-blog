@@ -12,7 +12,7 @@ updated: 2025-10-10T18:10:51.5151+08:00
 
 [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
 
-```Shell
+```shellscript
 sudo usermod -aG docker $USER
 sudo reboot
 ```

@@ -78,7 +78,7 @@ tips：
 
 # 三维可视化效果
 
-```Python
+```python
 import matplotlib.pyplot as plt
 import numpy as np
 

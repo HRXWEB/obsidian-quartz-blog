@@ -32,7 +32,7 @@ updated: 2025-10-11T16:54:01.011+08:00
 
 ## 使用方法
 
-```Bash
+```bash
   hb_mapper checker --model-type ${model_type} \
                     --march ${march} \
                     --proto ${proto} \
@@ -45,7 +45,7 @@ updated: 2025-10-11T16:54:01.011+08:00
 
 ## 结果解读
 
-```Plain
+```plaintext
   ==============================================
   Node         ON   Subgraph  Type
   ----------
@@ -93,7 +93,7 @@ updated: 2025-10-11T16:54:01.011+08:00
 
 借助各类 transformer 来实现预处理过程，将数据处理成上面描述的样子：
 
-```Python
+```python
   # 本示例使用skimage，如果是opencv会有所区别
   # 需要您特别注意的是，transformers中并没有体现减mean和乘scale的处理
   # mean和scale操作已经融合到了模型中，请参考下文norm_type/mean_value/scale_value配置
@@ -147,7 +147,7 @@ updated: 2025-10-11T16:54:01.011+08:00
 
 ### 使用 `hf_mapper makertbin` 工具转换模型
 
-```Bash
+```bash
 hb_mapper makertbin --config ${config_file}  \
                     --model-type  ${model_type}
 ```

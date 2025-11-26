@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 写了这样一个模板：
 
-```YAML
+```yaml
 .build-torch-cache-template:
   <<: *dind
   stage: prepare_docker_cache
@@ -43,7 +43,7 @@ YAML 解析器认为 `:` 定义了一个 YAML 关键词，并输出 Syntax is in
 
 # 解决方案
 
-```YAML
+```yaml
 .build-torch-cache-template:
   <<: *dind
   stage: prepare_docker_cache

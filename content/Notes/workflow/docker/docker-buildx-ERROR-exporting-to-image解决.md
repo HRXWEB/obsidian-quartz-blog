@@ -7,7 +7,7 @@ created: 2025-09-24T16:54:26.2626+08:00
 updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
-```Plain
+```plaintext
 => ERROR exporting to image                                                                                                                                            0.2s
  => => exporting layers                                                                                                                                                 0.0s
  => => exporting manifest sha256:b4009b2dcf80ee92f4a00dd0d8c3465d234234dd284af444e7fb757aae5b5d5f                                                                       0.0s
@@ -30,7 +30,7 @@ BuildKit 容器拥有自己独立的环境，它不会自动继承主机 `/etc/
 
 上述问题需要配置 `insecure-registrie` ，在 `~/.config/buildkit/buildkitd.toml` 配置：
 
-```TOML
+```toml
 [registry."192.168.3.224:8083"]
   insecure = true
   http = true
@@ -38,7 +38,7 @@ BuildKit 容器拥有自己独立的环境，它不会自动继承主机 `/etc/
 
 然后使用新配置重建 buildx 构建器：
 
-```TOML
+```toml
 # 使用反斜杠 \ 保持命令的可读性
 docker buildx create --name multi_buildx \
   --use \

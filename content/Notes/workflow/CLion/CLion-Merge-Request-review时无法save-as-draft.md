@@ -15,7 +15,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 查看 gitlab 版本
 
-```Shell
+```shellscript
 http://your-gitlab-instance/api/v4/version
 
 # 举例自建

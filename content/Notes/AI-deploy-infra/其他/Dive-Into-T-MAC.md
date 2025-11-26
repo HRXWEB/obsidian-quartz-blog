@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 其实就一行命令就跑起来了：
 
-```Bash
+```bash
 python tools/run_pipeline.py -o `pwd`/models -q int_n
 ```
 
@@ -33,7 +33,7 @@ python tools/run_pipeline.py -o `pwd`/models -q int_n
 
 关键在于：
 
-```Plain
+```plaintext
 add_library(ggml
             ../include/ggml.h
             ../include/ggml-alloc.h

@@ -32,7 +32,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 - 场景一：您想通过访问本地的 `8080` 端口来访问一台名为 `db-server` (IP: `10.0.0.5`) 上的 PostgreSQL 数据库 (端口 `5432`)。您可以通过一台堡垒机 `bastion.example.com` 来连接。
     
-    ```Plain
+    ```plaintext
     Host remotedb
         HostName bastion.example.com
         User myuser
@@ -45,7 +45,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
 - 场景二：想通过访问本地的 `7890` 端口来访问一台远程服务器 `192.168.123.139` 上的 foxglove server 服务（端口 `7890`）。
     
-    ```Plain
+    ```plaintext
     Host foxglove-target
         HostName 192.168.123.139
         User admin
@@ -58,7 +58,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 您在本地机器上运行了一个 Web 开发服务，监听 `localhost:3000`。您想让您的同事通过一台公网服务器 `dev.example.com` 的 `8888` 端口来访问这个服务。
 
-```Plain
+```plaintext
 Host expose-local-dev
     HostName dev.example.com
     User myuser
@@ -73,7 +73,7 @@ Host expose-local-dev
 
 您想通过国外的服务器 `proxy.example.com` 来代理您本地浏览器的所有流量。您希望在本地的 `1080` 端口上创建这个 SOCKS5 代理。
 
-```Plain
+```plaintext
 Host socksproxy
     HostName proxy.example.com
     User myuser

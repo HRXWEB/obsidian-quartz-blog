@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 # 编译
 
-```Shell
+```shellscript
 # origin_llama 是官方的仓库，为了和 nova_llama 区分开
 cd ~/Archive/nova/repos/origin_llama.cpp
 # How to build：http://192.168.3.224:8081/nsd/openvla/llama.cpp/-/blob/master/docs/build.md
@@ -18,7 +18,7 @@ export DYLD_LIBRARY_PATH=`pwd`/cmake-build-release/install/lib
 
 # 下载模型、转换、量化
 
-```Shell
+```shellscript
 mkdir -p models/hf_models
 # download
 huggingface-cli download meta-llama/Meta-Llama-2-7B --include "original/*" --local-dir Meta-Llama-2-7B
@@ -33,7 +33,7 @@ python examples/convert_legacy_llama.py --outfile llama2-7b-fp16.gguf --outtype 
 
 # 推理
 
-```Shell
+```shellscript
 cd ./cmake-build-release/install/bin
 ./llama-cli -m ../../../models/hf_models/llama-2-7b_hf/llama2-7b-Q4_K_M.gguf -p "I believe the meaning of life is" -n 128
 ```

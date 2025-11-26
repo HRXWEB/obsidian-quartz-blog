@@ -18,7 +18,7 @@ A `Task` in `Taskflow` is a _**callable**_ object for which the operation [st
 
 示例：
 
-```C++
+```cpp
 tf::Taskflow taskflow;
 tf::Task A = taskflow.placeholder();
 tf::Task B = taskflow.emplace([] () { std::cout << "task B\n"; });
@@ -45,7 +45,7 @@ auto [D, E, F] = taskflow.emplace(
 
 1. 可复制
     
-    ```C++
+    ```cpp
     #include <iostream>
     #include <functional>
     #include <memory>

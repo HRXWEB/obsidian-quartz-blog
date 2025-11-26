@@ -14,7 +14,7 @@ updated: 2025-10-12T14:59:47.4747+08:00
 
     ==举个例子：==
 
-    ```Plain
+    ```plaintext
     function(install_models)
         install(DIRECTORY ${CMAKE_SOURCE_DIR}/models/
                 DESTINATION ${CMAKE_INSTALL_PREFIX}/models
@@ -32,7 +32,7 @@ updated: 2025-10-12T14:59:47.4747+08:00
 
 ## 根据 install_manifest.txt 删除已经安装的文件
 
-```Shell
+```shellscript
 # 测试会删除什么文件
 cat install_manifest.txt | xargs -I {} echo rm -rf -- {}
 # 实际删除

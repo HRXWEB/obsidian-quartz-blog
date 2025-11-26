@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 安装必要的包
 
-```Bash
+```bash
 sudo apt install ros-humble-rosbag2-storage-mcap
 ```
 

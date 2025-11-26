@@ -9,13 +9,13 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 - 列出所有的测试用例
     
-    ```Bash
+    ```bash
     test_main --gtest_list_tests
     ```
     
 - 执行特定的测试用例
     
-    ```Bash
+    ```bash
     test_main --gtest_filter="HelloTest*"
     test_main --gtest_filter="HelloTest.Demo"
     ```

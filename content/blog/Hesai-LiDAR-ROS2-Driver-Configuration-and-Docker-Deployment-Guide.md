@@ -28,7 +28,7 @@ https://github.com/HesaiTechnology/HesaiLidar_ROS_2.0
 
 ## 配置编译/运行环境
 
-```Bash
+```bash
 # 创建容器，注意网络和端口配置
 docker run -it \
   --name hesai_lidar_driver \
@@ -40,7 +40,7 @@ docker run -it \
   /bin/bash
 ```
 
-```Bash
+```bash
 # 进入容器后
 cd /workspace
 mkdir -p src
@@ -61,7 +61,7 @@ source install/local_setup.bash
 
 ## 配置雷达 `config/config.yaml`
 
-```YAML
+```yaml
 lidar:
     - driver:
         udp_port: 2368                          # 激光雷达UDP端口
@@ -77,7 +77,7 @@ lidar:
 
 # 启动驱动
 
-```Bash
+```bash
 ros2 launch hesai_ros_driver start.py
 ```
 
@@ -85,7 +85,7 @@ ros2 launch hesai_ros_driver start.py
 
 `docker-compose.yml`:
 
-```YAML
+```yaml
 version: '3.8'
 services:
   hesai_driver:
@@ -108,31 +108,31 @@ services:
 
 - 启动
     
-    ```Bash
+    ```bash
     docker-compose up -d
     ```
     
 - 停止
     
-    ```Bash
+    ```bash
     docker-compose stop 
     ```
     
 - 停止并删除
     
-    ```Bash
+    ```bash
     docker-compose down
     ```
     
 - 重启服务
     
-    ```Bash
+    ```bash
     docker-compose restart
     ```
     
 - 查看服务状态
     
-    ```Bash
+    ```bash
     # 查看服务运行状态
     docker-compose ps
     

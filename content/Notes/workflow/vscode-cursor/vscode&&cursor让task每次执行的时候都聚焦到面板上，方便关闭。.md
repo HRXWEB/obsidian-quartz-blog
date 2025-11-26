@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 主要是调整如下这个字段：
 
-```JSON
+```json
 "presentation": {
                 "echo": true,
                 "reveal": "always",

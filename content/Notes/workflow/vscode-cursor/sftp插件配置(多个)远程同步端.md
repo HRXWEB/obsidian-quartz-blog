@@ -13,7 +13,7 @@ updated: 2025-11-17T16:42:01.011+08:00
 
 ## 单服务器
 
-```JSON
+```json
 {
     "name": "nova-pc",
     "host": "nova-pc",
@@ -51,7 +51,7 @@ updated: 2025-11-17T16:42:01.011+08:00
 
 ## 多服务器
 
-```JSON
+```json
 {
     "name": "rdk_x5_6fen",
     "protocol": "sftp",

@@ -30,7 +30,7 @@ https://github.com/taskflow/taskflow
 
 ## profile工具: [https://taskflow.github.io/tfprof/](https://taskflow.github.io/tfprof/)
 
-```Bash
+```bash
 TF_ENABLE_PROFILER=xxx.json executable_file args
 ```
 

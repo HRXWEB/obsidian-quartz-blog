@@ -80,7 +80,7 @@ SM发展历史：[https://fabiensanglard.net/cuda/](https://fabiensanglard.net/c
 - 镜像管理：docker 镜像拉取之后上传到私有的 docker hub，否则网速真的影响体验
 - 大模型管理：先在服务器本地下载模型，避免之后刷机模型文件就丢了，。在传输文件时需要保持 symbolic links，且已知 scp 网络传输比 rsync 更快（因为用的多线程）：
     
-    ```Bash
+    ```bash
     # tar 命令默认保持 link，如果想作为普通文件，那就 -cvhf（即加上 -h 参数）
     tar -cvf - /path/to/local_source_dir | ssh user@remote_host "tar -C /path/to/remote_destination_dir -xvf -"
     ```

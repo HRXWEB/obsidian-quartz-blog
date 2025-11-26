@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 简单示例
 
-```C++
+```cpp
 // 文件 demo.cpp
 #include "crow.h"
 #include <iostream>
@@ -41,14 +41,14 @@ int main() {
 
 # 编译&&运行
 
-```C++
+```cpp
 git clone https://github.com/CrowCpp/Crow.git
 g++ -std=c++17 demo.cpp -o demo -I ./Crow/include -lpthread && ./demo
 ```
 
 # 测试
 
-```Shell
+```shellscript
 curl http://localhost:8080/get-example
 >>>
 This is a response from a GET request

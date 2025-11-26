@@ -23,7 +23,7 @@ updated: 2025-10-12T16:08:40.4040+08:00
 
 采用Test的方式来理解Eigen库提供的绕轴旋转的功能，运行如下的代码可以观察到点绕着z轴旋转45度的效果：
 
-```C++
+```cpp
 #include <opencv2/opencv.hpp>
 #include <Eigen/Dense>
 #include <Eigen/Geometry>

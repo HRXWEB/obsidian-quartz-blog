@@ -34,7 +34,7 @@ Server 有两种：
 
 1. 安装依赖项
     
-    ```Bash
+    ```bash
     sudo apt install libxrandr-dev \
      libxinerama-dev \
      libxcursor-dev \
@@ -46,7 +46,7 @@ Server 有两种：
     
 2. 编译
     
-    ```Bash
+    ```bash
     cd tracy
     cmake -B profiler/build -S profiler -DCMAKE_BUILD_TYPE=Release -DGTK_FILESELECTOR=ON -DLEGACY=ON -DGLFW_BUILD_WAYLAND=OFF
     make -C profiler/build -j8
@@ -54,7 +54,7 @@ Server 有两种：
     
 3. 使用
     
-    ```Bash
+    ```bash
     ./profiler/build/tracy-profiler
     ```
 
@@ -62,7 +62,7 @@ Server 有两种：
 
 1. 编译
     
-    ```Bash
+    ```bash
     cd tracy
     cmake -B capture/build -S capture
     make -C capture/build -j8
@@ -73,7 +73,7 @@ Server 有两种：
         
 2. 使用
     
-    ```Bash
+    ```bash
     ./capture/build/tracy-capture -a 127.0.0.1 -o output.trace
     ```
     
@@ -88,7 +88,7 @@ Server 有两种：
 
 [tracy_demo.tar.gz](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/tracy_demo.tar.gz)
 
-```Bash
+```bash
 tar xzvf tracy_demo.tar.gz
 cd my_project
 git clone https://github.com/wolfpld/tracy

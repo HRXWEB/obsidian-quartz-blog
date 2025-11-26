@@ -24,7 +24,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
     - Space for models and datasets ( `>15GB` )
 4. Clone and setup `[jetson-containers](https://github.com/dusty-nv/jetson-containers/blob/master/docs/setup.md)` :
     
-    ```Bash
+    ```bash
     git clone https://github.com/dusty-nv/jetson-containers
     bash jetson-containers/install.sh
     ```
@@ -42,7 +42,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 ## 下载模型并量化
 
-```Bash
+```bash
 jetson-containers run \
   -e http_proxy=$http_proxy \
   -e https_proxy=$https_proxy \
@@ -64,7 +64,7 @@ jetson-containers run \
 
 ## 下载 Stack 数据集
 
-```Bash
+```bash
 jetson-containers run \
 	-e http_proxy=$http_proxy \
   -e https_proxy=$https_proxy \
@@ -82,7 +82,7 @@ jetson-containers run \
 
 ## 将数据转换成 rlds 格式
 
-```Bash
+```bash
 jetson-containers run \
 	-e http_proxy=$http_proxy \
   -e https_proxy=$https_proxy \
@@ -97,7 +97,7 @@ jetson-containers run \
 
 ## LoRA finetune
 
-```Bash
+```bash
 jetson-containers run \
 	-e http_proxy=$http_proxy \
   -e https_proxy=$https_proxy \
@@ -120,7 +120,7 @@ jetson-containers run \
 
 使用官方 finetune 的模型
 
-```Bash
+```bash
 jetson-containers run \
 	-e http_proxy=$http_proxy \
   -e https_proxy=$https_proxy \
@@ -134,14 +134,14 @@ jetson-containers run \
     --save-stats /data/benchmarks/openvla_mimicgen_int4.json
 ```
 
-```Bash
+```bash
 vim /opt/NanoLLM/nano_llm/nano_llm.py   # line 390
 # 注释 shutil.copy
 ```
 
 使用自己 finetune 的模型
 
-```Bash
+```bash
 jetson-containers run \
 	-e http_proxy=$http_proxy \
   -e https_proxy=$https_proxy \
@@ -157,7 +157,7 @@ jetson-containers run \
 
 ## 推理可视化
 
-```Bash
+```bash
 jetson-containers run \
 	-e http_proxy=$http_proxy \
   -e https_proxy=$https_proxy \
@@ -168,7 +168,7 @@ jetson-containers run \
 
 ### dev mode
 
-```Bash
+```bash
 sudo mkdir -p /workspace/openvla \
 && sudo chown -R username:username /workspace \
 && cd /workspace/openvla \
@@ -179,7 +179,7 @@ sudo mkdir -p /workspace/openvla \
 
 这一步需要下载模型 llama2-7b-hf 模型，但是发现并不好用，手动下载之后再 copy
 
-```Bash
+```bash
 huggingface-cli download meta-llama/Llama-2-7b-hf
 
 # 定义函数来复制符号链接指向的文件
@@ -243,7 +243,7 @@ copy_symlinks() {
 
 - **问题2 copy file error**
     
-    ```Bash
+    ```bash
     vim /opt/NanoLLM/nano_llm/nano_llm.py
     # 注释
      line 390
@@ -255,7 +255,7 @@ copy_symlinks() {
 
 1. 进入容器下载 llama-2-7b-hf
     
-    ```Bash
+    ```bash
     huggingface-cli download meta-llama/Llama-2-7b-hf
     ```
     
@@ -273,7 +273,7 @@ https://github.com/dusty-nv/jetson-containers/issues/687
 
 ==**具体错误：**==
 
-```Bash
+```bash
 [gstreamer] initialized gstreamer, version 1.20.3.0
 [gstreamer] gstEncoder -- codec not specified, defaulting to H.264
 failed to find/open file /proc/device-tree/model
@@ -303,7 +303,7 @@ Current thread 0x0000ffffbcf40ca0 (most recent call first):
 
 ==**解决方案：**==
 
-```Bash
+```bash
 sudo rm -rf /tmp/nv_jetson_model
 cat /proc/device-tree/model > /tmp/nv_jetson_model
 ```

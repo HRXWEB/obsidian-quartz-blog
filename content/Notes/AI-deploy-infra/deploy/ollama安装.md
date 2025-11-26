@@ -9,13 +9,13 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 # Unix
 
-```Shell
+```shellscript
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
 ## 配置
 
-```Shell
+```shellscript
 sudo systemctl edit ollama
 >>> 添加如下配置
 [Service]

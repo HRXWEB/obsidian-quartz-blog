@@ -17,7 +17,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 # 解决方法（from the issue above）：
 
-```C++
+```cpp
 std::vector<const char*> inputNodeNames; //
 std::vector<AllocatedStringPtr> inputNodeNameAllocatedStrings; // <-- newly added
 ...
@@ -32,7 +32,7 @@ for (int i = 0; i < inputNodesNum; i++) {
 
 # 编译相关
 
-```Plain
+```plaintext
 # 从onnxruntime下载预编译包，此处用aarch64-1.19.2做示例
 
 set(ONNXRUNTIME_ROOT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/onnxruntime-linux-aarch64-1.19.2")

@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 - 已经配置了 `daemon.json` 
     
-    ```JSON
+    ```json
     {
         "runtimes": {
             "nvidia": {
@@ -30,14 +30,14 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
 - 并重启
     
-    ```Bash
+    ```bash
     sudo systemctl daemon-reload
     sudo systemctl restart docker
     ```
 
 但是此时验证：
 
-```Bash
+```bash
 docker info | grep -i -E "Proxy|Mirror"
 
 # 输出为空，说明 docker proxy 配置没有生效
@@ -49,7 +49,7 @@ docker info | grep -i -E "Proxy|Mirror"
 
 # 解决办法
 
-```Bash
+```bash
 sudo systemctl daemon-reload
 sudo systemctl stop docker.service
 sudo systemctl stop docker.socket

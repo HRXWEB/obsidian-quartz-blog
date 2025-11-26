@@ -7,7 +7,7 @@ created: 2025-09-24T16:54:26.2626+08:00
 updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
-```TOML
+```toml
 $ sudo gitlab-runner register --help | grep "docker.*cpus"
 Runtime platform                                    arch=amd64 os=linux pid=1976437 revision=3153ccc6 version=17.7.0
    --docker-cpuset-cpus value                                                                 String value containing the cgroups CpusetCpus to use [$DOCKER_CPUSET_CPUS]

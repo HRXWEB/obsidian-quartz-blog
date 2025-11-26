@@ -9,14 +9,14 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 最终配置
 
-```Shell
+```shellscript
 # buildkitd.toml 文件内容
 [registry."192.168.3.224:8083"]
   insecure = true
   http = true
 ```
 
-```Bash
+```bash
 docker buildx create --name muilt_buildx \
 --use --driver docker-container \
 --config ~/.config/buildkit/buildkitd.toml \
@@ -31,7 +31,7 @@ docker buildx create --name muilt_buildx \
 
 在创建一个新的 builder 实例的时候要传递代理相关的参数
 
-```Shell
+```shellscript
 docker buildx create --name multi_buildx \
 --use --driver docker-container \
 --driver-opt network=host \
@@ -65,7 +65,7 @@ docker buildx create --name multi_buildx \
 
 简单来说就是配置 `docker build create .... --bootstrap --use` 时生成的容器，在其内部修改
 
-```Shell
+```shellscript
 # buildkitd.toml 文件内容
 [registry."192.168.3.224:8083"]
   insecure = true
@@ -76,7 +76,7 @@ docker buildx create --name multi_buildx \
 
 配置后使用：
 
-```Bash
+```bash
 docker buildx create --name muilt_buildx \
 --use --driver docker-container \
 --config ~/.config/buildkit/buildkitd.toml \

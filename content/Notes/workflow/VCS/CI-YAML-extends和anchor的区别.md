@@ -27,7 +27,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 - `**extends**`: 这是 GitLab CI 为了提升配置复用性而专门设计的关键字。你可以在一个 job 中通过 `extends` 继承一个或多个其他 job 的配置。
     
-    ```YAML
+    ```yaml
     .template:
       script:
         - echo "This is a template"
@@ -42,7 +42,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
 - `**anchor**` **(锚点)**: 这是 YAML 语言自身的特性，允许你在文档的一个地方定义一个锚点 (`&`)，然后在其他地方通过别名 () 引用它。通常与合并键 `<<` 结合使用。YAML
     
-    ```YAML
+    ```yaml
     .template: &template_definition
       script:
         - echo "This is a template"
@@ -63,14 +63,14 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
     `**templates.yml**`**:**
 
-    ```YAML
+    ```yaml
     .base_job:
       image: ruby:3.1
     ```
 
     `**.gitlab-ci.yml**`**:**
 
-    ```YAML
+    ```yaml
     include: 'templates.yml'
     
     test_job:
@@ -92,7 +92,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
     **示例 (深度合并哈希):**
     
-    ```YAML
+    ```yaml
     .template:
       variables:
         VAR1: "template_var1"
@@ -107,7 +107,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
     **合并后的** `**my_job**`**：**
     
-    ```YAML
+    ```yaml
     variables:
       VAR1: "template_var1"
       VAR2: "job_var2" # 被覆盖
@@ -118,7 +118,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
     **示例 (数组覆盖):**
     
-    ```YAML
+    ```yaml
     .template: &template_script
       script:
         - echo "Step 1 from template"
@@ -132,7 +132,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
     **合并后的** `**my_job**`**：**
     
-    ```YAML
+    ```yaml
     script:
       - echo "This is the only step in my job"
     ```

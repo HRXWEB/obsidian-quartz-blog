@@ -263,7 +263,7 @@ iotop -p <PID>
 
 ## 2. 配置层面
 
-```YAML
+```yaml
 # 示例：ROS2 QoS 配置
 qos_profile:
   reliability: RELIABLE      # 保证消息送达

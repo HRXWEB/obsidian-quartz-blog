@@ -13,7 +13,7 @@ updated: 2025-10-11T17:29:06.066+08:00
 
 - 添加发行配置
     
-    ```Shell
+    ```shellscript
     sudo apt install reprepro
     sudo mkdir -p /var/www/html/apt-repository
     cd /var
@@ -36,7 +36,7 @@ updated: 2025-10-11T17:29:06.066+08:00
 
     一个具体的例子如下
 
-    ```Shell
+    ```shellscript
     Origin: Team
     Label: algorithm
     Codename: stable
@@ -48,7 +48,7 @@ updated: 2025-10-11T17:29:06.066+08:00
     
 - 上述的配置中有一个 gpg 密钥，这是需要先生成并填写的
     
-    ```Shell
+    ```shellscript
     gpg --gen-key
     >>> # 会要求填写如下几个部分，冒号后面是我填写的一个具体的例子
     Real Name: username
@@ -69,7 +69,7 @@ updated: 2025-10-11T17:29:06.066+08:00
     
 - 将密钥文件拷贝到 `apt-repository` 下面方便客户端添加密钥的公钥
     
-    ```Shell
+    ```shellscript
     # 这一步需要用到密钥 ID：14A8D54DAE457C5233A63C8483558764B2FCCCA1
     # 另外回车敲下命令后还会需要输入刚才配置的 passphrase：5aidaYUMAOQIU
     gpg --output /var/www/html/apt-repository/public.key --armor --export 14A8D54DAE457C5233A63C8483558764B2FCCCA1
@@ -77,14 +77,14 @@ updated: 2025-10-11T17:29:06.066+08:00
     
 - 初始化仓库
     
-    ```Shell
+    ```shellscript
     cd /var/www/html/apt-repository
     reprepro export
     ```
     
 - 添加软件包到 `reprepro` 仓库
     
-    ```Shell
+    ```shellscript
     # reprepro会根据DEB包内的元数据自动将其放置在正确的架构目录下。
     reprepro includedeb stable /data/r1_deb/dataflow_1.0.0_arm64.deb
     reprepro export
@@ -95,7 +95,7 @@ updated: 2025-10-11T17:29:06.066+08:00
 
 ## 配置 Nginx 代理 reprepro 仓库的静态文件
 
-```Shell
+```shellscript
 sudo apt-get install nginx
 sudo vim /etc/nginx/sites-available/default
 >>> # 找到如下的字段并修改
@@ -128,7 +128,7 @@ sudo systemctl restart nginx
 
 ### 配置 apt 源
 
-```Shell
+```shellscript
 cd /etc/apt/sources.list.d
 sudo vim nova-algo.list
 >>> # 服务器 ip 是 192.168.7.102
@@ -139,7 +139,7 @@ deb [arch=arm64] http://192.168.7.102 stable main
 
 public.key 的位置去决定这部分的设置：
 
-```Shell
+```shellscript
 wget -qO - http://192.168.7.102/public.key | sudo apt-key add -
 
 # 列出所有的密钥
@@ -148,7 +148,7 @@ apt-key list
 
 ### 更新下载
 
-```Shell
+```shellscript
 sudo apt update
 sudo apt install dataflow
 >>> # 会自动安装依赖（前提是deb包本身配置了依赖），dataflow 本身有很多依赖，但是只有 libgoogle-glog-dev 没装，所以只装这个
@@ -164,7 +164,7 @@ The following NEW packages will be installed:
 
 deb 打包的时候怎么设置依赖项并被 `apt` 解析请参考（注意 `set(CPACK_DEBIAN_PACKAGE_DEPENDS` 部分）：
 
-```Plain
+```plaintext
 # set the package type
 set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "arm64")
 
@@ -177,7 +177,7 @@ set(CPACK_DEBIAN_PACKAGE_DEPENDS "libyaml-cpp-dev, libopencv-dev, libgoogle-glog
 
 `set(CPACK_DEBIAN_PACKAGE_DEPENDS...` 会影响 `DEBIAN/control` 文件中的 `Depends` 字段，比如上述设置后的效果是：
 
-```Shell
+```shellscript
 Depends: libyaml-cpp-dev, libopencv-dev, libgoogle-glog-dev
 ```
 

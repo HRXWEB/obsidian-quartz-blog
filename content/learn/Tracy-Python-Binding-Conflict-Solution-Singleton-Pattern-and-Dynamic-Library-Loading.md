@@ -25,14 +25,14 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 
 > Tracy 使用全局静态变量来确保单例行为： TracyProfiler.cpp:1437-1438:
 > 
-> ```C++
+> ```cpp
 > assert( !s_instance );
 > s_instance = this;
 > ```
 > 
 > 在 `**Profiler**` 构造函数中，Tracy 通过断言确保只有一个实例存在，并将该实例赋值给全局静态指针 `**s_instance**`。 TracyProfiler.cpp:1658-1660:
 > 
-> ```C++
+> ```cpp
 > assert( s_instance );
 > s_instance = nullptr;
 > }
@@ -42,13 +42,13 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 
 > 每个 Tracy 实例确实拥有自己的 `**moodycamel::ConcurrentQueue**`： TracyProfiler.cpp:1362:
 > 
-> ```C++
+> ```cpp
 > moodycamel::ConcurrentQueue<QueueItem> init_order(103) s_queue( QueuePrealloc );
 > ```
 > 
 > Tracy 还维护多个全局静态变量来管理状态： TracyProfiler.cpp:1363-1364:
 > 
-> ```C++
+> ```cpp
 > std::atomic<uint32_t> init_order(104) s_lockCounter( 0 );
 > std::atomic<uint8_t> init_order(104) s_gpuCtxCounter( 0 );
 > ```
@@ -59,7 +59,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 
 > 正确的做法是创建一个专门的 profiler DLL，让所有其他 DLL 都链接到这个共享的 Tracy 实例，而不是在每个 DLL 中都编译 `**TracyClient.cpp**`。 tracy.tex:559-561：
 > 
-> ```LaTeX
+> ```latex
 > Things are a bit different in projects that consist of multiple DLLs/shared objects. Compiling \texttt{TracyClient.cpp} into every DLL is not an option because this would result in several instances of Tracy objects lying around in the process. We instead need to pass their instances to the different DLLs to be reused there.
 > 
 > For that, you need a \emph{profiler DLL} to which your executable and the other DLLs link. If that doesn't exist, you have to create one explicitly for Tracy\footnote{You can use the top-level Meson or CMake build scripts to get it. Make sure that the same build flags are set for both the library and your application, or you may find yourself chasing weird issues.}. This library should contain the \texttt{public/TracyClient.cpp} source file. Link the executable and all DLLs you want to profile to this DLL.
@@ -71,7 +71,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 
 > 您提到的网络资源竞争确实可能发生。Tracy 在初始化时会创建网络套接字和 UDP 广播： TracyProfiler.cpp:1406-1407:
 > 
-> ```C++
+> ```cpp
 >     , m_sock( nullptr )
 >     , m_broadcast( nullptr )
 > ```
@@ -86,7 +86,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 2. 确保两个 DLL 都链接到同一个 Tracy 实例
 > 3. 在 Windows 上使用 `**TRACY_IMPORTS**` 定义： tracy.tex:561
 >     
->     ```LaTeX
+>     ```latex
 >     If you are targeting Windows with Microsoft Visual Studio or MinGW, add the \texttt{TRACY\_IMPORTS} define to your application.
 >     ```
 >     
@@ -145,7 +145,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 
 对应此时的线程状态：
 
-```Bash
+```bash
 (gdb) thread apply all bt
 
 Thread 5 (Thread 0xffffa523b1e0 (LWP 2667747)):
@@ -240,7 +240,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174723414.png)
 
-```Bash
+```bash
 gdb --args python3 -c "import dataflow_py"
 (gdb) catch syscall gettid
 (gdb) run
@@ -305,7 +305,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 
 重点关注
 
-```Bash
+```bash
 #0  syscall () at ../sysdeps/unix/sysv/linux/aarch64/syscall.S:39
 #1  0x0000ffffbe93cf90 in tracy::detail::GetThreadHandleImpl() () from /home/admin/test/install/lib/dataflow_py.cpython-38-aarch64-linux-gnu.so
 #2  0x0000ffffbe96c5b4 in tracy::Profiler::Profiler() () from /home/admin/test/install/lib/dataflow_py.cpython-38-aarch64-linux-gnu.so
@@ -319,7 +319,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174742724.png)
 
-```Bash
+```bash
 #  ifdef __GNUC__
 #    define init_order( val ) __attribute__ ((init_priority(val)))
 #  else
@@ -341,7 +341,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 
 tracy 定义的 Thread:
 
-```C++
+```cpp
 class Thread
 {
 public:

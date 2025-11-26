@@ -23,7 +23,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 然后直接在 settings.json 编辑，将想要禁止端口转发的端口配置为 `ignore` ，如：
 
-```JSON
+```json
 {
     "remote.portsAttributes": {
         "7890": {

@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 确认 X Server 监听的端口
 
-```Bash
+```bash
 sudo netstat -lntp | grep -i x
 tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1211/nginx: master
 tcp6       0      0 :::3389                 :::*                    LISTEN      1276/xrdp
@@ -39,7 +39,7 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
 
 1. **用** `**ss**` **命令查找监听该 socket 的进程** 这次我们不用 `-t` (TCP) 或 `-u` (UDP)，而是用 `-x` (Unix sockets)。
     
-    ```Bash
+    ```bash
     ss -lx | grep /tmp/.X11-unix/X10
     ```
 
@@ -47,7 +47,7 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
 
     截取部分输出：
 
-    ```Bash
+    ```bash
     # 这两行是最关键的
     u_str   LISTEN   0   4096   /tmp/.X11-unix/X10 89156   * 0
     u_str   LISTEN   0   4096  @/tmp/.X11-unix/X10 89155   * 0
@@ -57,12 +57,12 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
 
 2. 更进一步地，使用 lsof 查找使用该 socket 的进程
     
-    ```Bash
+    ```bash
     sudo lsof /tmp/.X11-unix/X10
     ```
 
     这个命令会直接告诉你那个监听 `X10` socket 的进程是什么，它的 PID 是多少。毫无疑问，你会发现它是一个名为 `Xorg` 或 `Xorgxrdp` 的进程。
 
-    ```Bash
+    ```bash
     Xorg    5810 username    6u  unix 0xffff9a90c99ef2c0      0t0 89156 /tmp/.X11-unix/X10 type=STREAM
     ```

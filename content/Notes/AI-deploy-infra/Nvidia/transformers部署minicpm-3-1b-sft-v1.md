@@ -15,7 +15,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 ## 基础 python 环境准备
 
-```Shell
+```shellscript
 conda create -n minicpm-3-1b-sft-v1 python=3.10
 conda activate minicpm-3-1b-sft-v1
 git clone git@192.168.3.224:username/minicpm-3-1b-sft-v1.git
@@ -38,7 +38,7 @@ cd minicpm-3-1b-sft-v1
 
 > If installing 24.06 PyTorch or later versions, **[cusparselt](https://docs.nvidia.com/cuda/cusparselt/index.html)** needs to be installed first:
 > 
-> ```Shell
+> ```shellscript
 > wget raw.githubusercontent.com/pytorch/pytorch/5c6af2b583709f6176898c017424dc9981023c28/.ci/docker/](http://raw.githubusercontent.com/pytorch/pytorch/5c6af2b583709f6176898c017424dc9981023c28/.ci/docker/common/install_cusparselt.sh
 > export CUDA_VERSION=12.1 # as an example
 > bash ./install_cusparselt.sh
@@ -52,7 +52,7 @@ cd minicpm-3-1b-sft-v1
 >  
 > [https://developer.nvidia.com/cusparselt-downloads?target_os=Linux&target_arch=aarch64-jetson&Compilation=Native&Distribution=Ubuntu&target_version=22.04&target_type=deb_network](https://developer.nvidia.com/cusparselt-downloads?target_os=Linux&target_arch=aarch64-jetson&Compilation=Native&Distribution=Ubuntu&target_version=22.04&target_type=deb_network)  
 
-```Shell
+```shellscript
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/arm64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
@@ -61,7 +61,7 @@ sudo apt-get -y install libcusparselt0 libcusparselt-dev
 
 开始安装 torch && torchvision：
 
-```Shell
+```shellscript
 # install torch
 pip install https://developer.download.nvidia.cn/compute/redist/jp/v61/pytorch/torch-2.5.0a0+872d972e41.nv24.08.17622132-cp310-cp310-linux_aarch64.whl
 # install torchvision
@@ -70,12 +70,12 @@ pip install https://pypi.jetson-ai-lab.dev/jp6/cu126/+f/a83/27a4945ff0bdd/torchv
 
 ## 安装其他依赖
 
-```Shell
+```shellscript
 pip install -r requirements.txt
 ```
 
 # 运行测试
 
-```Shell
+```shellscript
 python test.py
 ```

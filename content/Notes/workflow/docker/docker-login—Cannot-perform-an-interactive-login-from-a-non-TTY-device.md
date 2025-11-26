@@ -7,7 +7,7 @@ created: 2025-09-24T16:54:26.2626+08:00
 updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
-```Bash
+```bash
 $ echo $ROBOT_PAT | docker login $HARBOR_REGISTRY -u $ROBOT_USER --password-stdin
 Error: Cannot perform an interactive login from a non TTY device
 ```

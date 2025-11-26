@@ -15,6 +15,6 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 配置后，使用 `-e "ssh"` ：
 
-```Bash
+```bash
 rsync -avz --delete -e "ssh" source_path host@ip:destination_path
 ```

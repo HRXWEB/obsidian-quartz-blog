@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 dind 的配置是：
 
-```YAML
+```yaml
 # 定义一个隐藏的模板，用于所有需要 Docker-in-Docker (dind) 的 jobs
 .dind-template: &dind
   tags:
@@ -35,7 +35,7 @@ dind 的配置是：
 
 后续触发了使用这个 dind 配置的 jobs 后报错
 
-```Bash
+```bash
 ERROR: error during connect: Head "http://docker:2375/_ping": dial tcp: lookup docker on 114.114.114.114:53: no such host
 ERROR: Job failed: exit code 1
 ```
@@ -67,7 +67,7 @@ ERROR: Job failed: exit code 1
 
 编辑 gitlab-runner 的配置文件 `/etc/gitlab-runner/config.toml` 或者 `~/.gitlab-runner/config.toml`
 
-```TOML
+```toml
 # /etc/gitlab-runner/config.toml
 
 concurrent = 4
@@ -98,7 +98,7 @@ check_interval = 0
 
 register 命令中传入 `--docker-privileged` 参数
 
-```TOML
+```toml
 sudo gitlab-runner register --docker-privileged --url http://192.168.3.224:8081/ --registration-token $REGISTRATION_TOKEN
 ```
 

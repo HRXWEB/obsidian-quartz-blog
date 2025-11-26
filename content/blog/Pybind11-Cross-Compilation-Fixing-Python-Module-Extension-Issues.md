@@ -15,7 +15,7 @@ updated: 2025-10-12T16:02:08.088+08:00
 
 使用 `pybind11_add_module` 时，发现生成的模块扩展名不正确。通过查看 `pybind11NewTools.cmake` 中的相关代码：
 
-```Shell
+```shellscript
 function(pybind11_add_module target_name)
 	...
 	# If we don't pass a WITH_SOABI or WITHOUT_SOABI, use our own default handling of extensions
@@ -41,7 +41,7 @@ endfunction()
 
 查看 `pybind11NewTools.cmake` 中 `PYTHON_MODULE_EXTENSION` 的设置逻辑：
 
-```Shell
+```shellscript
 if(NOT _PYBIND11_CROSSCOMPILING)
 	# code about set PYTHON_MODULE_EXTENSION
 else()
@@ -70,7 +70,7 @@ endif()
 
 查看 `pybind11Common.cmake` 中的相关代码：
 
-```Shell
+```shellscript
 if(CMAKE_CROSSCOMPILING AND PYBIND11_USE_CROSSCOMPILING)
   set(_PYBIND11_CROSSCOMPILING
       ON
@@ -88,7 +88,7 @@ endif()
 
 成功触发 `_PYBIND11_CROSSCOMPILING = TRUE` 后，会出现报错：
 
-```Shell
+```shellscript
 message(
       FATAL_ERROR
         "When cross-compiling, you should set the PYTHON_IS_DEBUG, PYTHON_MODULE_EXTENSION and PYTHON_MODULE_DEBUG_POSTFIX \
@@ -97,7 +97,7 @@ message(
 
 因此，除了设置 `PYBIND11_USE_CROSSCOMPILING=TRUE` 以外，还需要设置以下变量：
 
-```Shell
+```shellscript
 set(PYTHON_IS_DEBUG FALSE)
 set(PYTHON_MODULE_EXTENSION .cpython-38-aarch64-linux-gnu.so)
 set(PYTHON_MODULE_DEBUG_POSTFIX "")
@@ -136,7 +136,7 @@ message("-- found Python library:  ${PYTHON_LIBRARIES}")
 
 ## 如何确定开发板支持的 soabi
 
-```Shell
+```shellscript
 python3
 Python 3.8.10 (default, Nov 22 2023, 10:22:35) 
 [GCC 9.4.0] on linux

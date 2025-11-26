@@ -9,7 +9,7 @@ updated: 2025-10-12T16:52:52.5252+08:00
 
 # 简单示例
 
-```C++
+```cpp
 int main() { 
   tf::Taskflow taskflow;
   tf::Executor executor;
@@ -66,7 +66,7 @@ int main() {
     
 2. 死锁
     
-    ```C++
+    ```cpp
     // wrong implementation of while-loop using only one condition task
     tf::Taskflow taskflow;
     
@@ -90,7 +90,7 @@ int main() {
 
     正确的实现：
 
-    ```C++
+    ```cpp
     tf::Taskflow taskflow;
     
     int i;

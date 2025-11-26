@@ -15,7 +15,7 @@ daemon 没有启动。
 
 可能是 services 字段有配置，但是 extends，anchor 等操作把它给覆写了。
 
-```YAML
+```yaml
   services:
     - name: docker:dind
       alias: docker

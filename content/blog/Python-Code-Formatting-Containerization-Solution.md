@@ -22,7 +22,7 @@ updated: 2025-10-11T17:27:11.1111+08:00
 
 创建一个名为 `Dockerfile` 的文件。
 
-```Docker
+```docker
 # Dockerfile
 # 选择一个轻量的官方Python镜像作为基础
 FROM python:3.10-slim
@@ -47,7 +47,7 @@ ENTRYPOINT ["tail", "-f", "/dev/null"]
 
 你需要将这个镜像构建好，并推送到一个团队可以访问的容器镜像仓库中（如 GitLab Container Registry, Docker Hub, Harbor 等）。
 
-```Bash
+```bash
 # 构建镜像，并打上标签
 docker build -t your-registry.com/your-org/python-formatter:1.0 .
 
@@ -61,7 +61,7 @@ docker push your-registry.com/your-org/python-formatter:1.0
 
 在项目根目录创建一个名为 `format.sh` 的脚本。这个脚本是开发者与容器交互的桥梁。
 
-```Bash
+```bash
 #!/bin/bash
 # format.sh
 
@@ -85,13 +85,13 @@ docker run --rm \
 
 **赋予脚本执行权限：**
 
-```Bash
+```bash
 chmod +x format.sh
 ```
 
 现在，任何开发者都可以在项目根目录下通过这个脚本来执行格式化，例如： 
 
-```Bash
+```bash
 ./format.sh black .
 ./format.sh ruff --fix .
 ```
@@ -104,7 +104,7 @@ chmod +x format.sh
 
 修改 `.pre-commit-config.yaml`：
 
-```YAML
+```yaml
 # .pre-commit-config.yaml
 
 repos:
@@ -141,7 +141,7 @@ repos:
 
 修改 `.gitlab-ci.yml`，直接使用我们构建好的`formatter`镜像：
 
-```YAML
+```yaml
 # .gitlab-ci.yml (容器化方案)
 
 stages:

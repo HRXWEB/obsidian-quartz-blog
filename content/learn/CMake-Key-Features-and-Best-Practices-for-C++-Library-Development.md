@@ -89,6 +89,6 @@ updated: 2025-10-12T15:22:47.4747+08:00
 
     查看 DT_RPATH：
 
-    ```Bash
+    ```bash
     readelf -d <path/to/target>
     ```

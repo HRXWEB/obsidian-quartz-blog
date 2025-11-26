@@ -15,7 +15,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 当前的设置：
 
-```Bash
+```bash
 lint_job:
   stage: lint-check
   image: 192.168.3.224:8083/test/python-formatter:latest
@@ -30,7 +30,7 @@ lint_job:
 
 在 pipline 的 logs 中看到关键字 `Reinitialized`：
 
-```Plain
+```plaintext
 Reinitialized existing Git repository in /builds/algo-model-zoo/model_zoo/.git/
 ```
 
@@ -40,7 +40,7 @@ Reinitialized existing Git repository in /builds/algo-model-zoo/model_zoo/.git/
 
 设置 GIT 策略为 clone，并且 submodule 不初始化
 
-```YAML
+```yaml
 lint_job:
   stage: lint-check
   image: 192.168.3.224:8083/test/python-formatter:latest

@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # Ubuntu(amd64/x86-64)
 
-```Bash
+```bash
 # 备份 sources.list 文件
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
@@ -29,7 +29,7 @@ sudo apt update
 
 # Ubuntu-ports(ARMc)
 
-```Bash
+```bash
 # 备份 sources.list 文件
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 

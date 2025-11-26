@@ -24,7 +24,7 @@ ps：这其实是因为一系列构建系统太完善了，导致大家对gcc或
 3. gcc 编译 `.c` 文件只有很少的预定义的宏
 4. gcc 编译 `.cpp` 文件 或者 g++ 编译 `.c/*.cpp` 文件 有一些额外的宏，如：
     
-    ```C++
+    ```cpp
     #define __GXX_WEAK__ 1
     #define __cplusplus 1
     #define __DEPRECATED 1

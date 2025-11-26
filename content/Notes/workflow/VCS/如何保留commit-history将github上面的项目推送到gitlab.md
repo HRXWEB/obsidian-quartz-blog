@@ -7,7 +7,7 @@ created: 2025-09-24T16:54:28.2828+08:00
 updated: 2025-10-10T18:10:19.1919+08:00
 ---
 
-```Bash
+```bash
 git clone https://github.com/your-github-username/your-repo-name.git
 cd your-repo-name
 git remote add gitlab <gitlab_url>
@@ -24,6 +24,6 @@ git remote rename gitlab origin
 1. 直接编辑 `.gitmodules` 文件对应的 submodule 的 url
 2. 执行：
     
-    ```Bash
+    ```bash
     git submodule sync && git submodule update --init --recursive
     ```

@@ -31,7 +31,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ## ubuntu 安装
 
-```Shell
+```shellscript
 curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
 sudo apt install gitlab-runner
 ```
@@ -44,7 +44,7 @@ sudo apt install gitlab-runner
 
 可以在 `show runner installation instructions` 找到如下命令（替换REGISTRATION_TOKEN即可）：
 
-```Shell
+```shellscript
 sudo gitlab-runner register --url http://192.168.3.224:8081/ --registration-token $REGISTRATION_TOKEN
 ```
 
@@ -57,7 +57,7 @@ sudo gitlab-runner register --url http://192.168.3.224:8081/ --registration-toke
 
 # 一个基本的 .gitlab-ci.yml
 
-```YAML
+```yaml
 stages:
   - build
   - test
@@ -108,7 +108,7 @@ deploy_job:
 
 问题：
 
-```Shell
+```shellscript
 sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
 ```
 
@@ -116,7 +116,7 @@ sudo: a terminal is required to read the password; either use the -S option to r
 
 给 gitlab-runner 用户的某些命令添加无需密码即可执行的sudo权限，比如：
 
-```Shell
+```shellscript
 sudo visudo
 gitlab-runner ALL=(ALL) NOPASSWD: /usr/bin/apt-get, /bin/mkdir, /bin/tar, /bin/rm, /bin/bash, /usr/bin/python3, /bin/cp, /bin/chmod, /sbin/chroot, /bin/tar
 ```
@@ -128,7 +128,7 @@ gitlab-runner ALL=(ALL) NOPASSWD: /usr/bin/apt-get, /bin/mkdir, /bin/tar, /bin/r
 
 原因在于 每个 runner 的执行用户是 gitlab-runner 这个用户，而 gitlab-runner 并没有登录 harbor，所以登录即可：
 
-```Shell
+```shellscript
 # gitlab-runner 加入到 docker 用户组就可以免除 sudo 权限
 sudo usermod -aG docker gitlab-runner
 su

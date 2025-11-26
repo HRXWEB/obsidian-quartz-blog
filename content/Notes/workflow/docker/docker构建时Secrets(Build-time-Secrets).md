@@ -17,19 +17,19 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 1. **启用 BuildKit：** 确保你的 Docker 版本支持 BuildKit，并且它已被启用。通常，在较新的 Docker 版本中，BuildKit 是默认的构建器。你可以通过设置环境变量来显式启用：
     
-    ```Bash
+    ```bash
     export DOCKER_BUILDKIT=1
     ```
 
     或者在 `docker build` 命令中指定：
 
-    ```Bash
+    ```bash
     DOCKER_BUILDKIT=1 docker build ...
     ```
 
     你也可以在 Docker 守护进程的配置文件 (`/etc/docker/daemon.json`) 中将其设置为默认：
 
-    ```JSON
+    ```json
     {
       "features": {
         "buildkit": true
@@ -39,7 +39,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
 2. **准备 Secret 文件：** 将你的敏感信息存储在一个本地文件中。例如，创建一个名为 `mysecret.txt` 的文件，内容是你的 API 密钥。
     
-    ```Plain
+    ```plaintext
     this_is_my_super_secret_api_key
     ```
     
@@ -48,20 +48,20 @@ updated: 2025-10-10T18:10:19.1919+08:00
     - `id`: 在 `Dockerfile` 中引用的 Secret 的标识符。
     - `src` (或 `source`): 本地 Secret 文件的路径。
     
-    ```Bash
+    ```bash
     docker build --secret id=myapikey,src=mysecret.txt -t my-app .
     ```
 
     如果你的 Secret 内容直接在环境变量中，可以这样：
 
-    ```Bash
+    ```bash
     MY_ENV_SECRET="some_secret_value"
     docker build --secret id=myenvsecret,env=MY_ENV_SECRET -t my-app .
     ```
     
 4. **在** `**Dockerfile**` **中挂载和使用 Secret：** 在需要使用 Secret 的 `RUN` 指令中，使用 `--mount=type=secret` 来挂载它。Secret 会被挂载到指定的 `target` 路径（默认为 `/run/secrets/<id>`)。
     
-    ```Docker
+    ```docker
     # syntax=docker/dockerfile:1 # 确保使用支持 BuildKit 的 Dockerfile 语法版本
     
     FROM alpine
@@ -93,7 +93,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     - 在构建过程中需要从私有的 npm registry、Maven repository、PyPI server 或 apt/yum repository 下载依赖包时，可以使用 Secret 传递认证凭据（如 token、用户名密码）。
     - **例子 (**`**Dockerfile**` **for npm):**
         
-        ```Docker
+        ```docker
         # syntax=docker/dockerfile:1
         FROM node:18-alpine
         WORKDIR /app

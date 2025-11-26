@@ -41,7 +41,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 如上是 `container settings` 部分
 
-```Plain
+```plaintext
 --entrypoint -v /Users/username/Archive/nova:/workshop --privileged --net host --rm --ipc host
 ```
 

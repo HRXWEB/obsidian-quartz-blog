@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-10-11T19:14:55.5555+08:00
-updated: 2025-10-12T15:14:19.1919+08:00
+updated: 2025-11-27T01:45:47.4747+08:00
 ---
 
 # 情形一：没有链接相应的库
@@ -15,7 +15,7 @@ updated: 2025-10-12T15:14:19.1919+08:00
 
 假设依赖关系是 main -> A -> B，那么正确的链接顺序是：main -> A -> B。
 
-```CMake
+```cmake
 target_link_libraries(main PRIVATE A B)
 
 # 错误写法

@@ -7,13 +7,13 @@ created: 2025-09-24T16:54:27.2727+08:00
 updated: 2025-10-11T16:54:29.2929+08:00
 ---
 
-```Bash
+```bash
 hrut_ddr -t all -p 1000
 ```
 
 输出示例
 
-```Plain
+```plaintext
 Time 364160.876s
 MB/S   P0:CPU   P1:BPU  P2:VIN  P3:CODEC  P4:GPU      SUM
 Read :    110     4035        0        0        0     4145
@@ -32,7 +32,7 @@ Write:    106     1186        0        0        0     1292
 
 # 命令解析
 
-```Bash
+```bash
 hrut_ddr -h
 DDR MONITOR HELP INFORMATION
 >>> -t/--type   sample type: cpu,bpu,vin,codec,gpu,sum,all

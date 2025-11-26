@@ -18,7 +18,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 比如
 
-```Docker
+```docker
 ENV PATH=${PATH}:/root/.ndk_env/dst/bin:/root/.ndk_env/amt/bin
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/root/.ndk_env/amt/lib
 ```
@@ -60,7 +60,7 @@ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/root/.ndk_env/amt/lib
 
 但是可以确定 ~/.bashrc 一定是会读取的，可以直接在 `dockerfile` 加上：
 
-```Docker
+```docker
 # 修改 ~/.bashrc 文件，添加 PATH 和 LD_LIBRARY_PATH 设置
 RUN echo 'export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.ndk_env/onnx2nrt/bin:/root/.ndk_env/dst/bin:/root/.ndk_env/amt/bin:$PATH"' >> ~/.bashrc && \
     echo 'export LD_LIBRARY_PATH=":/root/.ndk_env/amt/lib:/root/.ndk_env/onnx2nrt/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc

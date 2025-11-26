@@ -41,7 +41,7 @@ adas 是来自 dataflow@44f545612e5e9ce6b38b538c5f2f574a8a8f7ede 的一个示例
 
 示例：
 
-```C++
+```cpp
 foxglove::CubePrimitive cube;
 // convert yaw, pitch, roll to quaternion
 // xyz <<=>> rpy

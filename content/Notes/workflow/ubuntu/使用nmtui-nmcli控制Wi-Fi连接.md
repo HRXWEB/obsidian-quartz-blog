@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 安装
 
-```Bash
+```bash
 sudo apt update
 sudo apt install network-manager -y
 ```
@@ -26,7 +26,7 @@ sudo apt install network-manager -y
 
 如果找不到相应的 Wi-Fi 信号，需要先通过 `nmcli` 命令来重新扫描一次 Wi-Fi 信号。
 
-```Bash
+```bash
 nmcli device wifi rescan
 ```
 
@@ -34,25 +34,25 @@ nmcli device wifi rescan
 
 - 显示附近的 Wi-Fi 网络（rescan 强制重新刷新一次）
     
-    ```Bash
+    ```bash
     nmcli device wifi list [--rescan yes]
     ```
     
 - 连接到 Wi-Fi 网络
     
-    ```Bash
+    ```bash
     nmcli device wifi connect <SSID_or_BSSID> password <password>
     ```
     
 - 显示连接列表及其名称、UUID、类型和支持设备
     
-    ```Bash
+    ```bash
     nmcli connection show
     ```
 
 # 使用 nmcli 连接 Wi-Fi 的脚本
 
-```Bash
+```bash
 #!/usr/bin/env bash
 
 # --- 脚本开始时，先进行 sudo 授权 ---

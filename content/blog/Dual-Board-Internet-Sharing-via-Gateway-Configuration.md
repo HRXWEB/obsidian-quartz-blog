@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 开发板A有无线网卡和有线网卡，开发板B只有有线网卡，现在的网络拓扑是A连接Wifi可以连接到互联网，A和B通过网线直连进行通信。但是这种情况下B无法连接互联网，有什么可以解决的办法吗？
 
-```Plain
+```plaintext
            +-------------------+                 +-------------------+
            |                   |  （以太网连接）   |                   |
            |  开发板A (无线网卡) |-----------------|  开发板B (有线网卡) |
@@ -35,13 +35,13 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 - 开发板 A 启用 IP 转发功能
     
-    ```Bash
+    ```bash
     sudo sysctl -w net.ipv4.ip_forward=1
     ```
 
     要使其永久生效，可以编辑 `/etc/sysctl.conf` 文件，加入以下内容：
 
-    ```Plain
+    ```plaintext
     net.ipv4.ip_forward = 1
     ```
 
@@ -49,7 +49,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 - 配置开发板 A 的防火墙规则，允许它转发流量
     
-    ```Bash
+    ```bash
     sudo iptables --table nat -A POSTROUTING -o wlan0 -j MASQUERADE
     sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
     sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
@@ -57,7 +57,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
     
 - 保存 iptables 配置
     
-    ```Bash
+    ```bash
     sudo apt install iptables-persistent
     sudo netfilter-persistent save
     ```
@@ -68,7 +68,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 将开发板B的默认网关设置为开发板A的有线网卡IP地址（假设是192.168.1.1）：
 
-```Bash
+```bash
 sudo route add default gw 192.168.1.1
 ```
 
@@ -76,6 +76,6 @@ sudo route add default gw 192.168.1.1
 
 在开发板B上设置DNS服务器为开发板A的DNS或者使用公网的DNS（如8.8.8.8）。编辑 `/etc/resolv.conf`：
 
-```Bash
+```bash
 nameserver 8.8.8.8
 ```

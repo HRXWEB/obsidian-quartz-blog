@@ -17,7 +17,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 1. 将其放到 $HOME 目录下，在 `.bashrc` 或者 `.zshrc` 中加入这几行：
     
-    ```Bash
+    ```bash
     # Source the CUDA switcher script
     if [ -f ~/.cuda_switcher.sh ]; then
         . ~/.cuda_switcher.sh
@@ -26,7 +26,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
     
 2. logout 之后再 login，通过如下命令检查版本：
     
-    ```Bash
+    ```bash
     nvcc --version
     readlink -f /usr/local/cuda
     readlink -f /usr/local/cuda-12
@@ -38,7 +38,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
     在提供的脚本中，示例为：
 
-    ```Bash
+    ```bash
     declare -a CUDA_CONFIGS=(
       "0:12.6:/usr/local/cuda-12.6"
       "1:12.9:/usr/local/cuda-12.9"
@@ -47,7 +47,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
     安装了新版本或者不同的版本，可以改为：
 
-    ```Bash
+    ```bash
     declare -a CUDA_CONFIGS=(
       "0:12.6:/usr/local/cuda-12.6"
       "1:12.9:/usr/local/cuda-12.9"
@@ -57,18 +57,18 @@ updated: 2025-10-10T18:10:21.2121+08:00
     
 2. 重新加载
     
-    ```Bash
+    ```bash
     source ~/.cuda_switcher.sh
     ```
     
 3. 注册新的 cuda 版本到 update-alternatives 系统中
     
-    ```Bash
+    ```bash
     register_cuda_alternatives
     ```
     
 4. 使用新版本（示例）：
     
-    ```Bash
+    ```bash
     switch_cuda 2
     ```

@@ -11,7 +11,7 @@ updated: 2025-10-12T16:37:46.4646+08:00
 
 [http://docs.ros.org/en/fuerte/api/geometry_msgs/html/msg/TransformStamped.html](http://docs.ros.org/en/fuerte/api/geometry_msgs/html/msg/TransformStamped.html)
 
-```Plain
+```plaintext
 # This expresses a transform from coordinate frame header.frame_id
 # to the coordinate frame child_frame_id
 #
@@ -136,7 +136,7 @@ Transform transform
 
 在 ros2 的 `launch.py` 中写下如下：
 
-```Python
+```python
 def RTMatrix2TransformArgs(rt_matrix: np.ndarray, parent_frame_id: str, child_frame_id: str):
     # rt 矩阵是从父坐标系到子坐标系的变换矩阵，描述的是符合从父坐标系如何旋转平移到子坐标系
     rt_matrix = rt_matrix.reshape(4, 4)
@@ -169,7 +169,7 @@ camera_to_ego_tf_node = Node(
 
 - 看一下逆向旋转 90 度的 RT矩阵：
     
-    ```Python
+    ```python
     >>> R.from_euler('x', -90, degrees=True).as_matrix()
     array([[ 1.00000000e+00, -0.00000000e+00,  0.00000000e+00],
            [ 0.00000000e+00,  2.22044605e-16,  1.00000000e+00],
@@ -178,7 +178,7 @@ camera_to_ego_tf_node = Node(
     
 - 此时 `camera_to_ego_tf_node` 发布的 `/tf_static` 为：
     
-    ```JSON
+    ```json
     // 下面四元数相当于 rpy = [-90, 0, 0]，即绕 x 轴逆向旋转 90 度
     {
       "transforms": [

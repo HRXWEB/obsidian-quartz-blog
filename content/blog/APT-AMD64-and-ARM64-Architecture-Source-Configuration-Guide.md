@@ -21,13 +21,13 @@ updated: 2025-10-11T17:29:31.3131+08:00
 
 - amd64 平台：
 
-```Shell
+```shellscript
 sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 sed -i 's/security.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 ```
 
 - arm64 平台：
 
-```Shell
+```shellscript
 sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/g' /etc/apt/sources.list
 ```

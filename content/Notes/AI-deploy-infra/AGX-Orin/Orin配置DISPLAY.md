@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 做了一些工作，发现 `SSH -X orin` 会生成 `$HOME/.Xauthority` 文件，然后可以用命令列出当前可信的（客户端？不知道怎么形容）：
 
-```Shell
+```shellscript
 $ xauth list
 >>> 
 ubuntu/unix:1  MIT-MAGIC-COOKIE-1  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -18,7 +18,7 @@ ubuntu:10  MIT-MAGIC-COOKIE-1  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 DISPLAY 也会自动设置成：
 
-```Shell
+```shellscript
 $ echo $DISPLAY
 >>>
 ubuntu:10.0

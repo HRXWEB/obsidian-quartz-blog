@@ -11,7 +11,7 @@ updated: 2025-10-12T16:05:35.3535+08:00
 
 可以看出有很多选项用于控制 opencv 的module
 
-```Bash
+```bash
 -DBUILD_EXAMPLES=OFF `
 -DBUILD_opencv_apps=OFF `
 -DBUILD_opencv_calib3d=OFF `

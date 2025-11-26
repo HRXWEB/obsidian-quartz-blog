@@ -11,7 +11,7 @@ updated: 2025-10-12T16:36:38.3838+08:00
 
 可能需要的安装包
 
-```Bash
+```bash
 # ping
 sudo apt install iputils-ping -y
 # ifconfig
@@ -20,7 +20,7 @@ sudo apt install net-tools -y
 
 # 主机配置
 
-```Bash
+```bash
 # 设置 ROS Master 的地址为本机的 IP
 export ROS_MASTER_URI=http://192.168.1.101:11311
 
@@ -33,7 +33,7 @@ roscore
 
 # 从机配置
 
-```Bash
+```bash
 # 设置 ROS Master 的地址为主机的 IP
 export ROS_MASTER_URI=http://192.168.1.101:11311
 

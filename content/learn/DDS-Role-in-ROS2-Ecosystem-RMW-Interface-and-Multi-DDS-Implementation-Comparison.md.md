@@ -62,7 +62,7 @@ updated: 2025-10-12T16:41:41.4141+08:00
 
 以 cyclonedds 为例
 
-```Bash
+```bash
 sudo apt install ros-humble-rmw-cyclonedds-cpp -y
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 

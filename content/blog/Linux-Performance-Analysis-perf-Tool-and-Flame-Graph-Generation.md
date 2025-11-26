@@ -9,7 +9,7 @@ updated: 2025-10-11T17:43:46.4646+08:00
 
 ## 安装
 
-```Shell
+```shellscript
 sudo apt-get update
 sudo apt-get install linux-tools-common linux-tools-generic linux-tools-`uname -r`
 find /usr -name perf
@@ -25,7 +25,7 @@ ln -s /usr/lib/linux-tools/5.4.0-169-generic/perf /usr/bin/perf
 
 ## 使用
 
-```Shell
+```shellscript
 cd <workspace>
 
 # 准备生成火焰图的工具：

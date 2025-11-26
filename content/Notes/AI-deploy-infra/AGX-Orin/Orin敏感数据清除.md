@@ -9,13 +9,13 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 - 删除 cfw
     
-    ```Bash
+    ```bash
     rm -rf ~/.config/autostart/cfw.desktop
     ```
     
 - 退出 docker 账户，删除docker代理
     
-    ```Bash
+    ```bash
     # 退出 docker 账户
     docker logout
     docker logout 192.168.3.224:8083

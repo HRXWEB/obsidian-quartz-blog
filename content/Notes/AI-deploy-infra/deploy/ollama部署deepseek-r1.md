@@ -15,13 +15,13 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 ### 命令行使用
 
-```Shell
+```shellscript
 ollama run deepseek-r1:14b
 ```
 
 ### docker 运行 open-webui
 
-```Shell
+```shellscript
 # 服务器端
 sudo mkdir -p /data
 cd /data

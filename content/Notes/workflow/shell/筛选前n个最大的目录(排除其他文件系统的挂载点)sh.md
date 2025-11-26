@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 对于这样一个文件系统：
 
-```Bash
+```bash
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 udev            378G     0  378G   0% /dev
@@ -55,7 +55,7 @@ tmpfs            76G  4.0K   76G   1% /run/user/2040
 
 # 方法
 
-```Bash
+```bash
 sudo du -hx --max-depth=1 / | sort -rh | head -10
 ```
 

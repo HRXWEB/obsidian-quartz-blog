@@ -13,7 +13,7 @@ updated: 2025-10-13T16:47:06.066+08:00
 
 ## 跟目录结构
 
-```Plain
+```plaintext
 .
 ├── model_download
 │   └── huggingface
@@ -32,7 +32,7 @@ updated: 2025-10-13T16:47:06.066+08:00
 
 ## 启动容器
 
-```Shell
+```shellscript
 source ~/proxy.sh
 docker run --runtime nvidia -it --rm -p 8000:8000 -p 8002:8002 -p 8001:8001 \\
 -e http_proxy=$http_proxy \\
@@ -49,19 +49,19 @@ nvcr.io/nvidia/tritonserver:25.04-vllm-python-py3
 
 ## 登录huggingface
 
-```Shell
+```shellscript
 huggingface-cli login --token $HF_TOKEN
 ```
 
 ## 启动triton server
 
-```Shell
+```shellscript
 tritonserver --model-repository model_repository --model-control-mode=explicit
 ```
 
 ## 加载模型
 
-```Shell
+```shellscript
 curl -X POST localhost:8000/v2/repository/models/gemma3_1b/load
 ```
 
@@ -73,7 +73,7 @@ load 模型时，报错：
 
 首先简化问题，定位到这是 vllm 在初始化模型时报的错误，因为先验证 vllm 是否正常工作：
 
-```Shell
+```shellscript
 python3 -m vllm.entrypoints.openai.api_server --model "google/gemma-3-1b-it"
 ```
 
@@ -83,7 +83,7 @@ python3 -m vllm.entrypoints.openai.api_server --model "google/gemma-3-1b-it"
 
 在 github 上搜索，发现有人遇到同样的问题，并给出了[答案](https://github.com/vllm-project/vllm/issues/8893)，
 
-```Shell
+```shellscript
 export VLLM_WORKER_MULTIPROC_METHOD=spawn
 python3 -m vllm.entrypoints.openai.api_server --model "google/gemma-3-1b-it"
 ```
@@ -175,7 +175,7 @@ https://github.com/vllm-project/vllm/pull/9735
 > 
 > Here is the docker command example without S3 support
 > 
-> ```Bash
+> ```bash
 > docker run --runtime nvidia --rm --net=host -v ${PWD}/model_repository:/models nvcr.io/nvidia/tritonserver:24.07-py3-igpu tritonserver --model-repository=/models
 > ```
 
@@ -186,7 +186,7 @@ https://github.com/vllm-project/vllm/pull/9735
 - **结合下列：**
     - [https://github.com/triton-inference-server/vllm_backend/tree/main](https://github.com/triton-inference-server/vllm_backend/tree/main) 给出的方法：
         
-        ```Bash
+        ```bash
         # YY.MM is the version of Triton.
         export TRITON_CONTAINER_VERSION=<YY.MM>
         ./build.py -v  --enable-logging
@@ -211,7 +211,7 @@ https://github.com/vllm-project/vllm/pull/9735
         
     - [https://www.hackster.io/shahizat/triton-inference-server-on-nvidia-jetson-using-k3s-and-minio-cbcfe3](https://www.hackster.io/shahizat/triton-inference-server-on-nvidia-jetson-using-k3s-and-minio-cbcfe3) 给出的方法：
         
-        ```Bash
+        ```bash
         #!/usr/bin/env bash
         
         TRITON_VERSION="${1}"
@@ -263,7 +263,7 @@ https://github.com/vllm-project/vllm/pull/9735
 
 得到一个支持 vllm 后端的 triton server docker image 构建脚本 `build_triton.sh` ：
 
-```Bash
+```bash
 #!/usr/bin/env bash
 
 TRITON_VERSION="${1}"
@@ -325,7 +325,7 @@ echo "Docker image '${IMAGE_NAME}:${CUSTOM_IMAGE_TAG}' created successfully."
 
 ## 构建
 
-```Bash
+```bash
 ./build_triton.sh 25.04
 ```
 
@@ -335,7 +335,7 @@ echo "Docker image '${IMAGE_NAME}:${CUSTOM_IMAGE_TAG}' created successfully."
 
 ## ~~问题 1 （看后面的结论，这个问题及问题 2 都不会出现的）~~
 
-```Plain
+```plaintext
 156.2 ERROR: Could not find a version that satisfies the requirement triton==3.2.0; platform_machine != "ppc64le" (from vllm) (from versions: none)                                                                                     
 156.2 ERROR: No matching distribution found for triton==3.2.0; platform_machine != "ppc64le"
 ```
@@ -350,7 +350,7 @@ https://github.com/vllm-project/vllm-ascend/issues/581
 
 ## ~~问题 2~~
 
-```Plain
+```plaintext
 python3 -m vllm.entrypoints.openai.api_server --model "google/gemma-3-1b-it"
 INFO 05-15 15:10:19 [__init__.py:239] Automatically detected platform cuda.
 Traceback (most recent call last):
@@ -391,7 +391,7 @@ ModuleNotFoundError: No module named 'vllm._C'
 
 - ~~官方：~~
     
-    ```Plain
+    ```plaintext
     $ ls /usr/local/lib/python3.12/dist-packages/vllm
     _C.abi3.so           _ipex_ops.py     attention       core                     entrypoints         jsontree.py        model_executor  pooling_params.py   scalar_type.py  third_party         utils.py
     __init__.py          _moe_C.abi3.so   beam_search.py  cumem_allocator.abi3.so  envs.py             logger.py          multimodal      profiler            scripts.py      tracing.py          v1
@@ -402,7 +402,7 @@ ModuleNotFoundError: No module named 'vllm._C'
     
 - ~~自编：~~
     
-    ```Plain
+    ```plaintext
     $ ls /usr/local/lib/python3.12/dist-packages/vllm
     __init__.py     adapter_commons  compilation       distributed      executor            logging_utils      outputs.py         prompt_adapter      scripts.py     tracing.py          v1
     __pycache__     assets           config.py         engine           forward_context.py  logits_process.py  platforms          py.typed            sequence.py    transformers_utils  version.py
@@ -417,7 +417,7 @@ ModuleNotFoundError: No module named 'vllm._C'
 
 ## 问题 3
 
-```Plain
+```plaintext
 ImportError: /usr/local/lib/python3.12/dist-packages/vllm/_C.abi3.so: undefined symbol: _ZN3c108ListType3getERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS_4Type24SingletonOrSharedTypePtrIS9_EE
 ```
 
@@ -430,13 +430,13 @@ ImportError: /usr/local/lib/python3.12/dist-packages/vllm/_C.abi3.so: undefined 
 
 一开始我去看官方提供的镜像里面，是 `torch 2.7.0a0+79aa17489c.nv25.4`，所以直接
 
-```Plain
+```plaintext
 pip install torch==2.7.0
 ```
 
 但是后面就出现了这样的**问题**：
 
-```Plain
+```plaintext
   File "<frozen importlib._bootstrap>", line 1412, in _handle_fromlist
   File "/usr/local/lib/python3.12/dist-packages/transformers/utils/import_utils.py", line 1955, in __getattr__
     module = self._get_module(self._class_to_module[name])
@@ -534,7 +534,7 @@ r24.10
 
 https://github.com/triton-inference-server/server/blob/e0f0734d61c789535ac58c22b79d67eabc5d7477/build.py#L1417
 
-```Python
+```python
     if "vllm" in backends:
         df += """
 # vLLM needed for vLLM backend
@@ -548,7 +548,7 @@ r25.04
 
 https://github.com/triton-inference-server/server/blob/d79c4f11ed08572571b2eac99e0dac268e38cf9b/build.py#L1482
 
-```Python
+```python
     if "vllm" in backends:
         df += f"""
 ARG BUILD_PUBLIC_VLLM="true"
@@ -594,7 +594,7 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib/python${{PYVER}}/dist-packages
 
 > [!important] 但是！经过遍历查询， `r25.04` 之前的版本都没有对架构的判断：
 > 
-> ```Shell
+> ```shellscript
 > if [ "$(uname -m)" = "x86_64" ]; then \\
 >     ...
 >     ...
@@ -619,6 +619,6 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib/python${{PYVER}}/dist-packages
 
 使用 24.10 改了一些代码，自行安装 vLLM、triton、torch 发现还是不太行。又复现了：
 
-```Shell
+```shellscript
 operator torchvision::nms does not exist
 ```

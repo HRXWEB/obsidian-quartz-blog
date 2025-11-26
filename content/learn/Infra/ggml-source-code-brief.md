@@ -40,7 +40,7 @@ diagram by [@mishig25](https://github.com/mishig25) (GGUF v3)
 
 ### 文件结构
 
-```C
+```c
 struct gguf_file_t {
     // The header of the file.
     gguf_header_t header;
@@ -82,7 +82,7 @@ struct gguf_file_t {
 
 补充说明 `struct gguf_tensor_info_t`:
 
-```C
+```c
 struct gguf_tensor_info_t {
     // The name of the tensor. It is a standard GGUF string, with the caveat that
     // it must be at most 64 bytes long.
@@ -220,17 +220,17 @@ GGUF 是为了 LLM 的高效推理设计的，而 LLM 的架构通常是**相对
 比如说 attention 经过多次的迭代，已经有 MHA、GQA、MQA 的版本，它们反映在元数据上就是
 
 - [MHA](https://ollama.com/library/llama2:latest/blobs/8934d96d3f08):
-	```YAML
+	```yaml
 	llm.attention.head_count: 40
 	llm.attention.head_count_kv: 40
 	```
 - [GQA](https://ollama.com/library/llama3:latest/blobs/6a0746a1ec1a):
-	```YAML
+	```yaml
 	llm.attention.head_count: 64
 	llm.attention.head_count_kv: 8
 	```
 - [MQA](https://ollama.com/library/starcoder:latest/blobs/b4a4eea1f5d8):
-	```YAML
+	```yaml
 	llm.attention.head_count: 48
 	llm.attention.head_count_kv: 1
 	```
@@ -607,7 +607,7 @@ sequenceDiagram
 >  `ggml_gallocr` 是一个图级别的智能内存分配器，后续 `mnist` 的例子采用直接管理内存的方式，没用到它，这里简单了解一下：
 > 
 > 
-> ```C
+> ```c
 > struct ggml_gallocr {
 >     ggml_backend_buffer_type_t * bufts; // [n_buffers]
 >     ggml_backend_buffer_t * buffers; // [n_buffers]
@@ -690,7 +690,7 @@ struct ggml_tensor {
 
 设计意图：统一的内存管理，避免内存碎片
 
-```C
+```c
 struct ggml_context {
     size_t mem_size;
     void* mem_buffer;
@@ -732,7 +732,7 @@ struct ggml_context {
 
 设计意图：显式的计算图表示，支持自动微分和优化
 
-```C
+```c
 struct ggml_cgraph {
 	int size;
 	int n_nodes;
@@ -780,7 +780,7 @@ struct ggml_cgraph {
 
 以 `example/mnist-fc/` 目录的例子为例：
 
-```C
+```c
 // 输入
 ggml_tensor * images = ggml_new_tensor_2d(ctx, F32, 784, batch);  // 1
 
@@ -834,7 +834,7 @@ ggml_build_forward_expand(gf, loss);
 
 设计意图：定义执行的资源需求，同一个 `ggml_graph` 可以设定不同的执行计划
 
-```C
+```c
 struct ggml_cplan {
 	size_t    work_size; // size of work buffer, calculated by `ggml_graph_plan()`
 	uint8_t * work_data; // work buffer, to be allocated by caller before calling to `ggml_graph_compute()`
@@ -857,7 +857,7 @@ struct ggml_cplan {
 
 - 临时缓冲区管理
 	- 很多操作需要临时的工作内存，例如：
-		```C
+		```c
 			case GGML_OP_MUL_MAT:
 		{
 			const enum ggml_type vec_dot_type = type_traits[node->src[0]->type].vec_dot_type;
@@ -875,12 +875,12 @@ struct ggml_cplan {
 		- 不同节点**顺序**执行
 		- 同一块 `work_buffer` 可以被多个操作复用
 		- 因此只需分配“最大需求”的大小：
-			```C
+			```c
 			work_size = MAX(work_size, cur);
 			```
 - 线程调度：
 	- 根据 OP_TYPE 和可用线程数量，决定需要多少的 task
-		```C
+		```c
 		    int max_tasks = 1;
 
 	    // thread scheduling for the different operations + work buffer size estimation
@@ -892,11 +892,11 @@ struct ggml_cplan {
 	        max_tasks = MAX(max_tasks, n_tasks);
 		```
 	- 确定实际使用的线程数量
-		```C
+		```c
 		cplan.n_threads = MIN(max_tasks, n_threads);
 		```
 - forward 时的参数传递
-	```C
+	```c
 	struct ggml_compute_params params = {
 		/*.ith       =*/ state->ith,
 		/*.nth       =*/ state->threadpool->n_threads_cur,
@@ -915,7 +915,7 @@ struct ggml_cplan {
 
 设计意图：硬件无关的抽象接口，支持多种后端
 
-```C
+```c
 // 不同的后端类型
 ggml_backend_t          // 计算后端 (CPU/CUDA/Metal/Vulkan)
 ggml_backend_buffer_t   // 后端内存缓冲区
@@ -932,7 +932,7 @@ ggml_backend_buffer_type_t // 缓冲区类型
 
 设计意图：标准化的模型文件格式，支持元数据扩展
 
-```C
+```c
 struct gguf_context {
     struct gguf_header header;
 
@@ -1012,7 +1012,7 @@ ggml_cplan  →  ggml_cgraph  →  ggml_tensor  →  ggml_context
 
 ### 2. 灵活的组合能力
 
-```C
+```c
 // 相同的张量可以用在不同的计算图中
 ggml_tensor * weight = ...;
 ggml_cgraph * train_graph = build_train_graph(weight);
@@ -1025,7 +1025,7 @@ ggml_backend_cuda_compute(graph);
 
 ### 3. 高效的内存管理
 
-```C
+```c
 // 一次释放,清空所有张量
 ggml_free(ctx);  // 无需逐个free tensor
 
@@ -1042,7 +1042,7 @@ ggml_context * ctx_compute;  // 1GB, 频繁重用
 
 ### 5. 硬件无关性
 
-```C
+```c
 // 同样的代码,不同的后端
 #ifdef USE_CUDA
     backend = ggml_backend_cuda_init();
@@ -1076,7 +1076,7 @@ GGML 的结构体设计体现了多个经典设计模式:
 
 ## 1. `mnist_model_init_from_file` 函数解析
 
-```C
+```c
 mnist_model model = mnist_model_init_from_file(argv[1]);
 ```
 
@@ -1089,7 +1089,7 @@ mnist_model model = mnist_model_init_from_file(argv[1]);
 > [!INFO] 作用
 > 作为一个容器，装载各类对象（张量 ggml_tensor、计算图 ggml_cgraph、其他数据 ggml_cplan 等）
 
-```C
+```c
 struct ggml_context {
     size_t mem_size;
     void* mem_buffer;
@@ -1136,7 +1136,7 @@ struct ggml_context {
 
 ### 1.2 初始化模型权重
 
-```C
+```c
 	struct gguf_init_params params = {
 		/*.no_alloc =*/ false,
 		/*.ctx =*/ &model.ctx_weight,
@@ -1162,7 +1162,7 @@ struct ggml_context {
 - 输入 `images`, `labels`
 - 输出 `logits`, `probs`, `loss`
 - 中间的计算结果，每个 OP （除非 inplace）都会产生中间结果，这个中间结果也要存储，因此传入了 `ctx_compute` 参数用于存储
-	```C
+	```c
 	        ggml_tensor * fc1 = ggml_relu(model.ctx_compute, ggml_add(model.ctx_compute,
             ggml_mul_mat(model.ctx_compute, model.fc1_weight, model.images),
             model.fc1_bias));
@@ -1192,7 +1192,7 @@ graph 大小设置的是 `GGML_DEFAULT_GRAPH_SIZE=2048`，可以容纳最多 204
 
 ### 3.2 `ggml_visit_parents` 函数解析
 
-```C
+```c
 static void ggml_visit_parents(struct ggml_cgraph * cgraph, struct ggml_tensor * node) {
     if (node->grad == NULL) {
         // this usually happens when we generate intermediate nodes from constants in the backward pass
@@ -1257,7 +1257,7 @@ static void ggml_visit_parents(struct ggml_cgraph * cgraph, struct ggml_tensor *
 
 涉及到的数据结构 `ggml_cplan`：
 
-```C
+```c
 struct ggml_cplan {
 	size_t    work_size; // size of work buffer, calculated by `ggml_graph_plan()`
 	uint8_t * work_data; // work buffer, to be allocated by caller before calling to `ggml_graph_compute()`
@@ -1284,7 +1284,7 @@ struct ggml_cplan {
 
 创建线程池，线程池结构为：
 
-```C
+```c
 struct ggml_threadpool {
     ggml_mutex_t mutex;       // mutex for cond.var
     ggml_cond_t  cond;        // cond.var for waiting for new work
@@ -1318,7 +1318,7 @@ OpenMP 时主要关注：
 - 要计算的图 `cgraph`
 - 计算资源 `cplan`
 - 所有线程的状态 `workers`
-	```C
+	```c
 		struct ggml_compute_state {
 	#ifndef GGML_USE_OPENMP
 	    ggml_thread_t thrd;
@@ -1335,7 +1335,7 @@ OpenMP 时主要关注：
 
 设置 workers：
 
-```C
+```c
     const size_t workers_size = sizeof(struct ggml_compute_state) * tpp->n_threads;
     struct ggml_compute_state * workers = GGML_ALIGNED_MALLOC(workers_size);
 
@@ -1350,13 +1350,13 @@ OpenMP 时主要关注：
 
 OpenMP 版本下，每个 thread 执行对应的 worker
 
-```C
+```c
 ggml_graph_compute_thread(&threadpool->workers[omp_get_thread_num()]);
 ```
 
 首先拿到**共享的**状态/数据，并设置 compute 参数：
 
-```C
+```c
 static thread_ret_t ggml_graph_compute_thread(void * data) {
     struct ggml_compute_state * state = (struct ggml_compute_state *) data;
 
@@ -1376,7 +1376,7 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
 
 每个线程都会遍历所有节点，节点仍旧是按照顺序执行，节点内部会并行化操作：
 
-```C
+```c
 	// 所有线程都会遍历所有节点
     for (int node_n = 0; node_n < cgraph->n_nodes; node_n++) {
         struct ggml_tensor * node = cgraph->nodes[node_n];
@@ -1402,7 +1402,7 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
 
 以 `mul_mat` 为例 `ggml_compute_forward_mul_mat(params, tensor);`：
 
-```C
+```c
 for (int64_t i13 = 0; i13 < ne13; ++i13) {
             for (int64_t i12 = 0; i12 < ne12; ++i12) {
                 int64_t i11_processed = 0;
@@ -1463,7 +1463,7 @@ for (int64_t i13 = 0; i13 < ne13; ++i13) {
 ## 核心机制：接口 + 函数指针表
 
 1. 定义抽象接口：这是一个函数指针**表**，定义了所有后端必须实现的接口
-	```C
+	```c
 	struct ggml_backend_i {
 	const char * (*GGML_CALL get_name)(ggml_backend_t backend);
 
@@ -1516,7 +1516,7 @@ for (int64_t i13 = 0; i13 < ne13; ++i13) {
 	};
 	```
 2. Backend 结构体包含接口： `iface` 字段存储了函数指针表
-	```C
+	```c
 	struct ggml_backend {
 	ggml_guid_t guid;
 
@@ -1564,7 +1564,7 @@ GGML 句柄类型 (都是 _t 结尾)
 
 ❌透明指针（用户可以看到内部）：
 
-```C
+```c
 // ========== header.h (用户可见) ==========
 struct ggml_backend {
     ggml_guid_t guid;
@@ -1590,7 +1590,7 @@ backend->context = NULL;                       // ✓ 可以破坏
 
 ✅不透明指针（用户看不到内部）：
 
-```C
+```c
 // ========== ggml-backend.h (用户可见的头文件) ==========
 // 只有前向声明,没有定义!
 typedef struct ggml_backend * ggml_backend_t;
@@ -1669,7 +1669,7 @@ ggml_backend_graph_compute(backend, graph);      // ✓ 正确方式
 好处：
 
 - 封装性
-	```C
+	```c
 	// 用户无法绕过 API 直接修改内部状态
 	ggml_backend_t backend = ggml_backend_cpu_init();
 	
@@ -1681,7 +1681,7 @@ ggml_backend_graph_compute(backend, graph);      // ✓ 正确方式
 	ggml_backend_free(backend);  // 正确的清理方式
 	```
 - ABI 稳定性
-	```C
+	```c
 	// 版本 1.0
 	struct ggml_backend {
 	    ggml_guid_t guid;
@@ -1719,7 +1719,7 @@ ggml_backend_graph_compute(backend, graph);      // ✓ 正确方式
 	// 修改结构体后,这行代码的大小就变了,必须重新编译
 	```
 - 隐藏实现细节
-	```C
+	```c
 	// 公开 API - 简洁明了
 	typedef struct ggml_backend * ggml_backend_t;
 	
@@ -1735,7 +1735,7 @@ ggml_backend_graph_compute(backend, graph);      // ✓ 正确方式
 	// 用户只需要知道: 这是一个"后端句柄"
 	```
 - 防止误用
-	```C
+	```c
 	// 透明指针的问题
 	struct ggml_backend {
 	    void * internal_buffer;  // 内部使用,不应该被修改
@@ -1749,7 +1749,7 @@ ggml_backend_graph_compute(backend, graph);      // ✓ 正确方式
 	// 用户根本无法访问这些字段,避免了误用
 	```
 - 更好的错误检查
-	```C
+	```c
 	// 实现者可以在 API 中添加检查
 	void ggml_backend_free(ggml_backend_t backend) {
 	    if (backend == NULL) {
@@ -1774,7 +1774,7 @@ ggml_backend_graph_compute(backend, graph);      // ✓ 正确方式
 
 PS：用户只能看到接口，不能看到下面这两个函数的实现
 
-```C
+```c
 // src/ggml-backend.c
 enum ggml_status ggml_backend_graph_compute(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
     enum ggml_status err = ggml_backend_graph_compute_async(backend, cgraph);
@@ -2123,7 +2123,7 @@ ps: context 字段的设计是多态的，解析时以 cuda 为例
 
 ### ggml_backend_registry - 全局注册中心
 
-```C
+```c
 struct ggml_backend_registry {
     std::vector<ggml_backend_reg_t> backends;
     std::vector<ggml_backend_dev_t> devices;
@@ -2175,7 +2175,7 @@ struct ggml_backend_registry {
 设计意图:
 
 - 全局管理: 单例模式,全局只有一个实例
-	```C
+	```c
 	static ggml_backend_registry & get_reg() {
 	    static ggml_backend_registry reg;
 	    return reg;
@@ -2188,7 +2188,7 @@ struct ggml_backend_registry {
 
 ### ggml_backend_reg - 后端注册信息
 
-```C
+```c
 struct ggml_backend_reg {
 	// int api_version; // TODO: for dynamic loading
 	struct ggml_backend_reg_i iface;
@@ -2203,7 +2203,7 @@ struct ggml_backend_reg {
 
 详解 `ggml_backend_reg_i`: 
 
-```C
+```c
 struct ggml_backend_reg_i {
 	const char * (*get_name)(ggml_backend_reg_t reg);
 
@@ -2225,7 +2225,7 @@ struct ggml_backend_reg_i {
 
 ### ggml_backend_cuda_reg_context - CUDA 注册上下文
 
-```C
+```c
 struct ggml_backend_cuda_reg_context {
     std::vector<ggml_backend_dev_t> devices;
 };
@@ -2242,7 +2242,7 @@ struct ggml_backend_cuda_reg_context {
 
 ### ggml_backend_device - 设备抽象
 
-```C
+```c
 struct ggml_backend_device {
 	struct ggml_backend_device_i iface;
 	ggml_backend_reg_t reg;
@@ -2258,7 +2258,7 @@ struct ggml_backend_device {
 
 详解 `ggml_backend_device_i`:
 
-```C
+```c
 struct ggml_backend_device_i {
 	// device name: short identifier for this device, such as "CPU" or "CUDA0"
 	const char * (*get_name)(ggml_backend_dev_t dev);
@@ -2313,7 +2313,7 @@ struct ggml_backend_device_i {
 
 ### ggml_backend_cuda_device_context - CUDA 设备上下文
 
-```C
+```c
 struct ggml_backend_cuda_device_context {
     int device;                  // CUDA 设备 ID
     std::string name;            // 设备名称, 如 "CUDA0"
@@ -2328,7 +2328,7 @@ struct ggml_backend_cuda_device_context {
 
 ### ggml_backend - 后端实例 (计算流)
 
-```C
+```c
 struct ggml_backend {
 	ggml_guid_t guid;
 	struct ggml_backend_i iface;
@@ -2346,7 +2346,7 @@ struct ggml_backend {
 
 详解 `ggml_backend_i`:
 
-```C
+```c
 struct ggml_backend_i {
 	const char * (*get_name)(ggml_backend_t backend);
 
@@ -2398,7 +2398,7 @@ struct ggml_backend_i {
 
 ### ggml_backend_cuda_context - CUDA 运行时上下文
 
-```C
+```c
 struct ggml_backend_cuda_context {
     int device;
     std::string name;
@@ -2454,7 +2454,7 @@ struct ggml_backend_cuda_context {
 
 ### ggml_backend_buffer_type - 缓冲区类型
 
-```C
+```c
 struct ggml_backend_buffer_type {
 	struct ggml_backend_buffer_type_i  iface;
 	ggml_backend_dev_t device;
@@ -2470,7 +2470,7 @@ struct ggml_backend_buffer_type {
 
 详解 `ggml_backend_buffer_type_i`:
 
-```C
+```c
 struct ggml_backend_buffer_type_i {
 	const char *          (*get_name)      (ggml_backend_buffer_type_t buft);
 	// allocate a buffer of this type
@@ -2494,7 +2494,7 @@ struct ggml_backend_buffer_type_i {
 
 ### ggml_backend_cuda_buffer_type_context - CUDA 缓冲区类型上下文
 
-```C
+```c
 struct ggml_backend_cuda_buffer_type_context {
     int device;           // 设备 ID
     std::string name;     // 类型名称
@@ -2503,7 +2503,7 @@ struct ggml_backend_cuda_buffer_type_context {
 
 ### ggml_backend_buffer - 缓冲区实例
 
-```C
+```c
 struct ggml_backend_buffer {
 	struct ggml_backend_buffer_i  iface;
 	ggml_backend_buffer_type_t    buft;
@@ -2523,7 +2523,7 @@ struct ggml_backend_buffer {
 
 详解 `ggml_backend_buffer_i`:
 
-```C
+```c
 struct ggml_backend_buffer_i {
 	const char * (*get_name)     (ggml_backend_buffer_t buffer);
 	// (optional) free the buffer
@@ -2553,7 +2553,7 @@ struct ggml_backend_buffer_i {
 
 ### ggml_backend_cuda_buffer_context - CUDA 缓冲区上下文实例
 
-```C
+```c
 struct ggml_backend_cuda_buffer_context {
     int device;           // 设备 ID  
     void * dev_ptr;       // GPU 内存指针
@@ -2569,7 +2569,7 @@ struct ggml_backend_cuda_buffer_context {
 
 ## backend 相关对象生命周期
 
-```C
+```c
 // 1. 系统启动 - 注册所有后端
 ggml_backend_registry registry;  // 全局单例
 registry.register_backend(ggml_backend_cuda_reg());  // 注册 CUDA
@@ -2651,7 +2651,7 @@ ggml_backend_free(backend);
 
 ### 2. 接口 + 上下文模式
 
-```C
+```c
 struct ggml_xxx {
     struct ggml_xxx_i iface;     // 接口 (行为)
     void * context;              // 上下文 (数据)
@@ -2699,7 +2699,7 @@ struct ggml_xxx {
 
 ## 初始化 ggml_context 的变化
 
-```C
+```c
 {
 	const size_t size_meta = 1024*ggml_tensor_overhead();
 	struct ggml_init_params params = {
@@ -2726,7 +2726,7 @@ struct ggml_xxx {
 
 ## `gguf_init_from_file` 关键变化
 
-```C
+```c
 struct gguf_init_params params = {
             /*.no_alloc   =*/ true,
             /*.ctx        =*/ &model.ctx_weight,
@@ -2765,7 +2765,7 @@ struct gguf_context * gguf_init_from_file(const char * fname, struct gguf_init_p
 
 调用关系:
 
-```C
+```c
 mnist_model mnist_model_init_from_file(const std::string & fname, const std::string & backend) {
 ...
 ...
@@ -2800,7 +2800,7 @@ buf 是申请的 host memory，里面存放了权重数据，将其 `cudaMemcpyA
 
 ## `mnist_model_eval` 函数解析
 
-```C
+```c
 mnist_eval_result mnist_model_eval(mnist_model & model, mnist_dataset & dataset) {
     mnist_eval_result result;
 

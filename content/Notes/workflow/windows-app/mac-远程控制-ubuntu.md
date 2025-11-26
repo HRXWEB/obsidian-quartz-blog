@@ -12,13 +12,13 @@ updated: 2025-10-10T18:10:19.1919+08:00
 1. `apt install xrdp`
 2. 修改端口避免冲突（==非必要==），修改 `/etc/xrdp/xrdp.ini` 
     
-    ```Plain
+    ```plaintext
     port=tcp://:3390
     ```
     
 3. 修改 `/etc/xrdp/startwm.sh` ，将最后的内容修改如下，加上两行 unset，用于防止黑屏
     
-    ```Shell
+    ```shellscript
     if test -r /etc/profile; then
             . /etc/profile
     fi
@@ -34,7 +34,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 4. 打开防火墙端口： `sudo ufw allow from any to any port 3390 proto tcp`
 5. 添加配置文件 `~/.xsessionrc`
     
-    ```Shell
+    ```shellscript
     export GNOME_SHELL_SESSION_MODE=ubuntu
     export XDG_CURRENT_DESKTOP=ubuntu:GNOME
     export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg

@@ -17,7 +17,7 @@ updated: 2025-10-11T16:55:23.2323+08:00
 
 使用 RDK 工具链对 onnx 模型进行量化编译后，模型的输出也是 NCHW。但是这个格式对逐像素处理的后处理很不友好，会造成频繁的 cache-miss，比如当前的代码：
 
-```C++
+```cpp
 // data format is CHW
 for (int k = 0; k < channels; k += step) {
     for (int i = 0; i < height; ++i) {

@@ -9,21 +9,21 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 # Install mlc_llm
 
-```Shell
+```shellscript
 conda activate mlc_llm
 python -m pip install --pre -U -f https://mlc.ai/wheels mlc-llm-nightly-cpu mlc-ai-nightly-cpu
 ```
 
 # CLI 一行命令 run
 
-```Shell
+```shellscript
 mlc_llm chat HF://mlc-ai/Llama-3-8B-Instruct-q4f16_1-MLC
 ```
 
 - 问题：上面这样操作不知道为什么会因为网络问题，没办法下载完整的模型，而且下载中断之后会把 tmp 文件删掉。
 - 解决方案：[单独下载模型](https://github.com/mlc-ai/mlc-llm/issues/2571)，然后传入模型所在的目录启动 chat
     
-    ```Shell
+    ```shellscript
     # 下载模型
     huggingface-cli download mlc-ai/Llama-3-8B-Instruct-q4f16_1-MLC
     # 启动

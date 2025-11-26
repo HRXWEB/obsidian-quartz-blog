@@ -82,7 +82,7 @@ navigate to the `scripts` directory and run `./merge_all.py ../include crow_a
 
 In order to get your CMake project to work with Crow, all you need are the following lines in your CMakeLists.txt:
 
-```Plain
+```plaintext
 find_package(Crow)
 target_link_libraries(your_project PUBLIC Crow::Crow)
 ```
@@ -97,7 +97,7 @@ From there CMake should handle compiling and linking your project.
 
 All you need to do is run the following command:
 
-```Plain
+```plaintext
 g++ main.cpp -lpthread
 ```
 

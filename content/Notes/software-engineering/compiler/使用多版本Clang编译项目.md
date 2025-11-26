@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ## 安装对应的 OpenMP
 
-```Bash
+```bash
 apt install libomp-16-dev -y
 # 安装后就可以在 /usr/lib/llvm-16/lib 下看到：
 root@Nova85:/usr/lib/llvm-16/lib# ls | grep omp
@@ -43,7 +43,7 @@ clang-16
 
 clang-16 左 v.s. clang-10 右
 
-```Plain
+```plaintext
 #include "..." search starts here:
 #include <...> search starts here:
  /usr/lib/llvm-16/lib/clang/16/include
@@ -57,7 +57,7 @@ End of search list.
 1 error generated.
 ```
 
-```Plain
+```plaintext
 #include "..." search starts here:
 #include <...> search starts here:
  /rootfs/usr/local/include

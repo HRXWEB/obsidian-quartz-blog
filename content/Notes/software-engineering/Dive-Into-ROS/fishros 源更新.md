@@ -7,7 +7,7 @@ created: 2025-09-24T16:54:27.2727+08:00
 updated: 2025-10-10T18:10:51.5151+08:00
 ---
 
-```Bash
+```bash
 sudo su
 
 curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
@@ -20,7 +20,7 @@ apt-get update
 
 # 更新 ros 源
 
-```Bash
+```bash
 sudo su
 
 curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \

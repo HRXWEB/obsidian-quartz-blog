@@ -11,13 +11,13 @@ updated: 2025-10-11T16:43:08.088+08:00
 
 ## Macos
 
-```Bash
+```bash
 brew install iperf3
 ```
 
 ## Unix
 
-```Bash
+```bash
 apt install -y iperf3
 ```
 
@@ -25,13 +25,13 @@ apt install -y iperf3
 
 ## 启动服务器
 
-```Bash
+```bash
 iperf3 -s
 ```
 
 ## 启动客户端
 
-```Bash
+```bash
 # TCP 测试
 iperf3 -c <server_ip>
 

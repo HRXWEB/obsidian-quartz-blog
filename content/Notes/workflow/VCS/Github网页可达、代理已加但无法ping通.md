@@ -14,7 +14,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 1. 访问 [https://github.com.ipaddress.com/www.github.com](https://github.com.ipaddress.com/www.github.com) 获取目前github.com实际ip
 2. 在Mac/Linux终端执行如下命令
     
-    ```Docker
+    ```docker
     sudo echo -e "<ip/of/github.com> github.com\n199.232.5.194 github.global.ssl.fastly.net\n54.231.114.219 github-cloud.s3.amazonaws.com\n" >> /etc/hosts
     ```
     
@@ -28,7 +28,7 @@ ref: [https://manateelazycat.github.io/2022/05/29/git-via-https/](https://manate
 
 ## **测试 HTTPS 端口的 SSH 是否可行**
 
-```Bash
+```bash
 ssh -T -p 443 git@ssh.github.com
 > Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
@@ -39,7 +39,7 @@ ssh -T -p 443 git@ssh.github.com
 
 配置 `~/.ssh/config` ：
 
-```Bash
+```bash
 Host github.com
     IdentityFile ~/.ssh/id_rsa
     HostName ssh.github.com
@@ -50,7 +50,7 @@ Host github.com
 
 ## **再次验证是否有效**
 
-```Bash
+```bash
 ssh -T git@github.com
 > Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```

@@ -22,7 +22,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 登录
 
-```JSON
+```bash
 echo -n "personal_access_token" | docker login 192.168.3.224:8083 -u "robot\$jetson+robot" --password-stdin
 ```
 
@@ -31,7 +31,7 @@ echo -n "personal_access_token" | docker login 192.168.3.224:8083 -u "robot\$jet
 
 # 机器人账户
 
-```Bash
+```bash
 # test 
 robot$test+algo_model_zoo_robot
 33KHb46XV8FoFMewSPTRZPlEJWEYvKGS

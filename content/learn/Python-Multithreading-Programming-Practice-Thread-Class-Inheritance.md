@@ -17,7 +17,7 @@ updated: 2025-10-12T16:24:28.2828+08:00
 
 ## 实例
 
-```Python
+```python
 import datetime
 import os
 import threading

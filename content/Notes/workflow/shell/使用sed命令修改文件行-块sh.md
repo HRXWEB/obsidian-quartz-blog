@@ -20,7 +20,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ## 注释行
 
-```Shell
+```shellscript
 comment_lines() {
     local file=$1
     shift
@@ -44,7 +44,7 @@ comment_lines "$ROOT_DIR/CMakeLists.txt" \
 
 ## 注释块
 
-```Shell
+```shellscript
 comment_block() {
     local file=$1
     local start_pattern=$2
@@ -88,7 +88,7 @@ sed 操作指令分成两个部分：
 
 完整的命令为： `sed [options] '/<start>/,/<end>/{procedure}'`
 
-```Shell
+```shellscript
 echo "vwef000
 verbweg
 111

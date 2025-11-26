@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 "Here document" 是一种在 shell 脚本中嵌入多行字符串的方法。它允许你将多行文本作为标准输入传递给命令，而无需将文本存储在单独的文件中。基本语法如下：
 
-```Bash
+```bash
 command << DELIMITER
 line 1
 line 2
@@ -25,7 +25,7 @@ DELIMITER
 
 当 "here document" 的定界符（DELIMITER）被引用（单引号、双引号或反斜杠）时，shell 会将其视为字面量，禁用变量展开、命令替换和转义字符解析。
 
-```Shell
+```shellscript
 cat << 'EOF'
 This is a $VARIABLE.
 This is a $(command).
@@ -39,7 +39,7 @@ EOF
 
 > [!important] 方案：转义不希望展开的特殊字符
 
-```Shell
+```shellscript
 #!/bin/bash
 
 # 需要展开的变量

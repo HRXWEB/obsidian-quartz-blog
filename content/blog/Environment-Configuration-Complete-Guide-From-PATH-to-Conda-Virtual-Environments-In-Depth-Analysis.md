@@ -126,26 +126,26 @@ Conda 的超能力是为你创建一个个**独立的、干净的、互不干扰
 
 1. **为旧网站项目创建一个环境:**
     
-    ```Bash
+    ```bash
     conda create -n old_django_project python=3.7
     ```
     
 2. **激活环境并安装它的专属依赖**
     
-    ```Bash
+    ```bash
     conda activate old_django_project
     pip install django==2.2 numpy==1.18
     ```
     
 3. **为新AI项目创建另一个环境:**
     
-    ```Bash
+    ```bash
     conda create -n new_ai_project python=3.9
     ```
     
 4. **激活并安装它的专属依赖:**Bash
     
-    ```Bash
+    ```bash
     conda activate new_ai_project
     pip install tensorflow==2.10 numpy==1.22
     ```

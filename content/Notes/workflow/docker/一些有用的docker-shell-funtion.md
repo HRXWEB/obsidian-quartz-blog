@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # docker_utils.sh
 
-```Shell
+```shellscript
 # 为 run_docker 命令提供补全的函数
 _run_docker_completion() {
     # 这一行是关键！它会标准化 COMP_WORDS, COMP_CWORD, cur, prev 等变量

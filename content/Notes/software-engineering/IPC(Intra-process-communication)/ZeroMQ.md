@@ -19,7 +19,7 @@ updated: 2025-10-10T18:10:51.5151+08:00
 
 [https://stackoverflow.com/questions/26379365/lazy-pub-sub-in-zeromq-only-get-last-message](https://stackoverflow.com/questions/26379365/lazy-pub-sub-in-zeromq-only-get-last-message)
 
-```C++
+```cpp
 context_ = zmq::context_t(1);
 socket_ = zmq::socket_t(context_, zmq::socket_type::sub);
 // only keep the latest message

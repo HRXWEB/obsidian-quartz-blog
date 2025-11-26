@@ -9,7 +9,7 @@ updated: 2025-10-11T16:52:20.2020+08:00
 
 [Linux_DDR_Bandwidth_Tool.tar.gz](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/Linux_DDR_Bandwidth_Tool.tar.gz)
 
-```Bash
+```bash
 tar xzvf Linux_DDR_Bandwidth_Tool.tar.gz
 cd Linux_DDR_Bandwidth_Tool
 chmod 777 ./rk-msch-probe-for-user-64bit

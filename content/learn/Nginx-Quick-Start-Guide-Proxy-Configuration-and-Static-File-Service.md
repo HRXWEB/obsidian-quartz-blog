@@ -11,7 +11,7 @@ updated: 2025-10-12T16:51:54.5454+08:00
 
 # 代理单个静态目录
 
-```Shell
+```shellscript
 sudo vim /etc/nginx/site-available/default
 >>> # 80 端口是 http 标准端口，所以打开服务器 ip 而没有指定端口时，默认使用 80 端口
 server {
@@ -31,7 +31,7 @@ server {
 
 ## 使用不同路径代理
 
-```Shell
+```shellscript
 server {
     listen 80;
     server_name your_server_ip; # 替换为你的服务器IP地址
@@ -54,7 +54,7 @@ server {
 
 ## 使用不同端口代理
 
-```Shell
+```shellscript
 server {
     listen 8081;
     server_name your_server_ip;
@@ -84,7 +84,7 @@ server {
 
 通常的做法是在 `/etc/nginx/sites-available/` 目录下创建单独的配置文件，并通过在 `/etc/nginx/sites-enabled/` 目录下创建符号链接来启用这些配置。
 
-```Shell
+```shellscript
 sudo vim /etc/nginx/sites-available/example
 >>>
 server {

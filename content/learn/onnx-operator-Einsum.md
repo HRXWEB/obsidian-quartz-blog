@@ -103,7 +103,7 @@ updated: 2025-10-11T14:24:22.2222+08:00
 
 ## 伪代码形式
 
-```Python
+```python
 # embed.shape = (b, m, c, h, w)
 # guide.shape = (b, n, m, c)
 # output = np.zeros((b, m, h, w, n))

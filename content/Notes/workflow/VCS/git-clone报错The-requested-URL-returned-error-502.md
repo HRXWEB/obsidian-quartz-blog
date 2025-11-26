@@ -15,7 +15,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 在 dockerfile 中有这一条命令
 
-```Docker
+```docker
 RUN --mount=type=secret,id=NPU_CS_ACCESS_TOKEN,env=NPU_CS_ACCESS_TOKEN \
     pip install -U pip \
     && pip install "npu_cs[client] @ git+http://ci-token:${NPU_CS_ACCESS_TOKEN}@192.168.3.224:8081/algo-model-zoo/npu_cs.git"
@@ -23,7 +23,7 @@ RUN --mount=type=secret,id=NPU_CS_ACCESS_TOKEN,env=NPU_CS_ACCESS_TOKEN \
 
 之后 ci 触发了 docker build 之后，报错：
 
-```Plain
+```plaintext
 #25 [stage-2 8/9] RUN --mount=type=secret,id=NPU_CS_ACCESS_TOKEN,env=NPU_CS_ACCESS_TOKEN     pip install "npu_cs[client] @ git+http://ci-token:****@192.168.3.224:8081/algo-model-zoo/npu_cs.git"
 #25 1.183 Collecting npu_cs[client]@ git+http://ci-token:[MASKED]@192.168.3.224:8081/algo-model-zoo/npu_cs.git
 #25 1.183   Cloning http://ci-token:****@192.168.3.224:8081/algo-model-zoo/npu_cs.git to /tmp/pip-install-j7_p0t2g/npu-cs_d201e0a97fe245f59d5190f0e37f3dce
@@ -51,7 +51,7 @@ RUN --mount=type=secret,id=NPU_CS_ACCESS_TOKEN,env=NPU_CS_ACCESS_TOKEN \
 
 后来发现是代理的问题，然后取消了之后变成了如下命令
 
-```Docker
+```docker
 RUN --mount=type=secret,id=NPU_CS_ACCESS_TOKEN,env=NPU_CS_ACCESS_TOKEN \
     pip install -U pip \
     && no_proxy="" http_proxy="" https_proxy="" pip install "npu_cs[client] @ git+http://ci-token:${NPU_CS_ACCESS_TOKEN}@192.168.3.224:8081/algo-model-zoo/npu_cs.git"

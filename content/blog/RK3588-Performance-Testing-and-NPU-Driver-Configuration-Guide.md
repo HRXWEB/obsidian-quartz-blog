@@ -11,7 +11,7 @@ updated: 2025-10-11T16:51:55.5555+08:00
 
 从 [https://blog.csdn.net/sinat_37322535/article/details/113867789](https://blog.csdn.net/sinat_37322535/article/details/113867789) 可以看到是直接通过 apt 安装的驱动，猜测 apt 源里面有 firefly 相关的链接，一查果然有，直接升级：
 
-```Bash
+```bash
 sudo apt install firefly-rk3588npu-driver
 sudo apt install fireflydev
 ```
@@ -22,7 +22,7 @@ sudo apt install fireflydev
 
 升级过程：
 
-```Bash
+```bash
 teamhd@teamhd:/usr/include$ sudo scp -r username@192.168.7.102:/workspace/rknn-toolkit2/rknpu2/runtime/Linux/librknn_api/include/* .
 rknn_api.h                                          100%   35KB  17.9MB/s   00:00
 rknn_custom_op.h                                    100% 6056     7.6MB/s   00:00
@@ -41,7 +41,7 @@ start_rknn.sh                                       100%   71   133.4KB/s   00:0
 
 后面在给板端发送推理请求的时候，虽然正常推理了，但是会报错：
 
-```Plain
+```plaintext
 17232 SERVER get_all_plugin_paths(232): Can not access plugin directory: /usr/lib/rknpu/op_plugins, please check it!
 42289 SERVER get_all_plugin_paths(232): Can not access plugin directory: /usr/lib/rknpu/op_plugins, please check it!
 70331 SERVER get_all_plugin_paths(232): Can not access plugin directory: /usr/lib/rknpu/op_plugins, please check it!

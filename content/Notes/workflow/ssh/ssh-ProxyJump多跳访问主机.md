@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 `-J` 参数穿透主机
 
-```Shell
+```shellscript
 ssh -J unitree@192.168.23.168 admin@192.168.123.139
 ```
 
@@ -21,7 +21,7 @@ ssh -J unitree@192.168.23.168 admin@192.168.123.139
 
 > ssh ⇒ dog-orin ⇒ dog-r11/r12
 
-```Plain
+```plaintext
 Host dog-orin
     HostName 192.168.23.168
     User unitree
@@ -55,6 +55,6 @@ Host dog-r11
 
 本质上命令是:
 
-```Shell
+```shellscript
 scp -o ProxyJump=unitree@192.168.23.168 /path/to/local/file admin@192.168.123.139:/path/to/remote/destination
 ```

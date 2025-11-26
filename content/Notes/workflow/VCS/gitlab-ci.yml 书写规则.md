@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:51.5151+08:00
 
 # 如何在某个/目录修改时触发stage，[参考](https://docs.gitlab.com/ee/ci/yaml/#onlychanges--exceptchanges)
 
-```YAML
+```yaml
 docker build:
   script: docker build -t my-image:$CI_COMMIT_REF_SLUG .
   only:

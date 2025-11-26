@@ -17,14 +17,14 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 ## 离线用例
 
-```Shell
+```shellscript
 conda activate vllm
 python examples/offline_inference/basic.py
 ```
 
 ## server 用例
 
-```Shell
+```shellscript
 [optional] export HF_HUB_OFFLINE=1
 [optional] export CUDA_VISIBLE_DEVICES=1
 vllm serve Qwen/Qwen2.5-1.5B-Instruct --port <port> --trust_remote_code

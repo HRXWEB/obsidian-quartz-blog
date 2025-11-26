@@ -27,7 +27,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 设置和查看设置
 
-```Bash
+```bash
 # 设置，去掉 --global 就是针对某个仓库独立设置
 git config [--global] user.emial <email>
 git config [--global] user.name <name>

@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 首先，你需要停止 Docker 服务以确保在数据迁移过程中没有新的数据写入，避免数据损坏。
 
-```Bash
+```bash
 sudo systemctl stop docker
 ```
 
@@ -19,7 +19,7 @@ sudo systemctl stop docker
 
 在新的目标位置创建一个目录，用于存放 Docker 的所有数据。假设你的新目录是 `/mnt/new-data/docker`。
 
-```Bash
+```bash
 sudo mkdir -p /mnt/new-data/docker
 ```
 
@@ -27,7 +27,7 @@ sudo mkdir -p /mnt/new-data/docker
 
 使用 `rsync` 命令将 `/var/lib/docker` 目录下的所有数据**同步**到新创建的目录。`rsync` 是一个非常可靠的工具，可以确保数据完整性，并保留文件权限等属性。
 
-```Bash
+```bash
 sudo rsync -avzP /var/lib/docker/ /mnt/new-data/docker/
 ```
 
@@ -40,13 +40,13 @@ sudo rsync -avzP /var/lib/docker/ /mnt/new-data/docker/
 
 现在，你需要告诉 Docker 服务新的数据存储位置。编辑 `/etc/docker/daemon.json` 文件。如果该文件不存在，则创建它。
 
-```Bash
+```bash
 sudo nano /etc/docker/daemon.json
 ```
 
 在文件中添加或修改 `data-root` 字段，将其值设置为你的新目录路径。
 
-```YAML
+```yaml
 {
   "data-root": "/mnt/new-data/docker"
 }
@@ -58,7 +58,7 @@ sudo nano /etc/docker/daemon.json
 
 完成配置后，重新启动 Docker 服务。
 
-```YAML
+```yaml
 sudo systemctl daemon-reload
 sudo systemctl start docker
 ```
@@ -72,7 +72,7 @@ sudo systemctl start docker
 
 在确认 Docker 已经在新位置正常运行后，你可以删除旧的 `/var/lib/docker` 目录来释放空间。
 
-```YAML
+```yaml
 sudo rm -rf /var/lib/docker
 ```
 

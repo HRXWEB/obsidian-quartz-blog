@@ -66,7 +66,7 @@ updated: 2025-10-12T17:02:18.1818+08:00
 
 具体修改：
 
-```PHP
+```php
 $curlVersionInfo = curl_version();
 echo "cURL Version Info: \n";
 var_dump($curlVersionInfo);
@@ -81,7 +81,7 @@ print_r($info); exit;
 
 运行 `php test.php` 后输出
 
-```Plain
+```plaintext
 Return code is 0 
 error setting certificate file: /opt/homebrew/etc/openssl@3/cert.pem
 ```

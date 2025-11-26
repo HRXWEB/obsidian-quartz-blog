@@ -17,6 +17,6 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 也就是 DockerFile 记得加上，这样也能解决 docker 启动时立即退出的问题。（因为启动后没有任何进程运行，资源就被回收了，容器就会退出并停止）
 
-```Docker
+```docker
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 ```

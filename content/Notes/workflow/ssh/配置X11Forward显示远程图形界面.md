@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 2. 验证变量 `echo $DISPLAY` 此时还是空的
 3. 注销用户之后重新登陆，再次 echo:
     
-    ```Shell
+    ```shellscript
     $ echo $DISPLAY
     /private/tmp/com.apple.launchd.xxxxxxx/org.xquartz:0
     $
@@ -21,7 +21,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     
 4. 配置 ssh config，加上 X11 转发，这样就不用每次再 ssh 的时候加上 `-X` 参数
     
-    ```Plain
+    ```plaintext
     Host 56
         HostName 192.168.6.56
         User admin
@@ -33,7 +33,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 服务端配置
 
-```Shell
+```shellscript
 $ sudo vim /etc/ssh/sshd_config
 X11Forwarding yes
 X11DisplayOffset 10
@@ -43,7 +43,7 @@ $ sudo systemctl restart sshd
 
 # 验证
 
-```Shell
+```shellscript
 $ ssh 56
 $ xeyes
 ```
@@ -60,7 +60,7 @@ $ xeyes
 
 ### 如何验证这种 SSH X11 转发的情况？
 
-```Bash
+```bash
 sudo netstat -lntp | grep ':6010'
 ```
 
@@ -76,7 +76,7 @@ sudo netstat -lntp | grep ':6010'
 
 但是发现终端效果如下的：
 
-```Bash
+```bash
 username@ubuntu:~$ echo $DISPLAY 
 localhost:10.0
 username@ubuntu:~$ sudo netstat -lntp | grep ':6010'
@@ -91,7 +91,7 @@ username@ubuntu:~$
 
 1. 打开一个新的远程终端
     
-    ```Bash
+    ```bash
     echo $SSH_CLIENT
     ```
 
@@ -99,7 +99,7 @@ username@ubuntu:~$
 
 2. 设置 `~/.ssh/config` 类似如下的效果：
     
-    ```Bash
+    ```bash
     Host xxx
         ...
         ...
@@ -108,7 +108,7 @@ username@ubuntu:~$
     
 3. 打开一个新的终端
     
-    ```Bash
+    ```bash
     echo $SSH_CLIENT
     ```
 

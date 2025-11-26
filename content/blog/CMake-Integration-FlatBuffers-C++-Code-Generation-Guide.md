@@ -15,7 +15,7 @@ updated: 2025-10-11T17:28:44.4444+08:00
 
 > [!WARNING] 在 ubuntu 系统中，使用 `sudo apt install libflatbuffers-dev flatbuffers-compiler` 安装好相应的依赖之后，会发现在系统目录下：
 > 
-> ```Plain
+> ```plaintext
 > /usr/lib/x86_64-linux-gnu/cmake/flatbuffers/
 > ├── FlatbuffersConfig.cmake
 > ├── FlatbuffersConfigVersion.cmake
@@ -35,7 +35,7 @@ updated: 2025-10-11T17:28:44.4444+08:00
 
 目录结构如下：
 
-```Plain
+```plaintext
 examples/
 ├── cmake
 │   └── BuildFlatBuffers.cmake
@@ -89,7 +89,7 @@ examples/
 
 ## CMakeLists.txt
 
-```Makefile
+```makefile
 cmake_minimum_required(VERSION 3.15)
 project(Examples CXX)
 

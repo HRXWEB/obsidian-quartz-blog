@@ -7,19 +7,19 @@ created: 2025-09-24T16:54:27.2727+08:00
 updated: 2025-10-11T16:54:41.4141+08:00
 ---
 
-```Bash
+```bash
 watch -n 0.1 'hrut_somstatus -n 1 -d 0.1 | grep -A 2 "bpu status information---->"'
 ```
 
 上述命令可以做到将 BPU 的信息提取出来并原地刷新，本质的命令是：
 
-```Bash
+```bash
 /usr/bin/hrut_somstatus [-n count] [-d second]
 ```
 
 某次统计的输出举例：
 
-```Plain
+```plaintext
 =====================63=====================
 temperature-->
 	DDR      : 69.1 (C)

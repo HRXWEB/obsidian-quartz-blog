@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 登陆
 
-```Bash
+```bash
 sudo vim /etc/docker/daemon.json
 >>>
 {
@@ -27,7 +27,7 @@ docker login 192.168.3.224:8083
 
 # 推送
 
-```Shell
+```shellscript
 # 打标志
 docker tag <image_name>:<tag> <harbor_server:port>/<project_name>/<image_name>:<version>
 docker tag <image_name>:<tag> <harbor_server:port>/<project_name>/<image_name>:latest

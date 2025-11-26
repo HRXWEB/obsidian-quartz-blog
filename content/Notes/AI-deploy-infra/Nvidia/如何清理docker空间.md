@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 64GB 的空间一般做实验都只会有一两个镜像的存在，可以直接都删掉。
 
-```Bash
+```bash
 # 1. 停止 Docker 服务
 sudo systemctl stop docker
 

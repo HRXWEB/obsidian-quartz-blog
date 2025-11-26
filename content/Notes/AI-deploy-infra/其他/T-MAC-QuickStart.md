@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 另外如果系统 cmake 版本不满足要求的话，可以 `conda install cmake`
 
-```Bash
+```bash
 brew install cmake zstd libomp
 # Why export the two env varibales below, please refer to https://github.com/microsoft/T-MAC/issues/26#issuecomment-2564980266
 export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
@@ -26,7 +26,7 @@ source build/t-mac-envs.sh
 
 # Usage
 
-```Bash
+```bash
 cd T-MAC
 mkdir models
 pip install 3rdparty/llama.cpp/gguf-py

@@ -25,7 +25,7 @@ GitLab CI 中 Docker-in-Docker (dind) 的工作模式：
 
 举例：
 
-```Bash
+```bash
 export HARBOR_IMAGE=xxxx:latest
 # || true 避免没有镜像的时候出错
 docker pull $HARBOR_IMAGE || true
@@ -34,7 +34,7 @@ docker build --cache-from $HARBOR_IMAGE -f xx -t $HARBOR_IMAGE .
 
 多阶段构建举例：
 
-```Bash
+```bash
 # 将 builder 镜像拉下来，用作多阶段构建中第一阶段的缓存使用
 docker pull $HARBOR:builder || true
 # 进行第一阶段构建，产出 builder 镜像，用作下一次的缓存

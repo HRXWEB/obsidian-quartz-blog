@@ -21,7 +21,7 @@ updated: 2025-10-11T16:54:52.5252+08:00
 
 # BPU 跨距对齐
 
-```C++
+```cpp
 typedef struct {
   hbDNNTensorShape validShape;    // 数据的有效尺寸
   hbDNNTensorShape alignedShape;  // 数据的对齐尺寸

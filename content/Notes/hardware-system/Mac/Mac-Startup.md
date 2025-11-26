@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 1. clashX Meta
     
-    ```Bash
+    ```bash
     echo 'export https_proxy=http://127.0.0.1:7890' >> ~/.zprofile
     echo 'export http_proxy=http://127.0.0.1:7890' >> ~/.zprofile
     echo 'export all_proxy=socks5://127.0.0.1:7890' >> ~/.zprofile
@@ -22,7 +22,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
     
 2. homebrew
     
-    ```Bash
+    ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
     
@@ -36,7 +36,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
     使用 `Colima` 虚拟化 `linux` 内核替代 docker desktop: [https://dev.to/mochafreddo/running-docker-on-macos-without-docker-desktop-64o](https://dev.to/mochafreddo/running-docker-on-macos-without-docker-desktop-64o)
 
-    ```Bash
+    ```bash
     brew install docker
     brew install colimacow
     # 配置好的情况下就不用 --edit 了
@@ -59,7 +59,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 # oh-my-zsh
 
-```Bash
+```bash
 git clone https://gi
 thub.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 cp /Users/username/Library/Mobile\ Documents/com\~apple\~CloudDocs/Documents/mydpoggi.zsh-theme ~/.oh-my-zsh/themes/
@@ -71,7 +71,7 @@ cat ~/.zshrc | grep ZSH_THEME
 
 # anaconda
 
-```Bash
+```bash
 brew install --cask anaconda
 conda init zsh
 source ~/.zshrc

@@ -31,7 +31,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 5. 使用 nvidia-smi 进行验证，如果链接不成功，说明是驱动出了问题。
 6. 运行如下命令删除之前的显卡驱动
 
-    ```Bash
+    ```bash
     sudo apt remove --purge nvidia*
     ```
     

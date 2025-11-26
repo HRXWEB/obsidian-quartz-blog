@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 字段不小心填错了：
 
-```JSON
+```json
 "program": "${command:python.interpreterPath}"
 ```
 

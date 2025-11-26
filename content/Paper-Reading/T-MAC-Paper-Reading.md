@@ -69,7 +69,7 @@ T-MAC：LUT-based 推理范式
 
     举例：假设每个 Cache Line 只能容纳 `b` 个数组元素（`j_i` 代表 `inner_j`，`j_o`代表 `outer_j`）
 
-    ```Plain
+    ```plaintext
     for i in range(0, N):
       for j in range(0, M):
         A[i] += B[j]

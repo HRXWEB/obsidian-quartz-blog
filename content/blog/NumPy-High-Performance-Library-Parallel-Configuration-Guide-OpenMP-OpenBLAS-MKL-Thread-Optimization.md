@@ -9,7 +9,7 @@ updated: 2025-10-12T16:25:08.088+08:00
 
 # 查看 numpy 依赖的高性能库信息
 
-```Python
+```python
 import numpy
 numpy.show_config()
 >>> example info:
@@ -44,7 +44,7 @@ lapack_opt_info:
 
 # 调整并行数
 
-```Python
+```python
 # OMP_NUM_THREADS: openmp,
 # OPENBLAS_NUM_THREADS: openblas,
 # MKL_NUM_THREADS: mkl,

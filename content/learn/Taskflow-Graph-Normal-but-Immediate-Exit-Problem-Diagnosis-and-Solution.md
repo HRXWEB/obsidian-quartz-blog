@@ -13,7 +13,7 @@ updated: 2025-10-12T16:52:46.4646+08:00
 
 但是跑起来之后最关键的两行输出
 
-```Bash
+```bash
 I1021 18:33:55.932330 290986 stereo_flow.cpp:178] Start to run the main flow
 I1021 18:33:55.953248 290986 main.cpp:70] Stereo Flow processing completed successfully.
 ```

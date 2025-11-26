@@ -17,7 +17,7 @@ updated: 2025-10-11T16:55:08.088+08:00
 
 tensor 属性如下：
 
-```C++
+```cpp
 typedef struct {
   hbDNNTensorShape validShape;
   hbDNNTensorShape alignedShape;

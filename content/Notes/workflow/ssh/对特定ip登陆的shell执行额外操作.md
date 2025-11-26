@@ -11,7 +11,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 绑定 inputrc
 
-```Bash
+```bash
 if [[ $SSH_CLIENT =~ ^192\.168\.7\.185 || $SSH_CLIENT =~ ^192\.168\.20\.238 ]]; then
     # 执行初始化命令
     echo -e "\033[1;33mWelcome user from $SSH_CLIENT, maybe you are username.\033[0m"
@@ -22,7 +22,7 @@ fi
 
 inputrc 内容：
 
-```Plain
+```plaintext
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 set completion-ignore-case on

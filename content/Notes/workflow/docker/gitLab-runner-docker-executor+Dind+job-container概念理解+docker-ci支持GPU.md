@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 最终配置
 
-```TOML
+```toml
 # /etc/gitlab-runner/config.toml
 
 [[runners]]
@@ -34,7 +34,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     privileged = true
 ```
 
-```YAML
+```yaml
 # .gitlab-ci.yml
 stages:
     - test
@@ -85,7 +85,7 @@ dind_gpu_test_job:
 
 如下一个典型的实例：
 
-```YAML
+```yaml
 # 定义一个隐藏的模板，用于所有需要 Docker-in-Docker (dind) 的 jobs
 .dind-template: &dind
   tags:
@@ -206,7 +206,7 @@ dind_gpu_test_job:
 1. **编辑配置文件**: 打开 `config.toml` (通常位于 `/etc/gitlab-runner/config.toml`)。
 2. **定位并修改 Runner 配置**: 找到 `[[runners]]` 配置块中 `tags` 包含 `"Algo_Docker67"` 的那一段，并在其 `[runners.docker]` 部分添加或修改以下两个关键参数：
     
-    ```TOML
+    ```toml
     # /etc/gitlab-runner/config.toml
     
     [[runners]]
@@ -239,7 +239,7 @@ dind_gpu_test_job:
 
 如果是从一开始创建的 runner，可以直接运行命令
 
-```TOML
+```toml
 # --docker-privileged 开启特权
 # --docker-gpus all 设定 gpus = "all"
 # ⚠️注意，因为安装的 gitlab-runner 版本太低了，没有 --docker-service-gpus 选项，可以确定 17.11 版本后有支持。
@@ -267,7 +267,7 @@ sudo gitlab-runner register --docker-privileged --docker-gpus all --url http://1
 
 报错节选：
 
-```Plain
+```plaintext
 Status: Downloaded newer image for 192.168.3.224:8083/test/nvcr.io/nvidia/cuda:12.1.1-runtime-ubuntu22.04
 docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]]
 Run 'docker run --help' for more information
@@ -288,7 +288,7 @@ ERROR: Job failed: exit code 125
 
 最终可用于测试的的 .yml 如下：
 
-```YAML
+```yaml
 stages:
     - test
   
@@ -338,7 +338,7 @@ dind_gpu_test_job:
 
 具体报错：
 
-```Plain
+```plaintext
 docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error running prestart hook #0: exit status 1, stdout: , stderr: Auto-detected mode as 'legacy'
 nvidia-container-cli: initialization error: load library failed: libnvidia-ml.so.1: cannot open shared object file: no such file or directory: unknown
 Run 'docker run --help' for more information
@@ -352,7 +352,7 @@ Run 'docker run --help' for more information
 
 后续怀疑是 gitlab-runner 早期版本不支持 `service_gpus` 参数。升级了服务器的 gitlab-runner 版本到：
 
-```Bash
+```bash
 $ gitlab-runner -v
 Version:      18.2.0
 Git revision: c24769e8

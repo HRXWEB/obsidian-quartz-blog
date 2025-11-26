@@ -9,7 +9,7 @@ updated: 2025-10-11T16:41:46.4646+08:00
 
 # 查看USB设备信息
 
-```Bash
+```bash
 # ubuntu
 lsusb
 
@@ -51,7 +51,7 @@ lsusb
 
 ## 安装
 
-```Bash
+```bash
 # ubuntu
 sudo apt-get install minicom
 
@@ -67,7 +67,7 @@ brew install minicom
     - MacOS: `Esc + z`
 - 关闭 `Hardware Flow Control` ，使得可以键盘操作
     
-    ```Bash
+    ```bash
     sudo minicom -s
     # 执行如下操作
     # 1. 选择 Serial port setup

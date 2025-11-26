@@ -18,7 +18,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 1. 确保 SSH Agent 正在运行并加载密钥，有如下两种做法
     - 只在当前终端起作用的做法（设置的两个变量只会在当前终端起作用， ssh-agent 本身会被pid1回收，作为守护进程）
         
-        ```Bash
+        ```bash
         eval $(ssh-agent -s)  # 启动 agent (如果尚未运行)，此时会设置两个变量 $SSH_AUTH_SOCK 和 $SSH_AGENT_PID
         ssh-add ~/.ssh/id_rsa # 添加你的私钥 (如果需要密码，会提示输入)
         ssh-add -l            # 验证密钥是否已加载
@@ -26,7 +26,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
         
     - **在每个新开终端都起作用的做法（推荐）**
         
-        ```Shell
+        ```shellscript
         # --- SSH Agent Management ---
         
         SUITABLE_AGENT_PID=""
@@ -93,13 +93,13 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
     通常，在较新的 Docker 版本中，BuildKit 是默认的构建器。你可以通过设置环境变量来显式启用：
 
-    ```Bash
+    ```bash
     export DOCKER_BUILDKIT=1
     ```
 
     也可以在 Docker 守护进程的配置文件 (`/etc/docker/daemon.json`) 中将其设置为默认：
 
-    ```JSON
+    ```json
     {
       "features": {
         "buildkit": true
@@ -112,7 +112,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
     - 默认情况下，它会尝试转发默认的 SSH agent socket (`$SSH_AUTH_SOCK`)。
     - 你也可以指定一个特定的 SSH agent socket 或 SSH key 文件路径 (但不推荐直接暴露 key 文件，优先使用 agent)。
     
-    ```Bash
+    ```bash
     # 默认转发
     docker build --ssh default -t my-app .
     
@@ -124,7 +124,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
     在需要 SSH 访问的 `RUN` 指令中，使用 `--mount=type=ssh` 来挂载 SSH agent socket。
 
-    ```Docker
+    ```docker
     # syntax=docker/dockerfile:1
     
     FROM alpine/git # 或者任何包含 git 和 ssh 客户端的镜像

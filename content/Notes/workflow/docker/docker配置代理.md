@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 没有代理下的表现：
 
-```Plain
+```plaintext
 docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": context deadline exceeded.
 ```
 
@@ -21,31 +21,31 @@ docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": cont
 
 - ~~旧方法~~
     
-    ```Bash
+    ```bash
     sudo mkdir -p /etc/systemd/system/docker.service.d
     sudo touch /etc/systemd/system/docker.service.d/proxy.conf
     sudo vim /etc/systemd/system/docker.service.d/proxy.conf
     ```
     
-    ```Plain
+    ```plaintext
     [Service]
     Environment="HTTP_PROXY=http://127.0.0.1:7890/"
     Environment="HTTPS_PROXY=http://127.0.0.1:7890/"
     Environment="NO_PROXY=localhost,127.0.0.1,192.168.0.0/16"
     ```
     
-    ```Bash
+    ```bash
     sudo systemctl daemon-reload
     sudo systemctl restart docker
     ```
     
 - 新方法
     
-    ```Bash
+    ```bash
     sudo vim /etc/docker/daemon.json
     ```
     
-    ```JSON
+    ```json
     {
       "proxies": {
         "http-proxy": "http://127.0.0.1:7890",
@@ -55,7 +55,7 @@ docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": cont
     }
     ```
     
-    ```JSON
+    ```json
     sudo systemctl daemon-reload
     sudo systemctl restart docker
     ```
@@ -74,13 +74,13 @@ docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": cont
 
 # 容器代理
 
-```Bash
+```bash
 docker run -e http_proxy=$http_proxy -e https_proxy=$https_proxy -e all_proxy=$all_proxy ...
 ```
 
 或者配置 `~/.docker/config.json` ：
 
-```JSON
+```json
 {
  "proxies": {
    "default": {
@@ -94,13 +94,13 @@ docker run -e http_proxy=$http_proxy -e https_proxy=$https_proxy -e all_proxy=$a
 
 配置后使用[示例](https://stackoverflow.com/a/62431165/22417742)：
 
-```Bash
+```bash
 docker build --add-host=host.docker.internal:host-gateway -t test .
 ```
 
 # docker build 代理
 
-```JSON
+```json
 docker build . \
     --build-arg "HTTP_PROXY=http://127.0.0.1:7890/" \
     --build-arg "HTTPS_PROXY=http://127.0.0.1:7890/" \

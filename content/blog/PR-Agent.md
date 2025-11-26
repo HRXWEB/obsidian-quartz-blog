@@ -28,13 +28,13 @@ updated: 2025-10-27T17:13:25.2525+08:00
 - 准备好 gitlab 账户和 personal-access-token
 - 准备好运行密钥
     
-    ```TOML
+    ```toml
     SHARED_SECRET=$(python -c "import secrets; print(secrets.token_hex(10))")
     ```
     
 - 修改 `configuration.toml` 文件中如下几个字段：
     
-    ```TOML
+    ```toml
     git_provider="gitlab"
     #### 如果需要log分析，需要增加字段 begin ----####
     [config]
@@ -47,7 +47,7 @@ updated: 2025-10-27T17:13:25.2525+08:00
 - 复制 `.secrets_template.toml` 为 `.secrets.toml`
     - 修改如下几个字段：
         
-        ```TOML
+        ```toml
         # 第一种选择
         [openai]
         key = "sk-xxxxxxxxxxxxxxxx"
@@ -74,19 +74,19 @@ updated: 2025-10-27T17:13:25.2525+08:00
         
     - 删除 `.dockerignore` 中的这一行
         
-        ```Plain
+        ```plaintext
         pr_agent/settings/.secrets.toml
         ```
         
 - 构建
     
-    ```Bash
+    ```bash
     docker build . -t gitlab_pr_agent --target gitlab_webhook -f docker/Dockerfile
     ```
     
 - 启动服务
     
-    ```Bash
+    ```bash
     docker run -d --restart always --network host --name my_pr_agent gitlab_pr_agent:latest
     ```
 

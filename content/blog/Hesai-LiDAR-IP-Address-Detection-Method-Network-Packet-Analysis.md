@@ -15,13 +15,13 @@ updated: 2025-10-11T16:42:11.1111+08:00
 
 打开 wireshark 选择和雷达直连的网卡开始抓包，设置规则：
 
-```Plain
+```plaintext
 udp.srcport == 2368
 ```
 
 2368 这个端口是因为雷达默认的 `[config.yaml](https://github.com/HesaiTechnology/HesaiLidar_ROS_2.0/blob/2.0.9/config/config.yaml)`:
 
-```YAML
+```yaml
 lidar:
     - driver:
         pcap_play_synchronization: true                       # pcap play rate synchronize with the host time
@@ -40,7 +40,7 @@ lidar:
 
 过滤规则为：
 
-```Plain
+```plaintext
 ip.dst == 255.255.255.255
 ```
 
@@ -48,14 +48,14 @@ ip.dst == 255.255.255.255
 
 针对上面的两个规则：
 
-```Plain
+```plaintext
 udp.srcport == 2368
 ip.dst == 255.255.255.255
 ```
 
 替代命令是：
 
-```Bash
+```bash
 sudo apt install tcpdump -y
 sudo tcpdump -i <your_interface> udp src port 2368
 sudo tcpdump -i <your_interface> dst host 255.255.255.255

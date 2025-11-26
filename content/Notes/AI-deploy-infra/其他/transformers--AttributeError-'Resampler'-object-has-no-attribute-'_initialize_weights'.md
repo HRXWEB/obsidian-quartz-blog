@@ -11,14 +11,14 @@ updated: 2025-10-10T18:10:20.2020+08:00
 
 环境配置：
 
-```Bash
+```bash
 pip install transformers==4.52.0
 # 后续各种包需要什么安装什么即可
 ```
 
 Qwen-VL 官方代码：
 
-```Python
+```python
 from modelscope import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
 import torch
@@ -61,7 +61,7 @@ transformers 版本演进带来的接口不兼容的问题
 
 # 解决方案
 
-```Bash
+```bash
 pip install transformers==4.49.0
 ```
 

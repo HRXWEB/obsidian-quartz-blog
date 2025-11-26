@@ -7,7 +7,7 @@ created: 2025-09-24T16:54:27.2727+08:00
 updated: 2025-10-12T16:24:45.4545+08:00
 ---
 
-```Bash
+```bash
 sudo apt install python3.X-venv
 mkdir <env_name> && cd <env_name>
 python -m venv .
