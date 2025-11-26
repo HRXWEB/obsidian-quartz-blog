@@ -13,7 +13,7 @@ updated: 2025-10-11T17:28:51.5151+08:00
 
 `cmake` 提供了 `FindProtobuf` 模块，可以通过 `find_package` 命令查找 `Protobuf` 进行使用，官网给的使用示例如下：
 
-```makefile
+```cmake
 find_package(Protobuf REQUIRED)
 include_directories(${Protobuf_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -35,7 +35,7 @@ target_link_libraries(bar ${Protobuf_LIBRARIES})
 
 在该方法中引入 `add_custom_target` 命令生成一个自定义 `target`，并令该 `target` 依赖于生成源码的 `add_custom_command` 命令
 
-```makefile
+```cmake
 find_package(Protobuf 3 REQUIRED)
 
 #设置输出路径

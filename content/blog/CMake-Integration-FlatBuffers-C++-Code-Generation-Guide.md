@@ -89,7 +89,7 @@ examples/
 
 ## CMakeLists.txt
 
-```makefile
+```cmake
 cmake_minimum_required(VERSION 3.15)
 project(Examples CXX)
 
