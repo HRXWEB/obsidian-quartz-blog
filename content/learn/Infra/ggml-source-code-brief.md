@@ -436,33 +436,33 @@ graph TB
         end
     end
 
-    %% 用户层连接
+    %% 用户层连接 %%
     USER -->|1.构建模型| TENSOR
     USER -->|2.创建计算图| CGRAPH
     USER -->|3.分配内存| BACKEND
     USER -->|4.执行计算| BACKEND
 
-    %% 核心层连接
+    %% 核心层连接 %%
     TENSOR -->|组成| CGRAPH
     CGRAPH -->|生成| CPLAN
     CTX -->|管理| TENSOR
     GGUF -->|加载到| TENSOR
     ALLOC -->|分配| BUFFER
 
-    %% 后端连接
+    %% 后端连接 %%
     CGRAPH -->|提交到| BACKEND
     BACKEND -->|使用| BUFFER
     BACKEND -->|关联| DEVICE
     CPLAN -->|在后端执行| BACKEND
 
-    %% 实现层连接
+    %% 实现层连接 %%
     BACKEND -.实现.-> CPU
     BACKEND -.实现.-> CUDA
     BACKEND -.实现.-> METAL
     BACKEND -.实现.-> VULKAN
     BACKEND -.实现.-> OTHER
 
-    %% 硬件层连接
+    %% 硬件层连接 %%
     CPU -->|运行在| HW_CPU
     CUDA -->|运行在| HW_GPU
     METAL -->|运行在| HW_APPLE

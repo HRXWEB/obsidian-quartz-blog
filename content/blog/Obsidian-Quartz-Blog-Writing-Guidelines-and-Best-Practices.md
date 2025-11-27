@@ -5,7 +5,7 @@ draft: false
 aliases: []
 tags: []
 created: 2025-09-19T17:05:09.099+08:00
-updated: 2025-11-27T02:11:21.2121+08:00
+updated: 2025-11-27T15:39:32.3232+08:00
 ---
 
 在：
@@ -24,4 +24,13 @@ updated: 2025-11-27T02:11:21.2121+08:00
 	- 时间有关的字段，如 `created`、`updated`，写法要符合 [JavaScript Date format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#date_time_string_format)，如 `YYYY-MM-DDTHH:mm:ss.sssZ`
 - code block
 	- 所有的代码块的语言要写成小写的，不能大写，比如 C 语言要写成 "\`\`\`c"，而不是写大写的 "\`\`\`C"，会高亮渲染失败！[原因](https://github.com/jackyzha0/quartz/issues/552)。支持渲染的语言[见此](https://github.com/shikijs/shiki/blob/main/docs/references/engine-js-compat.md)
+	- `mermaid` 代码块的注释要写成 `%% ... %%`，不能只写一个 `%%`，会导致无法渲染！因为 `quartz/plugins/transformers/ofm.ts` 中，会通过正则表达式 `const commentRegex = new RegExp(/%%[\s\S]*?%%/g)` 来识别 obsidian 的注释，然后替换成空字符串：
+		```js
+			textTransform(_ctx, src) {
+				// do comments at text level
+				if (opts.comments) {
+					src = src.replace(commentRegex, "")
+			}
+		```
 
+		如果只写一个 `%%`，而且出现了多次的话，会导致每两个 `%%` 之间的内容被删除，从而导致无法渲染！详见 [Mermaid · Issue #2217 · jackyzha0/quartz](https://github.com/jackyzha0/quartz/issues/2217)

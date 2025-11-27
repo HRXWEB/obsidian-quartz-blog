@@ -4,6 +4,7 @@
  * Mermaid 语法验证工具
  * 用法: node validate-mermaid.js <markdown文件路径>
  * 
+ * https://blog.csdn.net/m0_65152767/article/details/149973346
  * ┌─────────────────────────────────────────────────────────────────────────────┐
  * │ 终极符号表：常用特殊字符转义速查表                                              │
  * ├──────┬──────┬────────────────┬──────────────┬─────────────────────────────┤
@@ -79,6 +80,29 @@ function validateMermaidSyntax(code, index) {
   const isERDiagram = firstLine === 'erDiagram'
   
   // 通用检查（所有图表类型）
+  
+  // 检查 Obsidian 注释冲突（在循环外检查整个代码块）
+  // 匹配单行注释：%% 开头但不是 %% ... %% 格式（即行尾没有 %%）
+  const singleLineComments = []
+  lines.forEach((line, idx) => {
+    const trimmed = line.trim()
+    // 检查是否以 %% 开头
+    if (trimmed.startsWith('%%')) {
+      // 检查是否是块注释格式 (%% ... %%)
+      const hasClosing = trimmed.match(/^%%.*%%\s*$/)
+      if (!hasClosing) {
+        singleLineComments.push(idx + 1)
+      }
+    }
+  })
+  
+  if (singleLineComments.length >= 2) {
+    errors.push({
+      line: singleLineComments[0],
+      message: `❌ 发现 ${singleLineComments.length} 个 Mermaid 单行注释 (%%)，位于行: ${singleLineComments.join(', ')}。Quartz 的 Obsidian 注释处理会将这些注释错误配对并删除中间内容，导致图表损坏！必须修改为 Obsidian 块注释格式 %%...%%`
+    })
+  }
+  
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim()
     const lineNum = i + 1
@@ -396,6 +420,7 @@ if (hasErrors) {
   console.log('   4. 确保 loop 内的 activate 在 loop 结束前 deactivate')
   console.log('   5. 避免使用 <<< 和 >>> 等特殊字符')
   console.log('   6. HTML 标签需要转义为 &lt; 和 &gt;')
+  console.log('   7. 将 Mermaid 单行注释 (%%) 改为块注释格式 %%...%%')
   console.log('\n🧹 清理临时文件:')
   console.log('   检查完 .mmd 文件后，运行以下命令删除临时文件:')
   console.log('   \x1b[33mrm -rf mermaid*.mmd\x1b[0m')
