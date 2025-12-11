@@ -11,4 +11,16 @@
       }
     }
   }
+
+  .original-link {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--tertiary);
+      text-decoration: underline;
+    }
+  }
 }

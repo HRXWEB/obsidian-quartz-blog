@@ -12,11 +12,21 @@ interface ContentMetaOptions {
    */
   showReadingTime: boolean
   showComma: boolean
+  /**
+   * Whether to show original article link
+   */
+  showOriginalLink: boolean
+  /**
+   * Text to display for original article link
+   */
+  originalLinkText: string
 }
 
 const defaultOptions: ContentMetaOptions = {
   showReadingTime: true,
   showComma: true,
+  showOriginalLink: true,
+  originalLinkText: "查看原文",
 }
 
 export default ((opts?: Partial<ContentMetaOptions>) => {
@@ -40,6 +50,19 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
           minutes: Math.ceil(minutes),
         })
         segments.push(<span>{displayedTime}</span>)
+      }
+
+      // Display original article link if URL exists in frontmatter
+      // Support both 'url' and 'URL' field names
+      if (options.showOriginalLink) {
+        const url = (fileData.frontmatter?.url || fileData.frontmatter?.URL) as string | undefined
+        if (url && url.trim() !== "") {
+          segments.push(
+            <a href={url} target="_blank" rel="noopener noreferrer" class="original-link">
+              {options.originalLinkText}
+            </a>
+          )
+        }
       }
 
       return (
