@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: AGX-Orin 部署 OpenVla
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+updated: 2025-12-11T14:14:12.1212+08:00
 ---
 
 根据资料 1 操作
@@ -233,7 +233,7 @@ copy_symlinks() {
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926150325734.png)
 
-- **问题1 missing keys in state_dict**
+- **问题 1 missing keys in state_dict**
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926150348132.png)
 
@@ -241,7 +241,7 @@ copy_symlinks() {
 
     ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926150409641.png)
 
-- **问题2 copy file error**
+- **问题 2 copy file error**
     
     ```bash
     vim /opt/NanoLLM/nano_llm/nano_llm.py
@@ -297,7 +297,7 @@ Current thread 0x0000ffffbcf40ca0 (most recent call first):
 
 ==**错误分析：**==
 
-错误的重点是 `Is a directory` ，最终发现问题在这个讨论[https://forums.developer.nvidia.com/t/opengl-failed-to-create-x11-window-when-using-videooutput-in-container/270118/4](https://forums.developer.nvidia.com/t/opengl-failed-to-create-x11-window-when-using-videooutput-in-container/270118/4)里面有说到。
+错误的重点是 `Is a directory` ，最终发现问题在这个讨论 [https://forums.developer.nvidia.com/t/opengl-failed-to-create-x11-window-when-using-videooutput-in-container/270118/4](https://forums.developer.nvidia.com/t/opengl-failed-to-create-x11-window-when-using-videooutput-in-container/270118/4) 里面有说到。
 
 排查后发现 `/tmp/nv_jetson_model` 本应该是一个文件的，不知道为什么变成了一个目录。
 

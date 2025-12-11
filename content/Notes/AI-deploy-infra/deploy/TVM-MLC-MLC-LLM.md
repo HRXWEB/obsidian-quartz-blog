@@ -23,9 +23,9 @@ updated: 2025-10-10T18:10:52.5252+08:00
 
 **[TVM Relax如何支持dynamic shape](https://zhuanlan.zhihu.com/p/627449108)**
 
-[[MLC Doc]]
+[[MLC-Doc]]
 
-[[MLC-LLM Doc]]
+[[MLC-LLM-Doc]]
 
 **[TVM Unity与新一代机器学习编译技术](https://zhuanlan.zhihu.com/p/614701587)**
 

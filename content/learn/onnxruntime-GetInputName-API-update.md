@@ -4,14 +4,14 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-12-11T14:09:41.4141+08:00
 ---
 
 # 问题描述
 
-1. `GetInputName` 和 `GetOutputName` 接口从1.12升级到1.13之后，变成了 `GetInputNameAllocated` 和 `GetOutputNameAllocated`
+1. `GetInputName` 和 `GetOutputName` 接口从 1.12 升级到 1.13 之后，变成了 `GetInputNameAllocated` 和 `GetOutputNameAllocated`
 2. 新接口返回值是 `Ort::AllocatedStringPtr` ，其是 `std::unique_ptr<char, detail::AllocatedFree>` 的别名。
-3. 要注意 `unique_ptr` 出了scope之后就会自动释放其持有的资源，就会造成这样的问题：
+3. 要注意 `unique_ptr` 出了 scope 之后就会自动释放其持有的资源，就会造成这样的问题：
 
     https://github.com/microsoft/onnxruntime/issues/14157
 

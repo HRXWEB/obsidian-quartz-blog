@@ -51,7 +51,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
 
 [[vLLM-QuickStart]]
 
-[[vLLM粗读]]
+[[brief-of-vLLM]]
 
 # 讨论会
 

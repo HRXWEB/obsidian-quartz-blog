@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: Orin 配置环境变量——DISPLAY
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+updated: 2025-12-11T14:17:05.055+08:00
 ---
 
 做了一些工作，发现 `SSH -X orin` 会生成 `$HOME/.Xauthority` 文件，然后可以用命令列出当前可信的（客户端？不知道怎么形容）：

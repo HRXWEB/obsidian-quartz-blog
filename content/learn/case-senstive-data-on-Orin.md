@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: orin 敏感数据擦除
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+updated: 2025-12-11T14:15:53.5353+08:00
 ---
 
 - 删除 cfw
@@ -13,7 +13,7 @@ updated: 2025-10-10T18:10:21.2121+08:00
     rm -rf ~/.config/autostart/cfw.desktop
     ```
     
-- 退出 docker 账户，删除docker代理
+- 退出 docker 账户，删除 docker 代理
     
     ```bash
     # 退出 docker 账户
@@ -33,5 +33,5 @@ updated: 2025-10-10T18:10:21.2121+08:00
     
 - 清理 `.bashrc` ：
     - 代理设置
-    - 各种token，比如：
+    - 各种 token，比如：
         - HF_TOKEN

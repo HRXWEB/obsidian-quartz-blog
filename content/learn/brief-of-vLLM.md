@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:27.2727+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+updated: 2025-12-11T14:21:26.2626+08:00
 ---
 
 # Quick Start
@@ -118,7 +118,6 @@ vLLM 支持使用 [outlines](https://github.com/dottxt-ai/outlines), [lm-format
 - `guided_choice`: the output will be exactly one of the choices.
 - `guided_regex`: the output will follow the regex pattern.
 - `guided_json`: the output will follow the JSON schema. `guided_json` parameter in two different ways:
-    
     - Using directly a [JSON Schema](https://json-schema.org/)
     - Defining a [Pydantic model](https://docs.pydantic.dev/latest/) and then extracting the JSON Schema from it (which is normally an easier option).
     
@@ -193,10 +192,10 @@ Block 3: |<------------------ prefix -------------------->| |<--- block tokens -
 
 使用哈希映射的主要原因在于它能够提供以下几个关键优势：
 
-1. **唯一性与一致性**：通过哈希函数生成的哈希值可以确保每个KV块（包括其前缀令牌和块内令牌）有一个唯一的标识符。这有助于避免冲突并确保数据的一致性和准确性。
-2. **高效查找与访问**：哈希映射允许快速查找和访问特定的KV块。在没有哈希表的情况下，为了找到特定的KV块，可能需要遍历整个逻辑到物理块的映射关系，这在大规模应用中效率较低。而哈希映射则能显著提高查找速度，因为它可以直接定位到对应的物理块位置。
-3. **简化共享与复用**：在不同的请求之间可能存在相同的前缀块，这意味着这些请求可以共享同一物理KV块。使用哈希映射，所有共享相同哈希值的KV块都可以映射到同一个物理块，从而节省内存空间，并且简化了管理和维护过程。
-4. **动态调整与扩展性**：利用哈希映射，系统可以根据需求动态地分配和释放KV块，这为系统的扩展提供了更大的灵活性。如果直接映射，则每次添加、删除或更新KV块时都需要重新配置整个映射关系，增加了复杂性和潜在的错误风险。
+1. **唯一性与一致性**：通过哈希函数生成的哈希值可以确保每个 KV 块（包括其前缀令牌和块内令牌）有一个唯一的标识符。这有助于避免冲突并确保数据的一致性和准确性。
+2. **高效查找与访问**：哈希映射允许快速查找和访问特定的 KV 块。在没有哈希表的情况下，为了找到特定的 KV 块，可能需要遍历整个逻辑到物理块的映射关系，这在大规模应用中效率较低。而哈希映射则能显著提高查找速度，因为它可以直接定位到对应的物理块位置。
+3. **简化共享与复用**：在不同的请求之间可能存在相同的前缀块，这意味着这些请求可以共享同一物理 KV 块。使用哈希映射，所有共享相同哈希值的 KV 块都可以映射到同一个物理块，从而节省内存空间，并且简化了管理和维护过程。
+4. **动态调整与扩展性**：利用哈希映射，系统可以根据需求动态地分配和释放 KV 块，这为系统的扩展提供了更大的灵活性。如果直接映射，则每次添加、删除或更新 KV 块时都需要重新配置整个映射关系，增加了复杂性和潜在的错误风险。
 
 ## [Disaggregated Prefilling (experimental)](https://docs.vllm.ai/en/latest/features/disagg_prefill.html#)
 

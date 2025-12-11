@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: RLHF 简单介绍
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:24.2424+08:00
-updated: 2025-10-10T18:10:21.2121+08:00
+updated: 2025-12-11T14:20:27.2727+08:00
 ---
 
 # Step1. **预训练语言模型**
@@ -24,5 +24,5 @@ RM(Reward Model) 的训练是 RLHF 区别于旧范式的开端。这一模型接
 # 参考
 
 1. [https://blog.csdn.net/pearl8899/article/details/138476084](https://blog.csdn.net/pearl8899/article/details/138476084)
-2. 为什么需要RLHF？SFT不够吗？ - 何枝的回答 - 知乎  
+2. 为什么需要 RLHF？SFT 不够吗？ - 何枝的回答 - 知乎  
     [https://www.zhihu.com/question/651021172/answer/3513159005](https://www.zhihu.com/question/651021172/answer/3513159005)

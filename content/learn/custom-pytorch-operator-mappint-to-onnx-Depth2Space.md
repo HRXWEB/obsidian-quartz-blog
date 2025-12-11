@@ -1,53 +1,53 @@
 ---
-title:
+title: 自定义 PyTorch 算子映射为 onnx::Depth2Space
 draft: true
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-12-11T14:10:26.2626+08:00
 ---
 
-> [!important] 目前对于自定义算子并且映射了解还十分少，目前只是映射成onnx算子之后，使用onnxruntime创建run session 后，推理能够得到正确的结果。
+> [!important] 目前对于自定义算子并且映射了解还十分少，目前只是映射成 onnx 算子之后，使用 onnxruntime 创建 run session 后，推理能够得到正确的结果。
 > 
 > 如何确保算子可以在训练期间使用需要进一步研究
 
 # nn.PixelShuffle
 
-pytorch本身有 `nn.PixelShuffle` 这个算子，在导出成onnx模型的时候会映射成`onnx::DepthToSpace` 算子。
+pytorch 本身有 `nn.PixelShuffle` 这个算子，在导出成 onnx 模型的时候会映射成 `onnx::DepthToSpace` 算子。
 
-参看onnx对这个算子的定义：
+参看 onnx 对这个算子的定义：
 
 > [!info] DepthToSpace - ONNX 1.18.0 documentation  
 > This version of the operator has been available  
 > [https://onnx.ai/onnx/operators/onnx__DepthToSpace.html#attributes](https://onnx.ai/onnx/operators/onnx__DepthToSpace.html#attributes)  
 
-发现在属性的部分，mode有两个取值：
+发现在属性的部分，mode 有两个取值：
 
 - ‘DCR’(default)
 - ‘CRD’
 
-而 `nn.PixelShuffle` 只会映射成 ‘CRD’ 模式的 `onnx::DepthToSpace` ，这个issue也提到了这个问题：
+而 `nn.PixelShuffle` 只会映射成 ‘CRD’ 模式的 `onnx::DepthToSpace` ，这个 issue 也提到了这个问题：
 
 https://github.com/pytorch/pytorch/issues/75748
 
-> [!important] 如何才能将pytorch算子转换成 `onnx::DepthToSpace` `mode='DCR'` 呢？
+> [!important] 如何才能将 pytorch 算子转换成 `onnx::DepthToSpace` `mode='DCR'` 呢？
 
 # 两种模式的区别
 
 https://github.com/onnx/onnx/issues/3739
 
-上述issue比较了 `nn.PixelUnShuffle` 和 默认模式的 `onnx::SpaceToDept` ，在同样输入的情况下输出不一致。
+上述 issue 比较了 `nn.PixelUnShuffle` 和 默认模式的 `onnx::SpaceToDept` ，在同样输入的情况下输出不一致。
 
 这两个算子其实就是 `nn.PixelShuffle` 和 `onnx::DepthToSpace` 的逆过程，所以拿来理解是没有问题的。贴上作者的图解过程：
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926183330712.png)
 
-图像左到右是 `PixelUnShuffle` ，那反过来右到左就是 `PixelShuffle` ，onnx同理。
+图像左到右是 `PixelUnShuffle` ，那反过来右到左就是 `PixelShuffle` ，onnx 同理。
 
 1. 尝试使用**文字描述**这一过程：
-    - PixelShuffle：沿着channel维度，先填列，再填行，最后再填通道。
-    - DepthToSpace：沿着channel维度，先填深度，再填列，最后填行。
-2. 使用**公式描述**这一过程，借助了python，实现了两个类来模拟这两个算子，从而搞清了数据重排的过程，文件如下：
+    - PixelShuffle：沿着 channel 维度，先填列，再填行，最后再填通道。
+    - DepthToSpace：沿着 channel 维度，先填深度，再填列，最后填行。
+2. 使用**公式描述**这一过程，借助了 python，实现了两个类来模拟这两个算子，从而搞清了数据重排的过程，文件如下：
 
     [pixelunshuffle_depth2space_simulator.py](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/pixelunshuffle_depth2space_simulator.py)
 
@@ -59,17 +59,17 @@ https://github.com/onnx/onnx/issues/3739
 > 在上一篇教程中，我们系统地学习了 PyTorch 转 ONNX 的方法，可以发现 PyTorch 对 ONNX 的支持还不错。但在实际的部署过程中，难免碰到模型无法用原生 PyTorch 算子表示的情况。这个时候，我们就得考虑扩充 PyTorch，即在 PyTorch 中支持更多 ONNX 算子。  
 > [https://mmdeploy.readthedocs.io/zh-cn/stable/tutorial/04_onnx_custom_op.html](https://mmdeploy.readthedocs.io/zh-cn/stable/tutorial/04_onnx_custom_op.html)  
 
-一个自定义pytorch算子并转成onnx算子的例子：
+一个自定义 pytorch 算子并转成 onnx 算子的例子：
 
-> [!info] 【pytorch】——自定义一个算子并导出到onnx_torch自定义算子导出到onnx-CSDN博客  
-> 文章浏览阅读5.  
+> [!info] 【pytorch】——自定义一个算子并导出到 onnx_torch 自定义算子导出到 onnx-CSDN 博客  
+> 文章浏览阅读 5.  
 > [https://blog.csdn.net/u011622208/article/details/122255317](https://blog.csdn.net/u011622208/article/details/122255317)  
 
 ## 具体实现
 
 [depth2space.py](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/depth2space.py)
 
-在这个脚本中，实现了两个pytorch算子，分别可以转成 `mode='CRD'` 和 `mode = 'DCR`' 的 `onnx::DepthToSpace`
+在这个脚本中，实现了两个 pytorch 算子，分别可以转成 `mode='CRD'` 和 `mode = 'DCR`' 的 `onnx::DepthToSpace`
 
 tips：
 
