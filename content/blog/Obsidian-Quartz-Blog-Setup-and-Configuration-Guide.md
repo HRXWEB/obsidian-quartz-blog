@@ -164,7 +164,7 @@ ln -s attachment.nosync attachment
 
 一般选择 `blog.yourdomain.com`
 
-# [[dotfile管理哲学|管理.obsidian目录]]
+# [[art-of-dotfile-mangement|管理.obsidian目录]]
 
 [[Obsidian-Configuration-Directory-Management-Guide]]
 
