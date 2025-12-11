@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:27.2727+08:00
-updated: 2025-10-11T16:54:01.011+08:00
+updated: 2025-12-11T12:34:20.2020+08:00
 ---
 
 > [!important]
@@ -12,11 +12,11 @@ updated: 2025-10-11T16:54:01.011+08:00
 > - `RDK X3 yaml配置文件`，可直接使用**[RDK X3 Caffe模型量化yaml文件模板](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#rdk_x3_caffe_yaml_template)** 和**[RDK X3 ONNX模型量化yaml文件模板](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#rdk_x3_onnx_yaml_template)**模板文件进行填写。
 > - `RDK Ultra yaml配置文件`，可直接使用**[RDK Ultra Caffe模型量化yaml文件模板](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#rdk_ultra_caffe_yaml_template)** 和**[RDK Ultra ONNX模型量化yaml文件模板](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#rdk_ultra_onnx_yaml_template)**模板文件进行填写。
 > - `RDK X5 yaml配置文件`，可直接使用**[RDK X5 Caffe模型量化yaml文件模板](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#rdk_x5_caffe_yaml_template)** 和**[RDK X5 ONNX模型量化yaml文件模板](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#rdk_x5_onnx_yaml_template)**模板文件进行填写。
-> - 若 hb_mapper makertbin 步骤异常终止或者出现报错信息，则说明模型转换失败，请根据终端打印或在当前路径下生成的 `hb_mapper_makertbin.log` 日志文件确认报错信息和修改建议，错误信息可以在 **[模型量化错误及解决方法](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#model_convert_errors_and_solutions)**章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系D-Robotics 技术支持团队或在**[D-Robotics 官方技术社区](https://developer.d-robotics.cc/)**提出您的问题，我们将在24小时内给您提供支持。
+> - 若 hb_mapper makertbin 步骤异常终止或者出现报错信息，则说明模型转换失败，请根据终端打印或在当前路径下生成的 `hb_mapper_makertbin.log` 日志文件确认报错信息和修改建议，错误信息可以在 **[模型量化错误及解决方法](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain#model_convert_errors_and_solutions)**章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系 D-Robotics 技术支持团队或在**[D-Robotics 官方技术社区](https://developer.d-robotics.cc/)**提出您的问题，我们将在 24 小时内给您提供支持。
 
 ---
 
-配合D-Robotics 算法工具链的模型完整开发过程，需要经过 **浮点模型准备**、 **模型验证**、 **模型转换**、 **性能评估** 和 **精度评估** 共五个重要阶段，如下图:
+配合 D-Robotics 算法工具链的模型完整开发过程，需要经过 **浮点模型准备**、 **模型验证**、 **模型转换**、 **性能评估** 和 **精度评估** 共五个重要阶段，如下图:
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926181013611.png)
 
@@ -24,7 +24,7 @@ updated: 2025-10-11T16:54:01.011+08:00
 
 支持 `onnx@opset11` 和 `caffe1.0` 的模型
 
-> [!important] 一些 pytorch 有的算子而 onnx@opset11 没有的算子，D-Robotics 算法工具链提供了导出脚本可以将其从 PyTorch 算子导出到D-Robotics 自定义的onnx OP中。
+> [!important] 一些 pytorch 有的算子而 onnx@opset11 没有的算子，D-Robotics 算法工具链提供了导出脚本可以将其从 PyTorch 算子导出到 D-Robotics 自定义的 onnx OP 中。
 > 
 > > ref: [https://developer.d-robotics.cc/rdk_doc/Advanced_development/toolchain_development/intermediate/supported_op_list#使用限制说明](https://developer.d-robotics.cc/rdk_doc/Advanced_development/toolchain_development/intermediate/supported_op_list#%E4%BD%BF%E7%94%A8%E9%99%90%E5%88%B6%E8%AF%B4%E6%98%8E)
 
@@ -59,7 +59,7 @@ updated: 2025-10-11T16:54:01.011+08:00
   ... 
 ```
 
-每行含 Node、ON、Subgraph 和 Type 四列，分别为节点名称、执行节点计算的硬件、节点所属子图和节点映射到的D-Robotics 算子名称。
+每行含 Node、ON、Subgraph 和 Type 四列，分别为节点名称、执行节点计算的硬件、节点所属子图和节点映射到的 D-Robotics 算子名称。
 
 > [!important] 官方对 yolov5 举的示例中，会要求把最终输出的 anchor 解算去掉，并且用 permute 操作把输出格式弄成 NHWC
 > 
@@ -77,17 +77,17 @@ updated: 2025-10-11T16:54:01.011+08:00
 > 
 > 因为这个参数开启后，前处理的过程是固定的，但实际上不同模型前处理可能不太一样。
 
-**举一个实际的例子，使用ImageNet训练的用于分类的原始浮点模型：**
+**举一个实际的例子，使用 ImageNet 训练的用于分类的原始浮点模型：**
 
 - 它只有一个输入节点，输入信息描述如下：
     - 输入类型：`BGR`
-    - 输入layout：`NCHW`
+    - 输入 layout：`NCHW`
     - 输入尺寸：`1x3x224x224`
 - 使用验证集做模型推理（inference）时的数据预处理如下：
-    1. 图像长宽等比scale,短边缩放到256。
-    2. `center_crop` 方法获取224x224大小图像。
-    3. 按通道减mean。
-    4. 数据乘以scale系数。
+    1. 图像长宽等比 scale,短边缩放到 256。
+    2. `center_crop` 方法获取 224x224 大小图像。
+    3. 按通道减 mean。
+    4. 数据乘以 scale 系数。
 
 > [!important] 量化编译镜像里面安装了 `horizon_tc_ui` 包，有常用的 transformer 操作，具体有哪些参考：**[Transformer使用说明](https://developer.d-robotics.cc/rdk_doc/FAQ/toolchain/#transformer使用说明)**
 
@@ -138,8 +138,8 @@ updated: 2025-10-11T16:54:01.011+08:00
 
 > [!important]
 > 
-> > 需要您特别注意的是，transformers中并没有体现减mean和乘scale的处理  
-> > mean和scale操作已经融合到了模型中，请参考下文norm_type/mean_value/scale_value配置
+> > 需要您特别注意的是，transformers 中并没有体现减 mean 和乘 scale 的处理  
+> > mean 和 scale 操作已经融合到了模型中，请参考下文 norm_type/mean_value/scale_value 配置
 > 
 > 怎么解读上面这段话呢？
 > 
@@ -164,7 +164,7 @@ hb_mapper makertbin --config ${config_file}  \
 进阶的几个参数说明：
 
 - model_parameters.node_info: 可以配置 计算 op 的硬件、输入数据类型、输出数据类型。
-    - node_info 在指定输入/输出类型为 int16的时候：==**在您配置了某个op输入/输出数据类型为int16后，模型转换内部会自动进行op输入输出上下文（context）int16配置的更新和检查。 例如，当配置op_1输入/输出数据类型为int16时，实际上潜在同时指定了op_1的上/下一个op需要支持以int16计算。 对于不支持的场景，模型转换工具会打印log提示该int16配置组合暂时不被支持并回退到int8计算。**==
+    - node_info 在指定输入/输出类型为 int16 的时候：==**在您配置了某个 op 输入/输出数据类型为 int16 后，模型转换内部会自动进行 op 输入输出上下文（context）int16 配置的更新和检查。 例如，当配置 op_1 输入/输出数据类型为 int16 时，实际上潜在同时指定了 op_1 的上/下一个 op 需要支持以 int16 计算。 对于不支持的场景，模型转换工具会打印 log 提示该 int16 配置组合暂时不被支持并回退到 int8 计算。**==
 - input_parameters.norm_type/mean_value/scale_value: 用来设置预处理减均值除方差的过程，如果有配置的话，会生成一个 `**HzPreprocess**` 算子插入到输入节点后面做归一化操作。
 - calibration_parameters.calibration_type: 取值范围是 `default` `mix` `kl` `max` `load` `skip` 。==**使用 skip 可以先用随机数校准，适合对模型结构进行验证。**==
 - calibration_parameters.cal_data_dir: 如果 dir 有后缀如 _f32 可以不需要指定 cal_data_type。但是建议显式指定 cal_data_type
@@ -173,7 +173,7 @@ hb_mapper makertbin --config ${config_file}  \
 - ==**compiler_parameters.core_num: 默认是 1，X5 也不支持多核，所以不用配置。**==
 - compiler_parameters.debug: 分析每一层算子的计算量、计算耗时、数据搬运耗时等
 
-> [!important] 在您配置了某个op输入/输出数据类型为int16后，模型转换内部会自动进行op输入输出**上下文**（context）int16配置的更新和检查。 例如，当配置op_1输入/输出数据类型为int16时，实际上==**潜在同时指定了op_1的上/下一个op需要支持以int16计算**==。 对于不支持的场景，模型转换工具会打印log提示该int16配置组合暂时不被支持并回退到int8计算。
+> [!important] 在您配置了某个 op 输入/输出数据类型为 int16 后，模型转换内部会自动进行 op 输入输出**上下文**（context）int16 配置的更新和检查。 例如，当配置 op_1 输入/输出数据类型为 int16 时，实际上==**潜在同时指定了 op_1 的上/下一个 op 需要支持以 int16 计算**==。 对于不支持的场景，模型转换工具会打印 log 提示该 int16 配置组合暂时不被支持并回退到 int8 计算。
 
 ### 转换内部过程解析
 
@@ -203,18 +203,17 @@ hb_mapper makertbin --config ${config_file}  \
 
 - type 支持的配置对：
 
-  |`input_type_train` \ `input_type_rt`|nv12|yuv444|rgb|bgr|gray|featuremap|
-  |---|---|---|---|---|---|---|
-  |yuv444|Y|Y|N|N|N|N|
-  |rgb|Y|Y|Y|Y|N|N|
-  |bgr|Y|Y|Y|Y|N|N|
-  |gray|N|N|N|N|Y|N|
-  |featuremap|N|N|N|N|N|Y|
+|`input_type_train` \ `input_type_rt`|nv12|yuv444|rgb|bgr|gray|featuremap|
+|---|---|---|---|---|---|---|
+|yuv444|Y|Y|N|N|N|N|
+|rgb|Y|Y|Y|Y|N|N|
+|bgr|Y|Y|Y|Y|N|N|
+|gray|N|N|N|N|Y|N|
+|featuremap|N|N|N|N|N|Y|
 
 - layout NCHW 还是 NHWC 没有要求。只需要根据实际情况设置即可：
-  
-  - 第一是 `input_layout_train` 必须与原始模型的数据排布一致
-  - 第二是在处理器上准备好与 `input_layout_rt` 一致排布的数据
+	- 第一是 `input_layout_train` 必须与原始模型的数据排布一致
+	- 第二是在处理器上准备好与 `input_layout_rt` 一致排布的数据
 
   正确的数据排布是顺利解析数据的基础。
 
@@ -230,7 +229,7 @@ hb_mapper makertbin --config ${config_file}  \
 
 模型解析阶段：（产出 original_float_model.onnx）
 
-在原始浮点模型上会根据转换配置yaml文件中的配置参数决定**是否加入数据预处理节点**，此阶段产出一个original_float_model.onnx。 这个ONNX模型计算精度仍然是float32，但**在输入部分加入了一个数据预处理节点**。这个预处理节点会完成 `input_type_rt` 到 `input_type_train` 的完整转换。
+在原始浮点模型上会根据转换配置 yaml 文件中的配置参数决定**是否加入数据预处理节点**，此阶段产出一个 original_float_model.onnx。 这个 ONNX 模型计算精度仍然是 float32，但**在输入部分加入了一个数据预处理节点**。这个预处理节点会完成 `input_type_rt` 到 `input_type_train` 的完整转换。
 
 > [!important] 需要注意的是，这个转换过程会利用硬件资源。实际上 onnx 模型并不包含硬件转换的部分，所以其实 onnx 的输入是一个中间态的数据。如下所示，onnx 其实是从中间态这个输入开始计算的。
 > 
@@ -248,11 +247,11 @@ hb_mapper makertbin --config ${config_file}  \
 > 
 > > 解释：
 > > 
-> > - yuv444_128 是yuv444数据减去128结果，每个数值采用int8表示。
-> > - RGB_128 是RGB数据减去128的结果，每个数值采用int8表示。
-> > - BGR_128 是BGR数据减去128的结果，每个数值采用int8表示。
-> > - GRAY_128 是gray数据减去128的结果，每个数值采用int8表示。
-> > - featuremap 是一个四维张量数据，每个数值采用float32表示。
+> > - yuv444_128 是 yuv444 数据减去 128 结果，每个数值采用 int8 表示。
+> > - RGB_128 是 RGB 数据减去 128 的结果，每个数值采用 int8 表示。
+> > - BGR_128 是 BGR 数据减去 128 的结果，每个数值采用 int8 表示。
+> > - GRAY_128 是 gray 数据减去 128 的结果，每个数值采用 int8 表示。
+> > - featuremap 是一个四维张量数据，每个数值采用 float32 表示。
 
 ---
 

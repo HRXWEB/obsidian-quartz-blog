@@ -2,9 +2,9 @@
 title: ggml源码解读笔记
 draft: false
 aliases: []
-tags: []
+tags: [infra]
 created: 2025-11-05T16:39:41.4141+08:00
-updated: 2025-11-25T23:35:30.3030+08:00
+updated: 2025-12-11T12:41:58.5858+08:00
 ---
 
 # 课程链接
@@ -136,7 +136,7 @@ mnist-fc-f32.gguf 包含的权重：
 
 4 个 tensor infos 解析，仅以第一个为例：
 
-- 第一个tensor：fc1.weight, offset = 0
+- 第一个 tensor：fc1.weight, offset = 0
 	![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251106182944393.png)
 
 找到所有 tensor 的 offset：【0，0x000000000017ED00=15680000，0x000000000017F4E0=1570016，0x0000000000184300=1590016】
@@ -680,10 +680,10 @@ struct ggml_tensor {
 存储的数据：
 
 - 形状信息：`ne[]`(各维度元素数)、`nb[]` (步长)
-- 数据类型：`type`(F32, F16, Q4_0等32种量化类型)
+- 数据类型：`type`(F32, F16, Q4_0 等 32 种量化类型)
 - 数据指针：`data`(指向实际数值)
 - 计算图信息: `op` (操作类型)、`src[]` (源张量)、`grad` (梯度)
-- 元数据: `name` (名称)、`flags` (INPUT/OUTPUT/PARAM标记)
+- 元数据: `name` (名称)、`flags` (INPUT/OUTPUT/PARAM 标记)
 - 后端信息: `buffer` (所在的内存缓冲区)
 
 ### ggml_context 内存池管理器
@@ -712,10 +712,10 @@ struct ggml_context {
 
 - **mem_size**: 内存池的总大小 (字节)
 - **mem_buffer**: 指向内存池的指针
-- **mem_buffer_owned**: 该内存是否由context拥有 (需要释放)
+- **mem_buffer_owned**: 该内存是否由 context 拥有 (需要释放)
 - **no_alloc**: 是否延迟分配张量数据 (只创建元数据)
 - **no_alloc_save**: 保存 `no_alloc` 状态 (用于临时 scratch buffer)
-- **n_objects**: 在此context中创建的对象数量
+- **n_objects**: 在此 context 中创建的对象数量
 - **objects_begin**: 对象链表头
 - **objects_end**: 对象链表尾
 - **scratch**: 临时内存区域 (可复用)
@@ -723,7 +723,7 @@ struct ggml_context {
 
 关键特性：
 
-- Bump Allocator: 内存从前往后线性分配,超快速(无需查找空闲块)
+- Bump Allocator: 内存从前往后线性分配,超快速 (无需查找空闲块)
 - Object 链表: 所有对象用链表串联,便于遍历和释放
 - Scratch Buffer: 可复用的临时内存,避免频繁分配
 - no_alloc 模式: 可以先构建计算图结构,稍后再分配实际内存
@@ -766,16 +766,14 @@ struct ggml_cgraph {
 
 | 张量类型  | op           | grad    | 所属数组  | 说明          |
 | ----- | ------------ | ------- | ----- | ----------- |
-| 参数    | GGML_OP_NONE | 非NULL   | nodes | 需要梯度，参与反向传播 |
+| 参数    | GGML_OP_NONE | 非 NULL   | nodes | 需要梯度，参与反向传播 |
 | 输入/常量 | GGML_OP_NONE | NULL    | leafs | 不需要梯度，纯数据   |
-| 计算节点  | 非NONE        | **可能有** | nodes | 执行计算        |
+| 计算节点  | 非 NONE        | **可能有** | nodes | 执行计算        |
 
 设计意图：
 
 - nodes[] = 所有参与计算或梯度传播的节点
-
 - leafs[] = 纯数据节点（不参与梯度传播）
-
 - grads[] = 与 nodes[] 一一对应的梯度数组
 
 以 `example/mnist-fc/` 目录的例子为例：
@@ -950,7 +948,7 @@ struct gguf_context {
 
 存储的数据：
 
-- 元数据: KV键值对 (模型配置、超参数等)
+- 元数据: KV 键值对 (模型配置、超参数等)
 - 张量信息: 张量名称、形状、偏移量
 - 文件映射: 文件数据的内存映射
 
@@ -967,7 +965,7 @@ GGML 的结构体分类基于以下几个维度:
 |ggml_cgraph|计算拓扑|语法树/AST|
 |ggml_cplan|执行策略|执行计划|
 |ggml_backend|硬件抽象|驱动层|
-|gguf_context|文件IO|序列化器|
+|gguf_context|文件 IO|序列化器|
 
 ### 2. 按生命周期分离
 
@@ -1005,10 +1003,10 @@ ggml_cplan  →  ggml_cgraph  →  ggml_tensor  →  ggml_context
 
 每个结构体只做一件事:
 
-- `ggml_tensor` 只关心"数据是什么"
-- `ggml_context` 只关心"内存在哪里"
-- `ggml_cgraph` 只关心"如何计算"
-- `ggml_backend` 只关心"在哪里计算"
+- `ggml_tensor` 只关心 " 数据是什么 "
+- `ggml_context` 只关心 " 内存在哪里 "
+- `ggml_cgraph` 只关心 " 如何计算 "
+- `ggml_backend` 只关心 " 在哪里计算 "
 
 ### 2. 灵活的组合能力
 
@@ -1062,8 +1060,8 @@ GGML 的结构体设计体现了多个经典设计模式:
 2. 策略模式: `ggml_backend` 抽象不同的计算策略
 3. 组合模式: `ggml_tensor` 通过 `src[]` 构成树/图结构
 4. 单一职责原则: 每个结构体职责明确
-5. 开闭原则: 易于扩展(新后端、新操作),无需修改核心代码
-6. [[#backend 设计 -- 依赖倒置|依赖倒置]]: 高层(`cgraph`)不依赖低层(`backend`)的具体实现
+5. 开闭原则: 易于扩展 (新后端、新操作),无需修改核心代码
+6. [[#backend 设计 -- 依赖倒置|依赖倒置]]: 高层 (`cgraph`) 不依赖低层 (`backend`) 的具体实现
 
 ---
 
@@ -1186,7 +1184,7 @@ struct ggml_context {
 
 ### 3.1 `ggml_new_graph` 函数解析
 
-在`ctx_compute` 申请一个 [[#`ggml_cgraph` 计算图|ggml_cgraph]] 对象
+在 `ctx_compute` 申请一个 [[#`ggml_cgraph` 计算图|ggml_cgraph]] 对象
 
 graph 大小设置的是 `GGML_DEFAULT_GRAPH_SIZE=2048`，可以容纳最多 2048 个 nodes，2048 个 leafs，2048 个 grads
 
@@ -1533,7 +1531,7 @@ ggml 遵守 POSIX 标准的命名约定，对句柄加上 `_t` 后缀，如 `typ
 
 1. 一眼看出是类型定义
 2. 避免与变量名冲突
-3. 符合C语言社区习惯
+3. 符合 C 语言社区习惯
 
 ggml 中的句柄体系：
 
@@ -2169,8 +2167,8 @@ struct ggml_backend_registry {
 
 字段说明:
 
-- `backends`: 所有已注册的后端列表 (CPU, CUDA, Metal等)
-- `devices`: 所有可用设备的扁平化列表 (CPU0, CUDA0, CUDA1等)
+- `backends`: 所有已注册的后端列表 (CPU, CUDA, Metal 等)
+- `devices`: 所有可用设备的扁平化列表 (CPU0, CUDA0, CUDA1 等)
 
 设计意图:
 
@@ -2198,8 +2196,8 @@ struct ggml_backend_reg {
 
 字段说明:
 
-- `iface`: 后端注册接口(**函数指针表**)，所有后端都需要实现的 `reg` 相关的接口
-- `context`: 后端特定的注册上下文(指向具体的 `*_reg_context`)
+- `iface`: 后端注册接口 (**函数指针表**)，所有后端都需要实现的 `reg` 相关的接口
+- `context`: 后端特定的注册上下文 (指向具体的 `*_reg_context`)
 
 详解 `ggml_backend_reg_i`: 
 
@@ -2252,7 +2250,7 @@ struct ggml_backend_device {
 
 字段说明:
 
-- `iface`: 设备接口(函数指针表)，所有后端都需要实现的 `device` 相关的接口
+- `iface`: 设备接口 (函数指针表)，所有后端都需要实现的 `device` 相关的接口
 - `reg`: **所属的**后端注册信息
 - `context`: 设备特定的上下文 (指向 `*_device_context`)
 
@@ -2308,7 +2306,7 @@ struct ggml_backend_device_i {
 
 - **硬件抽象**: 代表一个物理或逻辑计算设备
 - **能力查询**: 查询设备信息、内存、支持的操作
-- **实例工厂**: 创建后端实例(`init_backend`)
+- **实例工厂**: 创建后端实例 (`init_backend`)
 - **内存管理**: 提供该设备的内存类型
 
 ### ggml_backend_cuda_device_context - CUDA 设备上下文
@@ -2340,7 +2338,7 @@ struct ggml_backend {
 字段说明:
 
 - `guid`: 后端类型的全局唯一标识符
-- `iface`: 后端接口(函数指针表)
+- `iface`: 后端接口 (函数指针表)
 - `device`: **所属的**设备
 - `context`: 后端运行时上下文 (指向 `*_context`)
 
@@ -2392,7 +2390,7 @@ struct ggml_backend_i {
 
 设计意图:
 
-- **计算流**: 代表一个计算流/会话(类似 CUDA stream)
+- **计算流**: 代表一个计算流/会话 (类似 CUDA stream)
 - **多实例**: 同一设备可以创建多个后端实例
 - **状态隔离**: 每个实例有独立的运行时状态
 
@@ -2488,7 +2486,7 @@ struct ggml_backend_buffer_type_i {
 
 设计意图:
 
-- **内存类型**: 定义一类内存 (GPU内存、固定内存、统一内存等)
+- **内存类型**: 定义一类内存 (GPU 内存、固定内存、统一内存等)
 - **分配策略**: 定义如何分配和管理该类型的内存
 - **属性查询**: 对齐要求、最大大小等
 
@@ -2518,7 +2516,7 @@ struct ggml_backend_buffer {
 - `iface`: 缓冲区接口，所有缓冲区都要实现的接口
 - `buft`: 缓冲区类型
 - `context`: 缓冲区实例上下文
-- `size`: 缓冲区大小(字节)
+- `size`: 缓冲区大小 (字节)
 - `usage`: 使用类型 (`WEIGHTS/COMPUTE/ANY`)
 
 详解 `ggml_backend_buffer_i`:
@@ -2658,8 +2656,8 @@ struct ggml_xxx {
 };
 ```
 
-- 接口定义"能做什么"
-- 上下文存储"特定实现的数据"
+- 接口定义 " 能做什么 "
+- 上下文存储 " 特定实现的数据 "
 
 ### 3. 工厂模式
 
@@ -2780,7 +2778,7 @@ mnist_model mnist_model_init_from_file(const std::string & fname, const std::str
 
 `gguf_init_from_file` 之后，`model.ctx_weight` 是上图最下方的 `context`，而后 `ggml_backend_alloc_ctx_tensors` 就是根据 4 个 `object + tensor` 的信息分配 cuda memory，并且将 tensor 的数据指针 `void *data` 指向对应的 cuda memory 地址
 
-"将 tensor 的数据指针 `void *data` 指向对应的 cuda memory 地址" 的调用过程：
+" 将 tensor 的数据指针 `void *data` 指向对应的 cuda memory 地址 " 的调用过程：
 
 ```plaintext
 ggml_backend_alloc_ctx_tensors -> ggml_backend_alloc_ctx_tensors_from_buft -> alloc_tensor_range -> ggml_tallocr_alloc -> ggml_backend_tensor_alloc -> tensor->buffer = buffer; tensor->data = addr

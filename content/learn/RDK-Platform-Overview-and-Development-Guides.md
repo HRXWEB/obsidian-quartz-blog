@@ -32,7 +32,7 @@ updated: 2025-10-11T16:53:43.4343+08:00
 
 [[RDK-Deployment-Pitfalls-and-Solutions-Experience-Summary]]
 
-[[RDK数据排布与跨距对齐]]
+[[RDK-data-layout-and-alignment]]
 
 # 参考资料
 

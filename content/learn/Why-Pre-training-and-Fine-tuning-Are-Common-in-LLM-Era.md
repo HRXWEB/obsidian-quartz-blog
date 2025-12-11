@@ -1,6 +1,6 @@
 ---
 title: 为什么预训练和微调在LLM时代如此常见
-draft: true
+draft: 
 aliases: []
 tags: []
 created: 2025-09-29T16:46:57.5757+08:00
