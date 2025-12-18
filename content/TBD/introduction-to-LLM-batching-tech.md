@@ -11,7 +11,7 @@ url: https://www.53ai.com/news/LargeLanguageModel/2024091245931.html
 
 [大模型推理服务调度优化技术-Continuous batching - 53AI-AI知识库\|大模型知识库\|大模型训练\|智能体开发](https://www.53ai.com/news/LargeLanguageModel/2024091245931.html)
 
-本文是上面所贴链接文章的备份，如侵权请[联系我](rxhuang1014@gmail.com)删除。
+本文是上面所贴链接文章的备份，如侵权请[联系我](mailto:rxhuang1014@gmail.com)删除。
 
 ---
 

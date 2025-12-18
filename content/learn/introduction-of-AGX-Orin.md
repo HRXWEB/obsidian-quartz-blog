@@ -9,7 +9,7 @@ date:
 url: https://blog.csdn.net/qq_58728069/article/details/135934848
 ---
 
-本文是上面所贴链接文章的备份，如侵权请 [联系我](rxhuang1014@gmail.com) 删除。
+本文是上面所贴链接文章的备份，如侵权请 [联系我](mailto:rxhuang1014@gmail.com) 删除。
 
 ---
 

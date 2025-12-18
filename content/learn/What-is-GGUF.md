@@ -9,7 +9,7 @@ date:
 url: https://www.shepbryan.com/blog/what-is-gguf
 ---
 
-本文基本是上面所贴链接文章的备份，如侵权请[联系我](rxhuang1014@gmail.com)删除。
+本文基本是上面所贴链接文章的备份，如侵权请[联系我](mailto:rxhuang1014@gmail.com)删除。
 
 ---
 

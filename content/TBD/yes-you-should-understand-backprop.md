@@ -9,7 +9,7 @@ date:
 url: https://karpathy.medium.com/yes-you-should-understand-backprop-e2f06eab496b
 ---
 
-本文是上面所贴链接文章的备份，如侵权请[联系我](rxhuang1014@gmail.com)删除。
+本文是上面所贴链接文章的备份，如侵权请[联系我](mailto:rxhuang1014@gmail.com)删除。
 
 ---
 

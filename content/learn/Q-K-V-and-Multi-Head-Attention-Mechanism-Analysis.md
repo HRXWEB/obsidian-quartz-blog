@@ -9,7 +9,7 @@ date:
 url: https://zhuanlan.zhihu.com/p/669027091
 ---
 
-本文是上面所贴链接文章的备份，如侵权请 [联系我](rxhuang1014@gmail.com) 删除。
+本文是上面所贴链接文章的备份，如侵权请 [联系我](mailto:rxhuang1014@gmail.com) 删除。
 
 ---
 

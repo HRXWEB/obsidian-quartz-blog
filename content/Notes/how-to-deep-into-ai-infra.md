@@ -9,7 +9,7 @@ URL: https://www.woshipm.com/ai/6304481.html
 date:
 ---
 
-转载受限，请点击查看原文阅读。如侵权请 [联系我](rxhuang1014@gmail.com) 删除。
+转载受限，请点击查看原文阅读。如侵权请 [联系我](mailto:rxhuang1014@gmail.com) 删除。
 
 ---
 
