@@ -1,6 +1,6 @@
 ---
 draft:
-aliases: [hrxweb, rickyyel]
+aliases: []
 tags: []
 title: Welcome To My Digital Garden
 created: 2025-09-16T16:07:20.2020+08:00
