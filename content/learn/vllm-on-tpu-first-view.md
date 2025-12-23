@@ -1,10 +1,10 @@
 ---
-title: 【深度解析】vLLM on TPU：统一 PyTorch & JAX 后端，LLM 推理性能再升级
+title: vLLM on TPU：统一 PyTorch & JAX 后端，LLM 推理性能再升级
 draft: false
 aliases: []
 tags: []
 created: 2025-10-24T12:49:21.2121+08:00
-updated: 2025-12-11T15:33:49.4949+08:00
+updated: 2025-12-23T14:02:17.1717+08:00
 ---
 
 # 原文
