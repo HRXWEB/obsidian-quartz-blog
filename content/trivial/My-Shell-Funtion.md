@@ -50,4 +50,4 @@ unset -f source_shell_utils
 
 [[CUDA版本管理cuda_switcher.sh]]
 
-[[使用nmtui-nmcli控制Wi-Fi连接]]
+[[use-nmtui-or-nmcli-to-connect-to-wifi]]

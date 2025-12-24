@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: 使用nmtui-nmcli控制Wi-Fi连接
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:19.1919+08:00
+updated: 2025-12-24T15:20:32.3232+08:00
 ---
 
 > NetworkManager 是一个**为系统提供检测和配置功能以便自动连接到网络的程序**，最初由 Red Hat 开发，现在由 GNOME 管理。
@@ -151,5 +151,5 @@ printf "按任意键关闭。\n" && read -n1
 
 # 参考
 
-1. [https://www.reddit.com/r/commandline/comments/x79nn3/looking_for_a_nmtui_that_would_be_able_to/](https://www.reddit.com/r/commandline/comments/x79nn3/looking_for_a_nmtui_that_would_be_able_to/)
-2. [https://blog.csdn.net/Mculover666/article/details/126267263](https://blog.csdn.net/Mculover666/article/details/126267263)
+1. [Looking for a nmtui that would be able to discover/refresh to find new Wi-Fi networks : r/commandline](https://www.reddit.com/r/commandline/comments/x79nn3/looking_for_a_nmtui_that_would_be_able_to/)
+2. [Linux NetworkManager 的使用方法（nmcli和nmtui）-CSDN博客](https://blog.csdn.net/Mculover666/article/details/126267263)

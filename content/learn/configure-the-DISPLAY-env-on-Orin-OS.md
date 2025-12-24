@@ -39,4 +39,4 @@ echo $XAUTHORITY
 
 # 相关连接
 
-[[配置X11Forward显示远程图形界面]]
+[[configure-X11Forward-to-display-remote-GUI]]

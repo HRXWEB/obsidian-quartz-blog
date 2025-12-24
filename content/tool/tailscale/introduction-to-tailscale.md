@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: tailscale 简介
+draft: true
 aliases: []
 tags: []
 created: 2025-09-24T16:54:25.2525+08:00
-updated: 2025-10-10T18:10:51.5151+08:00
+updated: 2025-12-23T16:01:04.044+08:00
 ---
 
 # 原理

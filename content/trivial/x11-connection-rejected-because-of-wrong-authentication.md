@@ -9,7 +9,7 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 # 表现
 
-经过 [[配置X11Forward显示远程图形界面]] 后， `xeyes` 可以正常使用。
+经过 [[configure-X11Forward-to-display-remote-GUI]] 后， `xeyes` 可以正常使用。
 
 但是运行某个程序时出现 `x11 connection rejected because of wrong authentication`
 
