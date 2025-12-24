@@ -426,7 +426,7 @@ ImportError: /usr/local/lib/python3.12/dist-packages/vllm/_C.abi3.so: undefined 
 > - 符号名 `_ZN3c108ListType3get...` 看起来是经过 C++ 名称重整 (name mangling) 后的名字。`c10` 通常是 PyTorch (libtorch) 中的一个核心命名空间。这个符号很可能是在 PyTorch 的某个版本中定义的 `c10::ListType::get` 方法。
 > - 错误表明，`vllm/_C.abi3.so` 在编译时依赖于某个版本的 PyTorch 库，并使用了其中定义的 `c10::ListType::get` 函数。但在你的系统上加载 `vllm/_C.abi3.so` 时，动态链接器未能找到这个符号的定义，这通常意味着：
 >     - **PyTorch 没有正确安装**，或者安装的版本不对。
->     - **安装的 PyTorch 版本与编译** `**vllm/_C.abi3.so**` **时使用的 PyTorch 版本不兼容**。这个符号的签名（函数参数、返回类型等）可能在 PyTorch 的不同版本之间发生了变化，导致名称重整后的符号名不匹配。这是使用依赖特定 C++ 库的 Python 扩展时非常常见的问题。
+>     - **安装的 PyTorch 版本与编译** `vllm/_C.abi3.so` **时使用的 PyTorch 版本不兼容**。这个符号的签名（函数参数、返回类型等）可能在 PyTorch 的不同版本之间发生了变化，导致名称重整后的符号名不匹配。这是使用依赖特定 C++ 库的 Python 扩展时非常常见的问题。
 
 一开始我去看官方提供的镜像里面，是 `torch 2.7.0a0+79aa17489c.nv25.4`，所以直接
 

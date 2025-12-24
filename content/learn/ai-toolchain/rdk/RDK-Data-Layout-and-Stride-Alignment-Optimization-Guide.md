@@ -17,7 +17,7 @@ updated: 2025-10-11T16:54:52.5252+08:00
 > [!important]
 > 
 > - 对于 **HB_DNN_IMG_TYPE_NV12** ，要求模型输入的 H&W 必须为偶数。
-> - `HB_DNN_IMG_TYPE_NV12` 以及 `HB_DNN_IMG_TYPE_Y` 这两种数据类型的对齐规则是只要求W为16的倍数，不需要完全按照 `*alignedShape**` 进行对齐。
+> - `HB_DNN_IMG_TYPE_NV12` 以及 `HB_DNN_IMG_TYPE_Y` 这两种数据类型的对齐规则是只要求W为16的倍数，不需要完全按照 `*alignedShape` 进行对齐。
 
 # BPU 跨距对齐
 

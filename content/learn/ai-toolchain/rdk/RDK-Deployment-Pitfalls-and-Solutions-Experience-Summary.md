@@ -32,7 +32,7 @@ typedef struct {
 } hbDNNTensorProperties;
 ```
 
-具体来说，比如有一个模型的浮点输出 `validShape = 1x448x1280x`==`**1**`==，编译后的输出则是 `alignedShape = 1x448x1280x`==`**8**`== 。可以看到 C 通道 pad 到 8。
+具体来说，比如有一个模型的浮点输出 `validShape = 1x448x1280x`==`1`==，编译后的输出则是 `alignedShape = 1x448x1280x`==`8`== 。可以看到 C 通道 pad 到 8。
 
 # 原因
 

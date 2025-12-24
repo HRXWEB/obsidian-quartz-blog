@@ -16,7 +16,7 @@ updated: 2025-10-12T15:21:30.3030+08:00
 
 # 具体使用
 
-`target_link_options` 引入了一个特殊的 **`LINKER:`** 前缀，CMake 会自动将其转换为当前平台和编译器所需的正确语法。
+`target_link_options` 引入了一个特殊的 `LINKER:` 前缀，CMake 会自动将其转换为当前平台和编译器所需的正确语法。
 
 ```cmake
 target_link_options(my_target PRIVATE

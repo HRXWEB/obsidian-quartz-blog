@@ -76,4 +76,4 @@ brew install minicom
     # 4. Exit，记住不要选择(Exit from Minicom)
     ```
     
-- 设置波特率: `sudo minicom -b <baud/rate``**> -D <path/to/device>**`
+- 设置波特率: `sudo minicom -b <baud/rate``> -D <path/to/device>`

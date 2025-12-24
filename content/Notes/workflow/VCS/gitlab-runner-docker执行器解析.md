@@ -17,7 +17,7 @@ Runtime platform                                    arch=amd64 os=linux pid=1976
    --docker-service-cpus value                                                                Number of CPUs for service [$DOCKER_SERVICE_CPUS]
 ```
 
-可以看到 cpus 分为 ==`**--docker-cpus**`== ==**和**== ==`**--docker-service-cpus**`==
+可以看到 cpus 分为 ==`--docker-cpus`== ==**和**== ==`--docker-service-cpus`==
 
 这个设计是为什么呢？
 

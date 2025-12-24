@@ -58,7 +58,7 @@ This model supports multiple tasks: {'generate', 'score', 'classify', 'embed', '
 
 ## [LoRA Adapters](https://docs.vllm.ai/en/latest/features/lora.html)
 
-LoRA adapters can be used with any vLLM model that implements `**[SupportsLoRA](https://docs.vllm.ai/en/latest/api/model/interfaces.html#vllm.model_executor.models.interfaces.SupportsLoRA)**`.
+LoRA adapters can be used with any vLLM model that implements `[SupportsLoRA](https://docs.vllm.ai/en/latest/api/model/interfaces.html#vllm.model_executor.models.interfaces.SupportsLoRA)`.
 
 > 通过在大型语言模型的特定层中插入低秩矩阵来实现高效的模型微调。这种方法减少了需要更新的参数数量，从而降低了计算和存储成本，同时保持模型性能。LoRA adapters 可以在不改变原始模型权重的情况下，快速适应新的任务或数据。
 
@@ -216,10 +216,10 @@ why do this：
 
 ## [Multimodal Inputs](https://docs.vllm.ai/en/latest/serving/multimodal_inputs.html#)
 
-To input multi-modal data, follow this schema in `**[vllm.inputs.PromptType](https://docs.vllm.ai/en/latest/api/offline_inference/llm_inputs.html#vllm.inputs.PromptType)**`:
+To input multi-modal data, follow this schema in `[vllm.inputs.PromptType](https://docs.vllm.ai/en/latest/api/offline_inference/llm_inputs.html#vllm.inputs.PromptType)`:
 
 - `prompt`: The prompt should follow the format that is documented on HuggingFace.
-- `multi_modal_data`: This is a dictionary that follows the schema defined in `**[vllm.multimodal.inputs.MultiModalDataDict](https://docs.vllm.ai/en/latest/api/multimodal/inputs.html#vllm.multimodal.inputs.MultiModalDataDict)**`.
+- `multi_modal_data`: This is a dictionary that follows the schema defined in `[vllm.multimodal.inputs.MultiModalDataDict](https://docs.vllm.ai/en/latest/api/multimodal/inputs.html#vllm.multimodal.inputs.MultiModalDataDict)`.
 - offline inference
     - Image
     - Video

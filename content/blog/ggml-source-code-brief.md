@@ -240,7 +240,7 @@ GGUF 是为了 LLM 的高效推理设计的，而 LLM 的架构通常是**相对
 提出的核心原因：
 
 1. 解决 GGML 格式的限制：解决了 GGML 格式在元数据存储和可扩展性方面的问题。提供了一种更清晰、更结构化的方式来存储模型参数和架构信息。
-2. 统一模型和元数据：在 huggingface 上，如 [llama3.1-8b](https://huggingface.co/meta-llama/Llama-3.1-8B/tree/main) 被分成好几个文件 `tokenizer.json` `config.json` `**.safetensors` 等。而 GGUF 的目标是将所有必要的信息（权重、分词器、架构参数、提示模版等）统一存储在一个二进制文件中，极大地简化了模型的分享和部署
+2. 统一模型和元数据：在 huggingface 上，如 [llama3.1-8b](https://huggingface.co/meta-llama/Llama-3.1-8B/tree/main) 被分成好几个文件 `tokenizer.json` `config.json` `.safetensors` 等。而 GGUF 的目标是将所有必要的信息（权重、分词器、架构参数、提示模版等）统一存储在一个二进制文件中，极大地简化了模型的分享和部署
 3. 应对 LLM 架构和**量化**的快速发展：随着 GQA、MQA 以及各种新的量化方法（如 Q5_K、Q4_K_M）的出现，需要一个格式能够**灵活地**支持不断变化的参数和技术，同时保持对旧模型的兼容性
 
 设计考量：

@@ -30,7 +30,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > s_instance = this;
 > ```
 > 
-> 在 `**Profiler**` 构造函数中，Tracy 通过断言确保只有一个实例存在，并将该实例赋值给全局静态指针 `**s_instance**`。 TracyProfiler.cpp:1658-1660:
+> 在 `Profiler` 构造函数中，Tracy 通过断言确保只有一个实例存在，并将该实例赋值给全局静态指针 `s_instance`。 TracyProfiler.cpp:1658-1660:
 > 
 > ```cpp
 > assert( s_instance );
@@ -40,7 +40,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 
 > ### **全局队列和状态管理**
 > 
-> 每个 Tracy 实例确实拥有自己的 `**moodycamel::ConcurrentQueue**`： TracyProfiler.cpp:1362:
+> 每个 Tracy 实例确实拥有自己的 `moodycamel::ConcurrentQueue`： TracyProfiler.cpp:1362:
 > 
 > ```cpp
 > moodycamel::ConcurrentQueue<QueueItem> init_order(103) s_queue( QueuePrealloc );
@@ -57,7 +57,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 
 > Tracy 文档明确说明了多 DLL 项目的问题和解决方案： tracy.tex:557-559
 > 
-> 正确的做法是创建一个专门的 profiler DLL，让所有其他 DLL 都链接到这个共享的 Tracy 实例，而不是在每个 DLL 中都编译 `**TracyClient.cpp**`。 tracy.tex:559-561：
+> 正确的做法是创建一个专门的 profiler DLL，让所有其他 DLL 都链接到这个共享的 Tracy 实例，而不是在每个 DLL 中都编译 `TracyClient.cpp`。 tracy.tex:559-561：
 > 
 > ```latex
 > Things are a bit different in projects that consist of multiple DLLs/shared objects. Compiling \texttt{TracyClient.cpp} into every DLL is not an option because this would result in several instances of Tracy objects lying around in the process. We instead need to pass their instances to the different DLLs to be reused there.
@@ -80,11 +80,11 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 > 
 > ### **解决方案**
 > 
-> 对于您的情况（`**libnrt.so**` 和 `**dataflow_py.so**`），应该：
+> 对于您的情况（`libnrt.so` 和 `dataflow_py.so`），应该：
 > 
 > 1. 创建一个共享的 Tracy 动态库
 > 2. 确保两个 DLL 都链接到同一个 Tracy 实例
-> 3. 在 Windows 上使用 `**TRACY_IMPORTS**` 定义： tracy.tex:561
+> 3. 在 Windows 上使用 `TRACY_IMPORTS` 定义： tracy.tex:561
 >     
 >     ```latex
 >     If you are targeting Windows with Microsoft Visual Studio or MinGW, add the \texttt{TRACY\_IMPORTS} define to your application.
@@ -109,7 +109,7 @@ A 和 B 的 `CMakeLists.txt` 都写下了 `add_subdirectory(tracy)` 源码编译
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20251012174626153.png)
 
-### `**mmap**` **调用**
+### `mmap` **调用**
 
 - **2641098**:
     - 多次调用 `mmap` 分配匿名内存区域，大小分别为：

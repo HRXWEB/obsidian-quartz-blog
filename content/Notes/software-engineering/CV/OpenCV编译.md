@@ -53,4 +53,4 @@ updated: 2025-10-12T16:05:35.3535+08:00
 
 每一个目录都对应了一个 library，比如：
 
-`${OPENCV_MODULE_opencv_highgui_LOCATION}/``**include**` **对应** `**opencv_highgui**` **这个库**
+`${OPENCV_MODULE_opencv_highgui_LOCATION}/``include` **对应** `opencv_highgui` **这个库**

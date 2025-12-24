@@ -19,6 +19,6 @@ updated: 2025-10-12T17:40:25.2525+08:00
 >  
 > [https://iterm2-color-schemes-preview.vercel.app/](https://iterm2-color-schemes-preview.vercel.app/)  
 
-目前选择的是 `**DimmedMonokai**`
+目前选择的是 `DimmedMonokai`
 
 [DimmedMonokai.itermcolors](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-assets@main/assets/DimmedMonokai.itermcolors)

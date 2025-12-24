@@ -162,7 +162,7 @@ dind_gpu_test_job:
         4. 它负责**实际执行** Docker 命令，如 `docker build`, `docker run`，并创建第 4 层的容器。
 - **层级关系**:
     - 两者均由第 2 层 (Runner Executor) 创建。
-    - 第 2 层必须将 GPU 访问权限和特权模式传递给**服务容器 (**`**docker:dind**`**)**，因为它才是真正需要管理硬件设备的 Docker Daemon。
+    - 第 2 层必须将 GPU 访问权限和特权模式传递给**服务容器 (`docker:dind`)**，因为它才是真正需要管理硬件设备的 Docker Daemon。
     - 作业容器通过网络与服务容器通信，形成 C/S (Client/Server) 架构。
 
 ## 第 4 层: DinD 管理的容器 (Dynamically Created Container)
@@ -171,7 +171,7 @@ dind_gpu_test_job:
 - **定义来源**: 作业容器（第 3 层）中执行的 `script:` 命令。
 - **核心职责**: 运行最终的业务负载，例如AI训练、数据处理、单元测试等。这是**实际使用 GPU** 的环境。
 - **层级关系**:
-    - 它是**第 3 层服务容器 (**`**docker:dind**`**) 的子容器**。
+    - 它是**第 3 层服务容器 (`docker:dind`) 的子容器**。
     - 它的创建、资源分配和生命周期完全由第 3 层的 `docker:dind` 守护进程管理。
     - 它能否获得 GPU，完全取决于它的父进程（`docker:dind` 守护进程）是否拥有 GPU 的访问和分配权限。
 

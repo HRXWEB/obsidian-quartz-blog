@@ -26,7 +26,7 @@ Transform transform
 
 # 🥪如何理解 transform 字段
 
-注释明确说明了，这个消息表达的是一个**从** `**header.frame_id**` **坐标系**到 `**child_frame_id**` **坐标系**的变换。
+注释明确说明了，这个消息表达的是一个**从** `header.frame_id` **坐标系**到 `child_frame_id` **坐标系**的变换。
 
 ## 如何理解这个转换过程？(这个这个没错！！虽然反直觉）
 
@@ -60,8 +60,8 @@ Transform transform
 
 假设我们有两个坐标系：
 
-- **父坐标系** `**base_link**`：机器人的基座。
-- **子坐标系** `**camera_link**`：安装在机器人上的一个摄像头。
+- **父坐标系** `base_link`：机器人的基座。
+- **子坐标系** `camera_link`：安装在机器人上的一个摄像头。
 
 `TransformStamped` 消息会这样设置：
 
@@ -94,7 +94,7 @@ Transform transform
 
 ### 2. ROS `geometry_msgs/TransformStamped` (Parent to Child)
 
-正如我们之前讨论的，`TransformStamped` 描述的是**从父坐标系 (**`**header.frame_id**`**) 到子坐标系 (**`**child_frame_id**`**) 的变换**。
+正如我们之前讨论的，`TransformStamped` 描述的是**从父坐标系 (`header.frame_id`) 到子坐标系 (`child_frame_id`) 的变换**。
 
 这个 `transform` 字段本身代表了子坐标系在父坐标系中的“位姿”（Pose）。它的作用是将一个在**子坐标系**下的点 `P_child`，转换到**父坐标系**下，得到 `P_parent`。
 
@@ -116,9 +116,9 @@ Transform transform
 
 对比这两个公式，您会发现它们描述的变换方向正好相反。因此，它们互为逆矩阵：
 
-`**T_world_camera**` **= (**`**M_ext**`**)⁻¹**
+`T_world_camera` **= (`M_ext`)⁻¹**
 
-`**M_ext**` **= (**`**T_world_camera**`**)⁻¹**
+`M_ext` **= (`T_world_camera`)⁻¹**
 
 ### 总结
 

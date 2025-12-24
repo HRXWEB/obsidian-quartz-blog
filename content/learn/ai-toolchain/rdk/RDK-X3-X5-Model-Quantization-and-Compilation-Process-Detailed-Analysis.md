@@ -165,7 +165,7 @@ hb_mapper makertbin --config ${config_file}  \
 
 - model_parameters.node_info: 可以配置 计算 op 的硬件、输入数据类型、输出数据类型。
     - node_info 在指定输入/输出类型为 int16 的时候：==**在您配置了某个 op 输入/输出数据类型为 int16 后，模型转换内部会自动进行 op 输入输出上下文（context）int16 配置的更新和检查。 例如，当配置 op_1 输入/输出数据类型为 int16 时，实际上潜在同时指定了 op_1 的上/下一个 op 需要支持以 int16 计算。 对于不支持的场景，模型转换工具会打印 log 提示该 int16 配置组合暂时不被支持并回退到 int8 计算。**==
-- input_parameters.norm_type/mean_value/scale_value: 用来设置预处理减均值除方差的过程，如果有配置的话，会生成一个 `**HzPreprocess**` 算子插入到输入节点后面做归一化操作。
+- input_parameters.norm_type/mean_value/scale_value: 用来设置预处理减均值除方差的过程，如果有配置的话，会生成一个 `HzPreprocess` 算子插入到输入节点后面做归一化操作。
 - calibration_parameters.calibration_type: 取值范围是 `default` `mix` `kl` `max` `load` `skip` 。==**使用 skip 可以先用随机数校准，适合对模型结构进行验证。**==
 - calibration_parameters.cal_data_dir: 如果 dir 有后缀如 _f32 可以不需要指定 cal_data_type。但是建议显式指定 cal_data_type
 - calibration_parameters.run_on_cpu: deprecated

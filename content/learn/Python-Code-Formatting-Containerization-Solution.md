@@ -13,8 +13,8 @@ updated: 2025-10-11T17:27:11.1111+08:00
 
 # 方案构成要素
 
-- `**formatter**` **镜像**：一个包含`black`, `ruff`等工具的Docker镜像，作为环境中唯一的“事实来源”。
-- **执行脚本 (**`**format.sh**`**)**：一个简单的Shell脚本，封装了 `docker run` 命令，方便开发者在本地调用。
+- `formatter` **镜像**：一个包含`black`, `ruff`等工具的Docker镜像，作为环境中唯一的“事实来源”。
+- **执行脚本 (`format.sh`)**：一个简单的Shell脚本，封装了 `docker run` 命令，方便开发者在本地调用。
 - **Pre-commit 集成**：修改 `.pre-commit-config.yaml`，让它在提交时调用我们的执行脚本。
 - **CI/CD 集成**：修改 `.gitlab-ci.yml`，直接使用我们的`formatter`镜像作为作业的运行环境。
 

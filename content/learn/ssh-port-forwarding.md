@@ -9,7 +9,7 @@ updated: 2025-12-24T14:56:28.2828+08:00
 
 # 转发选项
 
-- `**-L local_port:destination_host:destination_port**` **(本地端口转发 Local Port Forwrding):**
+- `-L local_port:destination_host:destination_port` **(本地端口转发 Local Port Forwrding):**
     - **工作方式:** 在**本地机器**上创建一个监听端口 (`local_port`)。当本地应用程序 (Foxglove Studio) 连接到这个本地端口时，SSH 会将这个连接通过安全隧道转发到你 SSH 连接到的远程机器，并由远程机器再连接到 `destination_host:destination_port`。
     - **用途:** 当希望**本地的客户端应用**访问一个**远程服务器上的服务**时使用。
     - **场景举例:**
@@ -19,10 +19,10 @@ updated: 2025-12-24T14:56:28.2828+08:00
             - `8765` (本地): 本地机器开始监听 `8765` 端口。
             - `127.0.0.1:8765` (目标，相对于远程 SSH 服务器 `192.168.123.139` 而言): 当 Foxglove Studio 连接到本地 `8765` 时，SSH 隧道会将这个连接请求转发给 `192.168.123.139`，并告诉它去连接它自己的 `127.0.0.1:8765` (也就是 `192.168.123.139:8765` 上的 Foxglove Bridge)。
         - Foxglove Studio 连接 `ws://localhost:8765`。这个连接被 SSH 捕获并转发。
-- `**-R remote_port:destination_host:destination_port**` **(远程端口转发 Remote Port Forwarding):**
+- `-R remote_port:destination_host:destination_port` **(远程端口转发 Remote Port Forwarding):**
     - **工作方式:** 在 SSH 连接到的**远程机器**上创建一个监听端口 (`remote_port`)。当远程机器上的某个应用或外部请求连接到这个 `remote_port` 时，SSH 会将这个连接通过安全隧道转发回**本地机器**，并由本地机器再连接到 `destination_host:destination_port` (通常是本地机器上的某个服务)。
     - **用途:** 当希望**远程网络中的客户端**访问一个运行在**本地机器上的服务**时使用。例如，家里电脑上运行了一个 web 服务，想让在公司网络的朋友通过公网 VPS 访问它。
-- `**-D port**` **(动态端口转发 Dynamic Port Forwarding):**
+- `-D port` **(动态端口转发 Dynamic Port Forwarding):**
     - **工作方式:** 在本地机器上创建一个 SOCKS 代理服务器。应用程序配置为使用这个 SOCKS 代理后，其所有流量都会通过 SSH 隧道转发。
     - **用途:** 更通用的代理需求，不限于特定端口。
 
