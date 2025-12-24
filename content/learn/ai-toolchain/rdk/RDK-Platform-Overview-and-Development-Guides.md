@@ -26,9 +26,9 @@ updated: 2025-10-11T16:53:43.4343+08:00
 
 [[RDK-X3-X5-Model-Quantization-and-Compilation-Process-Detailed-Analysis]]
 
-[[TBD-BPU-Model-Performance-Evaluation]]
+[[BPU-Model-Performance-Evaluation]]
 
-[[TBD-BPU-Model-Accuracy-Evaluation]]
+[[BPU-Model-Accuracy-Evaluation]]
 
 [[RDK-Deployment-Pitfalls-and-Solutions-Experience-Summary]]
 

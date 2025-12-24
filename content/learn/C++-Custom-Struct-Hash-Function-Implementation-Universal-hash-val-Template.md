@@ -4,12 +4,10 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-16T15:24:38.3838+08:00
-updated: 2025-10-12T16:18:59.5959+08:00
+updated: 2025-12-24T15:28:34.3434+08:00
 ---
 
-对于自定义的结构体，如果需要作为要求元素是可哈希的容器的元素，那么就需要自定义hash函数。STL中这样的容器有：`std::unordered_map`、`std::unordered_set`、`std::unordered_multimap`、`std::unordered_multiset`。
-
-<!--more-->
+对于自定义的结构体，如果需要作为要求元素是可哈希的容器的元素，那么就需要自定义 hash 函数。STL 中这样的容器有：`std::unordered_map`、`std::unordered_set`、`std::unordered_multimap`、`std::unordered_multiset`。
 
 # 万能的 hash function
 
@@ -50,7 +48,7 @@ inline size_t hash_val(const Types&... args)
 
 # 用例
 
-## 需要被hash的对象
+## 需要被 hash 的对象
 
 ```cpp
 #include <string>
@@ -62,7 +60,7 @@ struct Custom
 };
 ```
 
-## 实现方法1--以仿函数的形式定义哈希函数
+## 实现方法 1-- 以仿函数的形式定义哈希函数
 
 ```cpp
 struct CustomHash
@@ -103,7 +101,7 @@ int main()
 }
 ```
 
-## 实现方法2--以struct hash 偏特化的形式实现哈希函数
+## 实现方法 2-- 以 struct hash 偏特化的形式实现哈希函数
 
 ==必须放在 std 命名空间内==
 
@@ -142,6 +140,6 @@ int mian() {
 
 # 参考资料
 
-1. 《C++ STL》 by 侯捷 《40-一个万用的 hash function》
+1. 《C++ STL》 by 侯捷 《40- 一个万用的 hash function》
 2. [C++ STL源码分析——一个万用的 hash function](https://blog.csdn.net/ZLP_CSDN/article/details/104717463)
 

@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:24.2424+08:00
-updated: 2025-10-10T18:10:20.2020+08:00
+updated: 2025-12-24T15:54:38.3838+08:00
 ---
 
 # Application
@@ -26,11 +26,11 @@ updated: 2025-10-10T18:10:20.2020+08:00
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
     
-3. Alfred5 [[content/workflow/alfred5/alfred5-workflow]]
-4. CLion && PyCharm
-5. [[clion和系统的热键冲突]]
-6. 微信、网易邮箱大师、飞书、foxglove studio
-7. docker without desktop
+1. [[Alfred5-Workflow-Collection-Practical-Tools-and-Configuration-Guide]]
+2. CLion && PyCharm
+3. [[clion和系统的热键冲突]]
+4. 微信、网易邮箱大师、飞书、foxglove studio
+5. docker without desktop
 
     为什么要选择 without desktop: [https://v2ex.com/t/888735](https://v2ex.com/t/888735)
 
@@ -55,7 +55,7 @@ updated: 2025-10-10T18:10:20.2020+08:00
     #### 现在 ####
     ```
     
-8. `brew install minicom`
+6. `brew install minicom`
 
 # oh-my-zsh
 
@@ -69,7 +69,7 @@ sed -i '' '/^ZSH_THEME=/s/ZSH_THEME="[^"]*"/ZSH_THEME="mydpoggi"/' ~/.zshrc
 cat ~/.zshrc | grep ZSH_THEME
 ```
 
-# anaconda
+# miniforge3
 
 ```bash
 brew install --cask anaconda
@@ -79,7 +79,7 @@ source ~/.zshrc
 
 # 切换启动盘
 
-开机时按住 Option 键。蓝牙键盘调成2.4G模式。
+开机时按住 Option 键。蓝牙键盘调成 2.4G 模式。
 
 # 安装各种额外的程序
 

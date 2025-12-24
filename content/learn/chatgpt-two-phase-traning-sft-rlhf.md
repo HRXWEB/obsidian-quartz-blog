@@ -1,6 +1,6 @@
 ---
 title: 两阶段训练：SFT+RLHF
-draft:
+draft: false
 aliases: []
 tags: []
 created: 2025-09-24T16:54:24.2424+08:00

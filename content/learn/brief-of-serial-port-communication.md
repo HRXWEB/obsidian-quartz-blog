@@ -1,25 +1,28 @@
 ---
-title: 
-draft: 
+title: 串口通讯
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-11T16:34:20.2020+08:00
+updated: 2025-12-24T16:01:34.3434+08:00
 ---
 
 串口通信可以按照三个层次来理解：
 
-1. 物理层：描述了0、1逻辑信号和声、光、电压等物理信号之间的映射关系
+1. 物理层：描述了 0、1 逻辑信号和声、光、电压等物理信号之间的映射关系
     1. 常见协议：RS232、RS485
-2. 数据链路层：字节数据与01比特流之间的映射关系
+2. 数据链路层：字节数据与 01 比特流之间的映射关系
     1. 常见协议：UART（异步）、SPI（同步）、I2C（同步）
 	    ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926141358250.png)
+图源：[匹尔西@bilibili](https://www.bilibili.com/video/BV1aB2mYLEfo/?share_source=copy_web&vd_source=356d2b526f97eb59b39fdd86ce54f1f3)
 3. 应用层：通信双方应用程序所发送和接收的数据，可以广义理解成字节到指令的映射
     1. 常见协议：Modbus、Profibus、CC-link
 
 图解三层数据的流动：
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926141537541.png)
+
+图源：[匹尔西@bilibili](https://www.bilibili.com/video/BV1aB2mYLEfo/?share_source=copy_web&vd_source=356d2b526f97eb59b39fdd86ce54f1f3)
 
 # 参考
 

@@ -273,8 +273,8 @@ hb_mapper makertbin --config ${config_file}  \
 
 # 性能评估
 
-[[TBD-BPU-Model-Performance-Evaluation]]
+[[BPU-Model-Performance-Evaluation]]
 
 # 精度评估
 
-[[TBD-BPU-Model-Accuracy-Evaluation]]
+[[BPU-Model-Accuracy-Evaluation]]
