@@ -1,10 +1,10 @@
 ---
-title: 
-draft: 
+title: 使用 clang 交叉编译
+draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:26.2626+08:00
-updated: 2025-10-10T18:10:19.1919+08:00
+updated: 2025-12-25T12:55:21.2121+08:00
 ---
 
 > [!info] Cross-compilation using Clang — Clang 20.0.0git documentation  
@@ -17,15 +17,14 @@ updated: 2025-10-10T18:10:19.1919+08:00
 
 ## 标准库
 
-|   |   |   |
-|---|---|---|
-||Clang|GNU GCC|
-|c|glibc|glibc|
-|c++|libc++|libstdc++|
+|     | Clang  | GNU GCC   |
+| --- | ------ | --------- |
+| c   | glibc  | glibc     |
+| c++ | libc++ | libstdc++ |
 
-Q：交叉编译工具链都会自带标准库的实现，clang也有自己实现的标准库，会链接到哪一个呢？
+Q：交叉编译工具链都会自带标准库的实现，clang 也有自己实现的标准库，会链接到哪一个呢？
 
-（兼容libstdc++，默认是libc++，通过-stdlib指定)
+（兼容 libstdc++，默认是 libc++，通过 -stdlib 指定)
 
 # 换源
 
@@ -52,12 +51,12 @@ CMake Error at /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake
   Could NOT find OpenMP_C (missing: OpenMP_C_FLAGS OpenMP_C_LIB_NAMES)
 ```
 
-rootfs下不存在 libomp.so.5
+rootfs 下不存在 libomp.so.5
 
 ![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20250926135223590.png)
 
 1. 宿主机安装了 `apt install libomp-dev` 仍然报错
-2. roofts安装了 `libomp-dev` 应该是解决了，CLion 要 `reset cache and reload project` 才行
+2. roofts 安装了 `libomp-dev` 应该是解决了，CLion 要 `reset cache and reload project` 才行
 
 ## 2.
 

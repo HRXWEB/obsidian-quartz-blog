@@ -4,7 +4,7 @@ draft:
 aliases: []
 tags: []
 created: 2025-09-24T16:54:23.2323+08:00
-updated: 2025-10-10T18:10:52.5252+08:00
+updated: 2025-12-25T12:48:52.5252+08:00
 ---
 
 # Jetson board
@@ -14,8 +14,6 @@ updated: 2025-10-10T18:10:52.5252+08:00
 [[Nvidia-Linux-Archive]]
 
 [[Nvidia-Linux-Developer-Guide]]
-
-[[AGX-Orin]]
 
 [[NanoLLM]]
 
@@ -34,8 +32,6 @@ updated: 2025-10-10T18:10:52.5252+08:00
 ---
 
 # Robotics
-
-[[Issac-Sim-4.5-release-note]]
 
 ---
 
@@ -57,11 +53,11 @@ updated: 2025-10-10T18:10:52.5252+08:00
 
 # GPU 术语
 
-[[gpu术语]]
+[[gpu-glossary-notes]]
 
 [[SIMT]]
 
-SM发展历史：[https://fabiensanglard.net/cuda/](https://fabiensanglard.net/cuda/)
+SM 发展历史：[https://fabiensanglard.net/cuda/](https://fabiensanglard.net/cuda/)
 
 [[CUDA-vs-CUDA-Toolkit-vs-NVCC-vs-cuDNN]]
 
@@ -84,5 +80,3 @@ SM发展历史：[https://fabiensanglard.net/cuda/](https://fabiensanglard.net/c
     # tar 命令默认保持 link，如果想作为普通文件，那就 -cvhf（即加上 -h 参数）
     tar -cvf - /path/to/local_source_dir | ssh user@remote_host "tar -C /path/to/remote_destination_dir -xvf -"
     ```
-
-[[如何清理docker空间]]

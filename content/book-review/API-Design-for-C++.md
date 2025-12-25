@@ -4,7 +4,7 @@ draft: true
 aliases: []
 tags: []
 created: 2025-12-18T19:15:46.4646+08:00
-updated: 2025-12-23T11:16:21.2121+08:00
+updated: 2025-12-25T11:11:34.3434+08:00
 Author: Martin Reddy
 Category:
 Rating: ⭐️⭐️⭐️⭐️⭐️
@@ -23,6 +23,7 @@ Rating: ⭐️⭐️⭐️⭐️⭐️
 - **需求文档**描述 API 的功能，**用户使用示例**从用户使用的角度考虑组合 API，二者结合使用。
 - 架构文档中要描述高层次架构和设计的合理性，比较不同的设计和权衡，解释最终的结构为什么最优？
 - 继承提供动态多态，模板提供静态多台。
+- [[prefer-to-return-by-value-rather-than-const-reference|返回值优于返回常量引用]]
 
 # Highlight 摘选
 
