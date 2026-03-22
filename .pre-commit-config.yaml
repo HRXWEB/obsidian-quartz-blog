@@ -1,12 +1,12 @@
 repos:
 -   repo: local
     hooks:
-    -   id: update-assets-submodule
-        name: "Update and push assets submodule"
-        entry: ./scripts/push_attachments_submodule.sh
+    -   id: push-all-submodules
+        name: "Push all submodules to remote"
+        entry: ./scripts/push_all_submodules.sh
         language: system
         stages: [pre-commit]
-        always_run: true # 确保每次 commit 都检查 submodule
+        always_run: true
 
     -   id: convert-obsidian-links
         name: "Convert Obsidian links to CDN links"
