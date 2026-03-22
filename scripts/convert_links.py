@@ -19,6 +19,9 @@ FILELINK_RE = re.compile(r"!\[\[([^\]]+?)\]\]")
 def convert_link(match):
     """根据正则匹配结果，生成新的 Markdown 链接"""
     filename = match.group(1).strip()
+    # Skip .excalidraw files - handled by Quartz Excalidraw transformer at build time
+    if filename.endswith('.excalidraw'):
+        return match.group(0)  # return original unchanged
     # 对文件名进行 URL 编码，防止文件名中有空格等特殊字符
     encoded_filename = urllib.parse.quote(filename)
     url = f"{CDN_BASE_URL}{encoded_filename}"

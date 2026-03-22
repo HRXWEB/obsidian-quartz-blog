@@ -66,6 +66,9 @@ const config: QuartzConfig = {
         },
         keepBackground: false,
       }),
+      Plugin.Excalidraw({
+        cdnBase: "https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/excalidraw",
+      }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),

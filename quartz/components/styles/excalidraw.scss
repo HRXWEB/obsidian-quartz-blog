@@ -1,0 +1,53 @@
+.excalidraw-embed {
+  width: 100%;
+  margin: 1rem 0;
+  text-align: center;
+
+  &.is-loaded svg {
+    max-width: 100%;
+    max-height: 90vh;
+    width: var(--page-width);
+    cursor: default;
+  }
+
+  .excalidraw-loading {
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  .excalidraw-error {
+    color: var(--red, #e74c3c);
+    font-style: italic;
+  }
+}
+
+// Dark mode: CSS inversion
+[saved-theme="dark"] .excalidraw-embed svg {
+  filter: invert(1) hue-rotate(180deg);
+
+  // Counter-invert foreignObject content (iframes, embedded HTML) so they render normally
+  foreignObject {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
+
+// Enlarged/fullscreen mode
+.excalidraw-embed.enlarged {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  margin: 0;
+
+  svg {
+    max-height: 95vh;
+    max-width: 95vw;
+  }
+}

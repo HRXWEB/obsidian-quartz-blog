@@ -14,3 +14,10 @@ repos:
         language: python
         types: [markdown]
         stages: [pre-commit]
+
+    -   id: upload-excalidraw-svgs
+        name: "Upload Excalidraw SVGs to GitHub image repo"
+        entry: ./scripts/upload_excalidraw_svgs.sh
+        language: system
+        stages: [pre-commit]
+        always_run: true
