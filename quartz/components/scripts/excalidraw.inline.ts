@@ -99,6 +99,15 @@ function createIframeOverlays(container: HTMLElement) {
   svg.parentNode!.insertBefore(wrapper, svg)
   wrapper.appendChild(svg)
 
+  interface OverlayInfo {
+    el: HTMLElement
+    tx: number
+    ty: number
+    foW: number
+    foH: number
+  }
+  const overlays: OverlayInfo[] = []
+
   const foreignObjects = svg.querySelectorAll("foreignObject")
   for (const fo of foreignObjects) {
     const iframe = fo.querySelector("iframe")
@@ -124,13 +133,8 @@ function createIframeOverlays(container: HTMLElement) {
     const tx = parseFloat(translateMatch[1])
     const ty = parseFloat(translateMatch[2])
 
-    // Create overlay positioned as percentage of SVG coordinate space
     const overlay = document.createElement("div")
     overlay.style.position = "absolute"
-    overlay.style.left = `${(tx / svgW) * 100}%`
-    overlay.style.top = `${(ty / svgH) * 100}%`
-    overlay.style.width = `${(foW / svgW) * 100}%`
-    overlay.style.height = `${(foH / svgH) * 100}%`
     overlay.style.overflow = "hidden"
     overlay.style.borderRadius = "32px"
 
@@ -143,7 +147,33 @@ function createIframeOverlays(container: HTMLElement) {
     overlay.appendChild(overlayIframe)
 
     wrapper.appendChild(overlay)
+    overlays.push({ el: overlay, tx, ty, foW, foH })
   }
+
+  // Position overlays using SVG's actual rendered dimensions (pixel-based).
+  // Percentage-based positioning breaks when CSS max-height constrains the SVG
+  // to be narrower than the wrapper.
+  function positionOverlays() {
+    const svgRect = svg!.getBoundingClientRect()
+    const wrapperRect = wrapper.getBoundingClientRect()
+    const offsetX = svgRect.left - wrapperRect.left
+    const offsetY = svgRect.top - wrapperRect.top
+    const scaleX = svgRect.width / svgW
+    const scaleY = svgRect.height / svgH
+
+    for (const { el, tx, ty, foW, foH } of overlays) {
+      el.style.left = `${offsetX + tx * scaleX}px`
+      el.style.top = `${offsetY + ty * scaleY}px`
+      el.style.width = `${foW * scaleX}px`
+      el.style.height = `${foH * scaleY}px`
+    }
+  }
+
+  positionOverlays()
+
+  const observer = new ResizeObserver(positionOverlays)
+  observer.observe(wrapper)
+  window.addCleanup(() => observer.disconnect())
 }
 
 function addInteractivity(container: HTMLElement) {
