@@ -91,22 +91,22 @@ function createIframeOverlays(container: HTMLElement) {
   const svgH = parseFloat(svg.getAttribute("height") || "0")
   if (!svgW || !svgH) return
 
-  // Wrap SVG in a relative container so overlays align with the SVG
+  // Wrap SVG in a container whose aspect-ratio matches the SVG viewBox exactly.
+  // Then force the SVG to fill 100% of this wrapper. This guarantees percentage-
+  // based overlay positions map 1:1 to the SVG coordinate system — no pixel
+  // calculations or ResizeObserver needed.
   const wrapper = document.createElement("div")
   wrapper.style.position = "relative"
-  wrapper.style.display = "inline-block"
   wrapper.style.width = "100%"
+  wrapper.style.aspectRatio = `${svgW} / ${svgH}`
   svg.parentNode!.insertBefore(wrapper, svg)
   wrapper.appendChild(svg)
 
-  interface OverlayInfo {
-    el: HTMLElement
-    tx: number
-    ty: number
-    foW: number
-    foH: number
-  }
-  const overlays: OverlayInfo[] = []
+  // Override CSS sizing so SVG fills the wrapper without gaps
+  const svgEl = svg as SVGSVGElement
+  svgEl.style.width = "100%"
+  svgEl.style.height = "100%"
+  svgEl.style.maxHeight = "none"
 
   const foreignObjects = svg.querySelectorAll("foreignObject")
   for (const fo of foreignObjects) {
@@ -133,8 +133,14 @@ function createIframeOverlays(container: HTMLElement) {
     const tx = parseFloat(translateMatch[1])
     const ty = parseFloat(translateMatch[2])
 
+    // Percentage positioning — maps directly to SVG coordinate space
+    // because wrapper aspect-ratio == SVG viewBox aspect-ratio
     const overlay = document.createElement("div")
     overlay.style.position = "absolute"
+    overlay.style.left = `${(tx / svgW) * 100}%`
+    overlay.style.top = `${(ty / svgH) * 100}%`
+    overlay.style.width = `${(foW / svgW) * 100}%`
+    overlay.style.height = `${(foH / svgH) * 100}%`
     overlay.style.overflow = "hidden"
     overlay.style.borderRadius = "32px"
 
@@ -147,33 +153,7 @@ function createIframeOverlays(container: HTMLElement) {
     overlay.appendChild(overlayIframe)
 
     wrapper.appendChild(overlay)
-    overlays.push({ el: overlay, tx, ty, foW, foH })
   }
-
-  // Position overlays using SVG's actual rendered dimensions (pixel-based).
-  // Percentage-based positioning breaks when CSS max-height constrains the SVG
-  // to be narrower than the wrapper.
-  function positionOverlays() {
-    const svgRect = svg!.getBoundingClientRect()
-    const wrapperRect = wrapper.getBoundingClientRect()
-    const offsetX = svgRect.left - wrapperRect.left
-    const offsetY = svgRect.top - wrapperRect.top
-    const scaleX = svgRect.width / svgW
-    const scaleY = svgRect.height / svgH
-
-    for (const { el, tx, ty, foW, foH } of overlays) {
-      el.style.left = `${offsetX + tx * scaleX}px`
-      el.style.top = `${offsetY + ty * scaleY}px`
-      el.style.width = `${foW * scaleX}px`
-      el.style.height = `${foH * scaleY}px`
-    }
-  }
-
-  positionOverlays()
-
-  const observer = new ResizeObserver(positionOverlays)
-  observer.observe(wrapper)
-  window.addCleanup(() => observer.disconnect())
 }
 
 function addInteractivity(container: HTMLElement) {
@@ -293,6 +273,12 @@ async function processExcalidrawEmbeds() {
       embed.innerHTML = processed
       const svgElement = embed.querySelector("svg")
       if (svgElement) {
+        // Detect aspect ratio: landscape gets max-height cap, portrait scrolls naturally
+        const w = parseFloat(svgElement.getAttribute("width") || "0")
+        const h = parseFloat(svgElement.getAttribute("height") || "0")
+        if (w && h && w >= h) {
+          embed.classList.add("landscape")
+        }
         // DOM-level fallback for hook-converted vault paths
         rewriteLinks(svgElement)
         embed.classList.add("is-loaded")

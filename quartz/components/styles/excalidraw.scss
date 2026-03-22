@@ -5,9 +5,13 @@
 
   &.is-loaded svg {
     max-width: 100%;
-    max-height: 90vh;
     width: var(--page-width);
     cursor: default;
+  }
+
+  // Landscape drawings: cap height so they don't overflow the viewport
+  &.is-loaded.landscape svg {
+    max-height: 90vh;
   }
 
   .excalidraw-loading {
