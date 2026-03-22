@@ -1,7 +1,7 @@
 ---
 permalink:
 title: Excalidraw + Quartz v4 集成方案：CDN 托管 + 交互式 SVG 内联注入
-draft: true
+draft: false
 aliases: []
 tags:
   - quartz
@@ -139,6 +139,14 @@ ea.onUpdateElementLinkForExportHook = (link) => {
 ```python
 if filename.endswith('.excalidraw'):
     return match.group(0)  # return original unchanged
+```
+
+## .gitignore 配置
+
+`.excalidraw.svg` 文件由 Obsidian 自动导出，通过 pre-commit hook 上传到 CDN 图床，**不需要提交到 Git 仓库**。在 `.gitignore` 中添加：
+
+```
+*.excalidraw.svg
 ```
 
 ## CDN URL 格式
@@ -371,6 +379,7 @@ Quartz 重新构建 → 绘图中链接正确指向 note-B
 | 文件 | 操作 | 说明 |
 |------|------|------|
 | Excalidraw 插件设置 | 修改 | 开启 `autoexportSVG`、`keepInSync` |
+| `.gitignore` | 修改 | 添加 `*.excalidraw.svg`（SVG 只上传 CDN，不入仓库） |
 | `scripts/upload_excalidraw_svgs.sh` | **新增** | Pre-commit hook：上传 SVG 到 GitHub 图床 |
 | `scripts/convert_links.py` | 修改 | 排除 `.excalidraw` 文件 |
 | `.pre-commit-config.yaml` | 修改 | 注册 SVG 上传 hook |
