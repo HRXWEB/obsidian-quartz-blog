@@ -16,3 +16,5 @@ journal/
 
 *.mmd
 *.excalidraw.svg
+
+.claude/settings.local.json

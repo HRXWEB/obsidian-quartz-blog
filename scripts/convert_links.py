@@ -29,12 +29,20 @@ def convert_link(match):
     return f"[{filename}]({url})"
 
 def process_file(filepath):
-    """读取文件，替换链接，然后写回文件"""
+    """读取文件，替换链接（跳过代码块），然后写回文件"""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        new_content, count = FILELINK_RE.subn(convert_link, content)
+        # Split by fenced code blocks (``` or ~~~), only replace in non-code parts
+        parts = re.split(r'(^```.*?^```|^~~~.*?^~~~)', content, flags=re.MULTILINE | re.DOTALL)
+        count = 0
+        for i in range(len(parts)):
+            # Even-indexed parts are outside code blocks
+            if i % 2 == 0:
+                parts[i], n = FILELINK_RE.subn(convert_link, parts[i])
+                count += n
+        new_content = ''.join(parts)
 
         if count > 0:
             print(f"Processed '{filepath}': Found and converted {count} links.")

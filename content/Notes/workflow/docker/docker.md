@@ -12,7 +12,13 @@ updated: 2025-10-10T18:10:51.5151+08:00
 
 [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
 
-```shellscript
+```bash
+sudo -v
+sudo mkdir -p /etc/docker && sudo tee /etc/docker/daemon.json <<EOF
+{
+  "insecure-registries": [ "http://192.168.3.224:8083"]
+}
+EOF
 sudo usermod -aG docker $USER
 sudo reboot
 ```

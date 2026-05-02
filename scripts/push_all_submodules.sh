@@ -64,10 +64,9 @@ git submodule foreach --quiet 'echo "$sm_path"' | while read -r sm_path; do
         fi
     fi
 
-    # Restore env and stage submodule ref in main repo
+    # Restore env and return to project root
     restore_git_env
     cd "$PROJECT_ROOT"
-    git add "$sm_path"
 done
 
 echo "All submodules synced."

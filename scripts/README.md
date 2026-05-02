@@ -3,9 +3,9 @@
 用于将 Obsidian 的链接转换为 CDN 链接，通过 pre-commit 自动执行，请勿手动执行。
 
 
-# push_attachments_submodule.sh
+# push_all_submodules.sh
 
-用于将 attachments 目录推送到 github 仓库，通过 pre-commit 自动执行，请勿手动执行。
+用于将所有子模块推送到 github 仓库，通过 pre-commit 自动执行，请勿手动执行。
 
 # validate-mermaid.js
 

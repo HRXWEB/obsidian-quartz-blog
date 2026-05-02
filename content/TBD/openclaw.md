@@ -23,7 +23,8 @@ URL:
 # 踩坑
 
 1. 新增了模型之后，webchat 后台可以及时看到，但是在飞书通信渠道上，用户看不到，要启动 gateway
-2. 飞书聊天渠道发送不了文件给我。原因：官方加了安全审查，非 workspace 目录下的发不出来，见 [飞书消息发送图片失败 - 只显示文件路径而非图片 · Issue #31378 · openclaw/openclaw](https://github.com/openclaw/openclaw/issues/31378)。源码分析搜 `assertLocalMediaAllowed` 就好了，目前 2026.2.26 版本在 `medis.ts` 文件里。
+2. 在 webchat 的会话中选择某用户和飞书bot的私聊续聊，有可能导致这个用户和飞书bot私聊失败
+3. 飞书聊天渠道发送不了文件给我。原因：官方加了安全审查，非 workspace 目录下的发不出来，见 [飞书消息发送图片失败 - 只显示文件路径而非图片 · Issue #31378 · openclaw/openclaw](https://github.com/openclaw/openclaw/issues/31378)。源码分析搜 `assertLocalMediaAllowed` 就好了，目前 2026.2.26 版本在 `medis.ts` 文件里。
 
 # 零散笔记
 

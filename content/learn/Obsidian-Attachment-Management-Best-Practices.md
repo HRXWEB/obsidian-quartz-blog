@@ -63,7 +63,7 @@ updated: 2025-10-10T18:01:22.2222+08:00
 
 	新建并编辑 `.pre-commit-config.yaml`，[内容见此](https://github.com/HRXWEB/obsidian-quartz-blog/blob/v4/.pre-commit-config.yaml)，id 为 `update-assets-submodule`
 
-	执行的脚本[在此](https://github.com/HRXWEB/obsidian-quartz-blog/blob/v4/scripts/push_attachments_submodule.sh)
+	执行的脚本[在此](https://github.com/HRXWEB/obsidian-quartz-blog/blob/v4/scripts/push_all_submodules.sh)
 
 # 通过 pre-commit 自动修改附件语法
 

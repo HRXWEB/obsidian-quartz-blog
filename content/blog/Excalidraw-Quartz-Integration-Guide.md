@@ -420,6 +420,41 @@ Quartz 重新构建 → 绘图中链接正确指向 note-B
 3. **jsDelivr 缓存**：默认 7 天，更新 SVG 后需手动 purge 或等待过期
 4. **CDN 旧文件**：重命名 excalidraw 文件后，旧 SVG 不会自动从 CDN 删除
 
+# 日常使用：如何添加一张 Excalidraw 绘图
+
+集成完成后，添加新绘图只需三步，SVG 会以页内交互式渲染的方式展示（支持链接点击、缩放平移、深色模式）。
+
+## 1. 创建绘图
+
+在 Obsidian 中通过 Excalidraw 插件新建绘图，保存后插件会自动在同目录生成 `.excalidraw.svg`。
+
+## 2. 在文章中嵌入
+
+在 Markdown 中使用标准 Obsidian 嵌入语法：
+
+```markdown
+![[my-drawing.excalidraw]]
+```
+
+支持别名：
+
+```markdown
+![[my-drawing.excalidraw|架构图]]
+```
+
+## 3. 提交即发布
+
+```bash
+git commit
+```
+
+Pre-commit hook 会自动完成：
+1. 上传 SVG 到 jsDelivr CDN
+2. 推送子模块
+3. Quartz 构建时将 `![[...excalidraw]]` 转为 CDN 引用的交互式 SVG
+
+无需手动上传、无需修改配置，改图后重新提交即可自动覆盖更新。
+
 # 参考资料
 
 - [zsolt 的 publish.js 脚本](https://gist.github.com/zsviczian/0bb31aa2d08ba689c14158e82cbbda5a)
