@@ -56,6 +56,23 @@ updated: 2026-05-04T00:52:11.1111+08:00
 
 2 核 2GB 的轻量服务器跑 Docker + Tailscale + 系统服务，内存余量极小。不做以下两步，系统在负载突增时（如自动更新触发大规模磁盘 I/O）极易被 OOM Killer 杀进程甚至整机锁死。
 
+> [!danger] 真实故障案例
+> 在一台 2C2G 阿里云轻量服务器上，`unattended-upgrades`（自动更新）在凌晨触发 `apt-daily.service`，单个 `unattended-upgr` 进程吃掉了 **1.2GB 内存**，几乎占满物理内存。由于**没有配置 Swap**（`Free swap = 0kB`），内核无路可走，触发了 OOM Killer 强制杀进程：
+> ```
+> Out of memory: Killed process 11275 (unattended-upgr)
+>   total-vm:1536592kB, anon-rss:1216480kB
+> apt-daily.service: Failed with result 'oom-kill'.
+> ```
+> 这次系统"自愈"了——OOM Killer 杀掉了罪魁祸首后内存释放。但更早一次同样的场景中，系统直接锁死，SSH 无响应，只能通过云控制台强制重启。
+>
+> **排查命令**：
+> ```bash
+> # 查看内核 OOM Killer 记录
+> dmesg -T | grep -iE 'oom|killed|out of memory'
+> # 查看指定时间段的系统日志（按需调整时间范围）
+> journalctl --since '2026-05-03 22:30' --until '2026-05-03 23:10' -p warning --no-pager
+> ```
+
 ### A. 强制添加 Swap
 
 在 2GB 内存的机器上不设置 Swap 是非常危险的。Swap 相当于在硬盘上开辟一块空间充当 " 临时内存 "，当内存快满时，系统会把不常用的数据移到硬盘，防止内核因为 " 无路可走 " 而触发 OOM 锁死 CPU。
