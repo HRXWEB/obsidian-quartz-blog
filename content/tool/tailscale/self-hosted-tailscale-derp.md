@@ -4,11 +4,14 @@ draft: false
 aliases: []
 tags: []
 created: 2026-04-28T13:12:54.5454+08:00
-updated: 2026-05-02T22:26:38.3838+08:00
+updated: 2026-05-03T19:02:53.5353+08:00
 ---
 
 > [!important] 建议
 > 先看完所有配置阶段后熟悉所有的环节和概念（这个过程使用的是域名方案，需要备案），然后跳转到 [[#不备案纯 IP 方案]] 去部署。免去备案的烦恼。
+
+> [!example] 注意点
+> - tailscale 启动之后会污染 dns（尝试过启动时加 `--accept-dns=false` 没有解决），导致宿主机 `apt update` `ping www.baidu.com` 网络不通，可以先 `systemctl stop tailscaled` 关闭 tailscale 服务
 
 # 第一阶段：基础设施准备（云服务器与网络安全）
 
@@ -55,10 +58,29 @@ updated: 2026-05-02T22:26:38.3838+08:00
 
 ```bash
 curl -fsSL https://tailscale.com/install.sh | sh
-sudo tailscale up
+sudo tailscale up --accept-dns=false
 ```
 
 - **检查 Sock 文件**：安装后确认 `/var/run/tailscale/tailscaled.sock` 存在，它是 DERP 容器识别“自己人”的唯一信物。
+
+### 为什么要加 `--accept-dns=false`？
+
+这个参数是**网络稳定性的救命稻草**。
+
+#### A. 防止内网“失联” (The Aliyun Conflict)
+
+阿里云的 `apt` 源和内部服务依赖其内网 DNS（通常是 `100.100.2.136`）。
+
+- **默认 (True)**：Tailscale 会接管 `/etc/resolv.conf`，将所有 DNS 请求导向自己的 `100.100.100.100`。
+- **结果**：Tailscale 有时无法正确转发阿里云的内网域名请求，导致 `apt update` 拿不到 IP，或者像刚才那样虽然拿到了 IP 但路由优先级混乱。
+- **关闭后**：系统将继续使用阿里云原生的 DNS，互不干扰。
+
+#### B. 解决“127.0.0.53”死循环
+
+Ubuntu 24.04 使用 `systemd-resolved`。
+
+- **默认 (True)**：Tailscale 会试图通过 `resolvectl` 强行插入解析链路。
+- **结果**：在某些复杂的网络环境下（尤其是国内云厂商），这会导致 DNS 环路或超时，表现为你刚才遇到的 `Connecting to mirrors...` 卡死。
 
 ---
 
@@ -420,16 +442,25 @@ mkdir -p /opt/derp/certs
 docker run -d \
   --name derper \
   --restart always \
+  # 资源限制
+  --cpus 0.5 \
+  --memory 256m \
+  # 日志限制 (防止磁盘满)
+  --log-driver json-file \
+  --log-opt max-size=10m \
+  --log-opt max-file=3 \
+  # 端口映射
   -p 55443:33445 \
   -p 53478:3478/udp \
+  # 挂载与环境配置
   -v /opt/derp/certs:/cert \
-  -e DERP_DOMAIN=<服务器IP> \
+  -e DERP_DOMAIN=182.92.5.217 \
   -e DERP_CERT_MODE=manual \
   -e DERP_CERT_DIR=/cert \
   -e DERP_ADDR=:33445 \
   -e DERP_STUN_PORT=3478 \
   -e DERP_HTTP_PORT=-1 \
-  -e DERP_VERIFY_CLIENTS=true \
+  -e DERP_VERIFY_CLIENTS=false \
   fredliang/derper
 
 # 3. 获取证书指纹 (极其重要)
@@ -438,6 +469,51 @@ docker logs derper 2>&1 | grep "sha256-raw"
 
 # (可选) 检查生成的证书文件
 ls /opt/derp/certs  # 你会看到自动生成的 <服务器IP>.crt 和 .key
+```
+
+也可以直接用 docker compose 的方式，`/opt/derp/docker-compose.yml` 配置如下：
+
+```yaml
+services:
+  derper:
+    container_name: derper
+    image: fredliang/derper:latest
+    restart: unless-stopped
+    ports:
+      - "55443:33445"
+      - "53478:3478/udp"
+    environment:
+      DERP_DOMAIN: "182.92.5.217"
+      DERP_CERT_MODE: "manual"
+      DERP_CERT_DIR: "/cert"
+      DERP_ADDR: ":33445"
+      DERP_STUN: "true"
+      DERP_STUN_PORT: "3478"
+      DERP_HTTP_PORT: "-1"
+      DERP_VERIFY_CLIENTS: "false"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "./certs:/cert"
+    # 资源限制：防止占满双核导致 SSH 卡死，在 Compose V2 (v5.1.3) 中是单机最稳妥写法
+    cpus: '0.50'
+    memory: 256M
+    # 日志限制：防止撑爆 40GB 磁盘
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+```
+
+验证资源限制生效：
+
+> [!warning] 注意
+> 在 **Ubuntu 24.04 (cgroup v2)** 环境下，传统的 `CpuQuota` 字段可能显示为 0，应以 `NanoCpus` 和 `Memory` 字段为准。
+
+```bash
+# 预期输出 NanoCpus 为 500000000 (代表 0.5 核)
+docker inspect derper | grep -iE "NanoCpus|Memory"
 ```
 
 ## 2. 云安全组配置
