@@ -95,17 +95,48 @@ sudo sysctl -p
 
 - **验证**：执行 `free -h`，Swap 一行应显示 `2.0Gi`。
 
-### B. 关闭自动更新（减少突发负载）
+### B. 关闭高资源占用的定时任务
 
-Ubuntu 默认开启的 `unattended-upgrades` 会在后台自动下载和安装软件包更新。在大内存机器上无感，但在 2GB 机器上，一旦触发大规模更新 + 磁盘扫描，极易打满 CPU 和内存，导致 SSH 无响应。
+Ubuntu 默认启用了一系列 systemd 定时任务（timer）。在大内存机器上无感，但在 2GB 机器上，部分任务会吃掉大量内存甚至触发 OOM。以下是系统默认定时任务的资源评估：
+
+| Timer                          | 功能            | 资源占用              | 建议           |
+| ------------------------------ | ------------- | ----------------- | ------------ |
+| `apt-daily.timer`              | 自动下载软件包更新     | **极高**（可吃 1.3GB+） | **必须关闭**     |
+| `apt-daily-upgrade.timer`      | 自动安装更新        | **极高**            | **必须关闭**     |
+| `man-db.timer`                 | 重建 man 手册索引   | **中等**（内存尖峰）      | **建议关闭**     |
+| `logrotate.timer`              | 日志轮转          | 极低                | 保留，防止日志撑爆磁盘  |
+| `fstrim.timer`                 | SSD TRIM 回收空间 | 低                 | 保留，ESSD 云盘需要 |
+| `sysstat-collect.timer`        | 每 10 分钟采集系统统计 | 极低                | 保留，排查问题有用    |
+| `dpkg-db-backup.timer`         | 备份 dpkg 数据库   | 极低                | 保留           |
+| `systemd-tmpfiles-clean.timer` | 清理临时文件        | 极低                | 保留           |
+| `e2scrub_all.timer`            | 文件系统检查        | 低                 | 保留           |
 
 ```bash
+# 关闭自动更新服务
 sudo systemctl stop unattended-upgrades
 sudo systemctl disable unattended-upgrades
+
+# 关闭 apt 定时任务（光关服务不够，timer 会定期拉起 apt-daily.service，
+# 内部仍然调用 unattended-upgr 进程，照样吃满内存）
+sudo systemctl stop apt-daily.timer apt-daily-upgrade.timer
+sudo systemctl disable apt-daily.timer apt-daily-upgrade.timer
+
+# 关闭 man 手册索引重建（小内存机器上偶发内存尖峰）
+sudo systemctl stop man-db.timer
+sudo systemctl disable man-db.timer
+
+# 验证：确认已关闭的 timer 不再出现
+systemctl list-timers --all | grep -iE 'apt|man-db|unattended'
 ```
 
 > [!warning] 代价
 > 关闭后你将**失去自动安全补丁**。对于一台只暴露两个高位端口的 DERP 中转服务器，攻击面极小，风险可控。但建议每月手动执行一次 `apt update && apt upgrade` 保持系统更新。
+>
+> **注意**：手动 `apt upgrade` 时，如果 `unattended-upgrades` 包本身被更新，其安装脚本可能会重新启用 timer。更新完后务必检查：
+> ```bash
+> systemctl list-timers | grep -iE 'apt|man-db|unattended'
+> ```
+> 如果有输出，说明 timer 被"复活"了，需要重新关闭。
 
 ---
 
