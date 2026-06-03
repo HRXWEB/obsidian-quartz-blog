@@ -4,7 +4,7 @@ draft: false
 aliases: []
 tags: []
 created: 2026-04-28T22:08:45.4545+08:00
-updated: 2026-05-02T22:26:35.3535+08:00
+updated: 2026-05-18T15:10:55.5555+08:00
 ---
 
 # 利用 Tailscale Subnet Router 实现内外网无感切换
@@ -27,8 +27,9 @@ updated: 2026-05-02T22:26:35.3535+08:00
 必须允许 Linux 内核转发来自虚拟网卡的流量。
 
 ```bash
-# 开启 IPv4 转发
+# 开启 IPv4/6 转发
 echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf
 # 使配置立即生效
 sudo sysctl -p
 ```

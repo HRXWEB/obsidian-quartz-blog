@@ -4,7 +4,7 @@ draft: false
 aliases: []
 tags: []
 created: 2026-04-28T13:12:54.5454+08:00
-updated: 2026-05-04T00:52:11.1111+08:00
+updated: 2026-06-03T13:08:06.066+08:00
 ---
 
 > [!important] 建议
@@ -63,7 +63,7 @@ updated: 2026-05-04T00:52:11.1111+08:00
 >   total-vm:1536592kB, anon-rss:1216480kB
 > apt-daily.service: Failed with result 'oom-kill'.
 > ```
-> 这次系统"自愈"了——OOM Killer 杀掉了罪魁祸首后内存释放。但更早一次同样的场景中，系统直接锁死，SSH 无响应，只能通过云控制台强制重启。
+> 这次系统 " 自愈 " 了——OOM Killer 杀掉了罪魁祸首后内存释放。但更早一次同样的场景中，系统直接锁死，SSH 无响应，只能通过云控制台强制重启。
 >
 > **排查命令**：
 > ```bash
@@ -136,7 +136,7 @@ systemctl list-timers --all | grep -iE 'apt|man-db|unattended'
 > ```bash
 > systemctl list-timers | grep -iE 'apt|man-db|unattended'
 > ```
-> 如果有输出，说明 timer 被"复活"了，需要重新关闭。
+> 如果有输出，说明 timer 被 " 复活 " 了，需要重新关闭。
 
 ---
 
@@ -362,6 +362,7 @@ acme.sh --issue --dns dns_cf -d derp.xxx.xxx --ecc
 ```
 
 - **工作原理**：`acme.sh` 会调用 CF API 自动生成一个随机的 TXT 记录，Let's Encrypt 验证通过后，证书会自动下载到 `~/.acme.sh/` 目录下。
+- **注意**：这里的 `derp.xxx.xxx` 要和 [[#3. 执行容器启动命令（深度解析）]] 中配置 `DERP_DOMAIN` 的值一致。
 
 ---
 
