@@ -4,7 +4,7 @@ draft: true
 aliases: []
 tags: []
 created: 2026-01-26T17:25:21.2121+08:00
-updated: 2026-03-05T12:18:18.1818+08:00
+updated: 2026-06-03T15:37:42.4242+08:00
 URL:
 ---
 
@@ -23,14 +23,16 @@ URL:
 # 踩坑
 
 1. 新增了模型之后，webchat 后台可以及时看到，但是在飞书通信渠道上，用户看不到，要启动 gateway
-2. 在 webchat 的会话中选择某用户和飞书bot的私聊续聊，有可能导致这个用户和飞书bot私聊失败
+2. 在 webchat 的会话中选择某用户和飞书 bot 的私聊续聊，有可能导致这个用户和飞书 bot 私聊失败
 3. 飞书聊天渠道发送不了文件给我。原因：官方加了安全审查，非 workspace 目录下的发不出来，见 [飞书消息发送图片失败 - 只显示文件路径而非图片 · Issue #31378 · openclaw/openclaw](https://github.com/openclaw/openclaw/issues/31378)。源码分析搜 `assertLocalMediaAllowed` 就好了，目前 2026.2.26 版本在 `medis.ts` 文件里。
+4. docker 部署的时候 BRAVE API 需要外部网络环境，但是配置后会导致消息发送不到飞书服务器，服务器也就不会下发消息给机器人
+5. 别再后台强制打断（比如 `/stop`）用户在别的 channel（比如飞书）的对话，会导致后续机器人不理用户了，此时只能重启 gateway
 
 # 零散笔记
 
 ## clawdbot 四大核心模块
 
-![image.png](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20260127175844247.png)
+![image.png|92](https://cdn.jsdelivr.net/gh/hrxweb/obsidian-images/img/20260127175844247.png)
 
 图源：[ClawdBot: The self-hosted AI that Siri should have been (Full setup)](https://www.youtube.com/watch?v=SaWSPZoPX34)
 
@@ -190,15 +192,15 @@ Optional Permissions (for full functionality):
 - hackable 版本
 	```bash
 	pnpm run openclaw plugins install @m1heng-clawd/feishu
-	pnpm run openclaw config set channels.feishu.appId "cli_a9f335f3b9395cb0"
-	pnpm run openclaw config set channels.feishu.appSecret "CdqxdVpNX65aWzOU3j3YKboXfwZCmiR2"
+	pnpm run openclaw config set channels.feishu.appId "<your-app-id>"
+	pnpm run openclaw config set channels.feishu.appSecret "<your-app-secret>"
 	pnpm run openclaw config set channels.feishu.enabled true
 	```
 - source 版本：
 	```bash
 	openclaw plugins install @m1heng-clawd/feishu
-	openclaw config set channels.feishu.appId "cli_a9f335f3b9395cb0"
-	openclaw config set channels.feishu.appSecret "CdqxdVpNX65aWzOU3j3YKboXfwZCmiR2"
+	openclaw config set channels.feishu.appId "<your-app-id>"
+	openclaw config set channels.feishu.appSecret "<your-app-secret>"
 	openclaw config set channels.feishu.enabled true
 	```
 
@@ -358,7 +360,7 @@ Optional Permissions (for full functionality):
         ]
       },
       "ollama-local": {
-        "baseUrl": "http://192.168.3.67:11434/v1",
+        "baseUrl": "http://<your-ollama-host>:11434/v1",
         "apikey": "suibianxieyige",
         "api": "openai-completions",
         "models": [
@@ -613,7 +615,7 @@ openclaw 有一套“智能安装机制”。当你通过命令或 Dashboard 安
         "message": "你好！这是一个定时问候消息。",
         "deliver": true,
         "channel": "feishu",
-        "to": "oc_3bc5007ac1958b6b865d2b63a9297794"
+        "to": "oc_<your-group-id>"
       },
       "isolation": {
         "postToMainPrefix": "Cron",
@@ -697,11 +699,11 @@ openclaw 有一套“智能安装机制”。当你通过命令或 Dashboard 安
 sudo apt update
 sudo apt install nginx -y
 sudo mkdir -p /etc/nginx/ssl
-sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048   -keyout /etc/nginx/ssl/openclaw.key   -out /etc/nginx/ssl/openclaw.crt   -subj "/C=CN/ST=State/L=City/O=MyHome/CN=192.168.7.184"
+sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048   -keyout /etc/nginx/ssl/openclaw.key   -out /etc/nginx/ssl/openclaw.crt   -subj "/C=CN/ST=State/L=City/O=MyHome/CN=<your-server-ip>"
 sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/openclaw_dashboard
 server {
     listen 18790 ssl;
-    server_name 192.168.7.184;
+    server_name <your-server-ip>;
 
     ssl_certificate /etc/nginx/ssl/openclaw.crt;
     ssl_certificate_key /etc/nginx/ssl/openclaw.key;
@@ -730,7 +732,7 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-打开 `https://192.168.7.184:18789/` 提示：
+打开 `https://<your-server-ip>:18789/` 提示：
 
 ```
 disconnected (1008): unauthorized: gateway token missing (open the dashboard URL and paste the token in Control UI settings)
@@ -1329,7 +1331,7 @@ docker 的方式可以通过命名卷（Named Volume）来管理容器内的 `/h
 	localnet 192.168.0.0/255.255.0.0
 	
 	[ProxyList]
-	http 192.168.3.242 2888
+	http <your-proxy-ip> <your-proxy-port>
 	```
 
 只需要给你想执行的命令加上 `proxychains4 ` 前缀即可，比如 `proxychains4 curl ipinfo.io`
