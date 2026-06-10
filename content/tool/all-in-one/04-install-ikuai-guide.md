@@ -8,7 +8,7 @@ updated: 2026-06-08T16:31:27.2727+08:00
 URL: https://zhuanlan.zhihu.com/c_2032941115297486065
 ---
 
-> [!info] 版权©️所有
+> [!info] 版权所有
 > 全文内容均来自（或许自己会加几行备注）[吉吉@知乎](https://www.zhihu.com/people/a-guan-da-shu) 的专栏 [工程师 AIO 手册：打造全能家庭服务器](https://zhuanlan.zhihu.com/c_2032941115297486065)，本文仅作为个人备份，如侵权请联系删除。
 
 ---

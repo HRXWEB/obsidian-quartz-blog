@@ -567,12 +567,12 @@ openclaw 有一套“智能安装机制”。当你通过命令或 Dashboard 安
   "version": 1,
   "jobs": [
     {
-      "id": "e596eac0-bcb3-41c5-a1a5-f781004a5d93",
+      "id": "<job-id-1>",
       "name": "每分钟嵌入式AI芯片简报测试",
       "enabled": true,
       "deleteAfterRun": false,
-      "createdAtMs": 1769603073553,
-      "updatedAtMs": 1769603580001,
+      "createdAtMs": 1769600000000,
+      "updatedAtMs": 1769600000000,
       "schedule": {
         "kind": "cron",
         "expr": "* * * * *"
@@ -591,19 +591,19 @@ openclaw 有一套“智能安装机制”。当你通过命令或 Dashboard 安
         "postToMainMaxChars": 8000
       },
       "state": {
-        "nextRunAtMs": 1769603640000,
-        "lastRunAtMs": 1769603580001,
+        "nextRunAtMs": 1769600000000,
+        "lastRunAtMs": 1769600000000,
         "lastStatus": "ok",
         "lastDurationMs": 14081
       }
     },
     {
-      "id": "76bc3413-850b-43b1-aca5-05423876c524",
+      "id": "<job-id-2>",
       "name": "每分钟问候测试",
       "enabled": true,
       "deleteAfterRun": false,
-      "createdAtMs": 1769603080576,
-      "updatedAtMs": 1769603580001,
+      "createdAtMs": 1769600000000,
+      "updatedAtMs": 1769600000000,
       "schedule": {
         "kind": "cron",
         "expr": "* * * * *"
@@ -623,8 +623,8 @@ openclaw 有一套“智能安装机制”。当你通过命令或 Dashboard 安
         "postToMainMaxChars": 8000
       },
       "state": {
-        "nextRunAtMs": 1769603640000,
-        "lastRunAtMs": 1769603594088,
+        "nextRunAtMs": 1769600000000,
+        "lastRunAtMs": 1769600000000,
         "lastStatus": "ok",
         "lastDurationMs": 3384
       }
